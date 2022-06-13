@@ -1,0 +1,6 @@
+run_id __IA-R1-_BEH
+param_file __IA-RX-PARA.txt
+random_run True
+random_run_number 1
+instruction_schedule IA_instruct_scheduleS_L_MM.csv
+possible_schedules ['MM_IA_T0_R1.schedule','MM_IA_T0_R2.schedule','MM_IA_T0_R3.schedule']

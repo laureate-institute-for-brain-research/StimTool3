@@ -1,0 +1,20 @@
+stdout made
+12128
+<multiprocessing.queues.Queue object at 0x0000020A099F66A0>
+<multiprocessing.queues.Queue object at 0x0000020A09D17E80>
+starting stream
+started stream
+test
+stop
+sending: test
+C:/PASO_Temporary_Storage/behavioral_session/AA000-V1-PASO-R1-FACE-1
+stop
+sending: C:/PASO_Temporary_Storage/behavioral_session/AA000-V1-PASO-R1-FACE-1
+C:/PASO_Temporary_Storage/behavioral_session/AA000-V1-_CAM-R1-FACE-1
+stop
+sending: C:/PASO_Temporary_Storage/behavioral_session/AA000-V1-_CAM-R1-FACE-1
+C:/PASO_Temporary_Storage/behavioral_session/AA000-V1-__HC-R1-FACE-1
+stop
+sending: C:/PASO_Temporary_Storage/behavioral_session/AA000-V1-__HC-R1-FACE-1
+quit
+sending: quit

@@ -1,0 +1,6 @@
+run_id __IA-R1-_BEH
+param_file __IA-RX-PARA.txt
+random_run True
+random_run_number 1
+instruction_schedule study-COVIDVac_task-IA_run-1_hand-L_instructschedule.csv
+possible_schedules ['T1000_IA_T0_R1.schedule','T1000_IA_T0_R2.schedule','T1000_IA_T0_R3.schedule']

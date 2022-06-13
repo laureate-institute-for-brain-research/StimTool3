@@ -1,0 +1,4 @@
+run_id __SS-R2-_BEH
+param_file __SS-RX-PARA.txt
+practice False
+instruction_schedule SS_instruct_scheduleS_Cha_COBRE_L.csv

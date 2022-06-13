@@ -1,0 +1,6 @@
+run_id __NC-RP3-_BEH
+param_file NCAIR_RP_PARA.txt
+instruction_schedule NC_instruct_schedulePR3_R.csv
+media_type image
+practice True
+response_type button_box

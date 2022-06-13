@@ -1,0 +1,4 @@
+run_id __SS-R1-_BEH
+param_file __SS-RX-PARA.txt
+practice False
+instruction_schedule study-capsule_task-SS_run-1_instructschedule.csv

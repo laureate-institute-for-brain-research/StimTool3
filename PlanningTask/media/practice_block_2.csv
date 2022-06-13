@@ -1,0 +1,11 @@
+Target,Left_Word,Right_Word,Correct
+Peace,Good,Bad,1
+Pleasure,Good,Bad,1
+Joy,Good,Bad,1
+Love,Good,Bad,1
+Wonderful,Good,Bad,1
+Pain,Good,Bad,2
+Terrible,Good,Bad,2
+Rotten,Good,Bad,2
+Nasty,Good,Bad,2
+Sad,Good,Bad,2

@@ -1,0 +1,10 @@
+run_id __PT-RP4-_BEH
+instruction_schedule media/instructions/PlanningTask_instruct_RP4_R.csv
+param_file __PT_RP4_PARA.txt
+practice True
+select_1 'left'
+select_2 'right'
+select_3 'up'
+select_4 'down'
+free_duration 120
+hand 'RIGHT'

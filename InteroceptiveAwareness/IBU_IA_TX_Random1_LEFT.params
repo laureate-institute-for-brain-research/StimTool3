@@ -1,0 +1,5 @@
+run_id __IA-R1-_BEH
+param_file __IA-RX-PARA.txt
+random_run True
+random_run_number 1
+instruction_schedule IA_instruct_schedule_IBU_S_L.csv

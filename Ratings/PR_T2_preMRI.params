@@ -1,0 +1,3 @@
+param_file PR_preMRI_PARA.txt
+run_id _PR_T2_preMRI
+stage preMRI

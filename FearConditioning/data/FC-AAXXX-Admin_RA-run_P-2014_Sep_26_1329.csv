@@ -1,0 +1,5 @@
+Original File Name:,T:\BehavioralTasks\StimTool\FearConditioning\data/FC-AAXXX-Admin_RA-run_P-2014_Sep_26_1329.csv,Time:,2014_Sep_26_1329,Parameter File:,T:\BehavioralTasks\StimTool\FearConditioning\T1000_FC_ScheduleP.csv,Event Codes:,[('INSTRUCT_ONSET', 1), ('TASK_ONSET', 2), ('ARROW_ONSET', 3), ('RESPONSE', 4), ('IMAGE_ONSET', 5), ('US', 6), ('SOUND', 7), ('RATING', 8), ('VALENCE_RATING_ONSET', 9), ('VALENCE_RATING_RESPONSE', 10), ('AROUSAL_RATING_ONSET', 11), ('AROUSAL_RATING_RESPONSE', 12), ('ANXIETY_RATING_ONSET', 13), ('ANXIETY_RATING_RESPONSE', 14), ('TASK_END', 99)],Trial Types are coded as follows: 0->left arrow; 1->right arrow; 2->CS-; 3->CS+; 4->CS+&US, volume=NA
+trial_number,trial_type,event_code,absolute_time,response_time,response,result
+NA,NA,10,1.19239240035,0.884899554309,3,0
+NA,NA,12,2.16093968414,0.885131627205,3,0
+NA,NA,99,8.37189705879,NA,NA,NA

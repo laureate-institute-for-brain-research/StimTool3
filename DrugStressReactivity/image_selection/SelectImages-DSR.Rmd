@@ -1,0 +1,696 @@
+---
+title: "Image Selection for DSR"
+author: "Rayus Kuplicki, Laureate Institute for Brain Research"
+date: "Feb 10, 2020"
+output: 
+  html_document:
+    code_folding: hide
+    highlight: tango
+    theme: cerulean
+    toc: true
+    toc_float:
+      collapsed: false
+      smooth_scroll: false
+word_document: default
+
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(warning = FALSE)
+```
+```{r set-options, echo=FALSE, cache=FALSE}
+options(width = 300)
+```
+
+
+## IAPS Stress image selection
+
+```{r}
+
+set.seed(12345)
+#columns to match between opioid, neutral, and IAPS stress images for different sets of images
+#allsubjects_arousal_mean
+#allsubjects_valence_mean
+
+#hue_mean
+#saturation_mean
+#value_mean
+
+#allsubjects_craving_mean
+
+#IAPS stress images Rajita's group used--will keep these 66, and add 30 more for a total of 96
+images_rajita <- read.table('images-yale.tsv', header = TRUE)
+images_rajita <- images_rajita[images_rajita$PicNum != 'grayfix',]
+length(unique(images_rajita$PicNum))
+rajita_ids <- unique(images_rajita$PicNum)
+
+dir.create('IAPS-Rajita')
+#put files Rajita used in a folder for easy viewing
+for (id in rajita_ids){
+  file.copy(paste0('../media/IAPS20081_20/IAPS1_20Images/', id, '.jpg'), 'IAPS-Rajita')
+}
+
+data_iaps <- read.table('AllSubjects_1-20.txt', header = TRUE)
+library(ggplot2)
+data_iaps$rajita_used <- data_iaps$IAPS %in% rajita_ids
+library(stringr)
+hsv_iaps <- read.csv('HSV-IAPS.csv')
+hsv_iaps$IAPS <- str_replace(hsv_iaps$File, '.jpg', '')
+#add hue/saturation/value into data_iaps
+data_iaps <- merge(data_iaps, hsv_iaps)
+#select 30 more IAPS images with valence < 3 and arousal > 4
+
+data_iaps$possible_option <- !data_iaps$rajita_used & (data_iaps$valmn < 3) & (data_iaps$aromn > 4)
+#list of possible new images to select
+
+#remove drug/alcohol related IAPS (beer bottle, cigarette butts, drug injection)
+data_iaps$possible_option[data_iaps$IAPS %in% c(2710, 9830, 2751, 2717, 2750, 9007)] <- FALSE
+
+possible_idxs <- (1:nrow(data_iaps))[data_iaps$possible_option]
+#pick 30 of them at random
+new_iaps <- sample(possible_idxs, 30)
+data_iaps$selection_group <- 'Unused'
+data_iaps$selection_group[data_iaps$rajita_used] <- 'RajitaUsed'
+data_iaps$selection_group[new_iaps] <- 'NewlySelected'
+
+dir.create('IAPS-new')
+#put files Rajita used in a folder for easy viewing
+for (id in data_iaps[data_iaps$selection_group == 'NewlySelected', 'IAPS']){
+  file.copy(paste0('../media/IAPS20081_20/IAPS1_20Images/', id, '.jpg'), 'IAPS-new')
+}
+
+#show valence/arousal of all IAPS, images rajita used, and newly selected images
+ggplot(data = data_iaps) + geom_point(aes(x = valmn, y = aromn, color = selection_group)) + ggtitle('IAPS Images Used')
+library(tableone)
+print("Comparing Rajita's IAPS stress images to our newly selected ones:")
+CreateTableOne(data = data_iaps[data_iaps$selection_group != 'Unused',], vars = c('valmn', 'aromn', 'hue_mean', 'saturation_mean', 'value_mean'), strata = 'selection_group')
+
+#grab just the selected IAPS images, then split them randomly into the 4 image sets
+selected_data_iaps <- data_iaps[data_iaps$selection_group != 'Unused',]
+selected_data_iaps$in_set <- sample(rep(1:4, 24))
+
+names(selected_data_iaps)[names(selected_data_iaps) == 'valmn'] <- 'allsubjects_valence_mean'
+names(selected_data_iaps)[names(selected_data_iaps) == 'aromn'] <- 'allsubjects_arousal_mean'
+selected_data_iaps$ImageSet <- 'stress'
+
+
+```
+
+
+
+  
+  
+
+
+## Neutral and Opioid image selection
+
+```{r}
+
+
+data_mocd <- read.csv('DCR_summaries_7-3-2019.csv')
+#ggplot(data = data_mocd) + geom_point(aes(x = allsubjects_valence_mean, y = allsubjects_arousal_mean, color = ImageSet))
+
+#ggplot(data = data_mocd[data_mocd$ImageSet != 'meth',]) + geom_histogram(aes(x = allsubjects_craving_mean, color = ImageSet, fill = ImageSet))
+
+selection_data <- data_mocd
+
+#remove opioid image 118 because 109 and 118 are the same 
+selection_data <- selection_data[(selection_data$Group != 'opioid Slide118.jpeg'),]
+
+#remove images with text on them
+selection_data <- selection_data[!(selection_data$Group %in%  c('opioid Slide015.jpeg', 'opioid Slide016.jpeg', 'opioid Slide017.jpeg', 
+                                                                'opioid Slide018.jpeg', 'opioid Slide019.jpeg', 'opioid Slide020.jpeg',
+                                                                'control Slide017.jpeg', 'control Slide018.jpeg', 'control Slide019.jpeg', 'control Slide020.jpeg')),]
+
+#remove light bulb images, since they can be associated with drug use
+selection_data <- selection_data[!(selection_data$Group %in%  c('control Slide057.jpeg', 'control Slide087.jpeg')),]
+
+#get rid of meth images
+selection_data <- selection_data[selection_data$ImageSet != 'meth',]
+
+#remove image set averages (e.g. mean opioid_hand etc.)
+selection_data <- selection_data[!is.na(selection_data$File),]
+
+
+#select images based on distance to a target HSV
+try_one_criteria <- function(control_target_hue, control_target_saturation, control_target_value,
+                             opioid_target_hue, opioid_target_saturation, opioid_target_value){
+  #sorted_data <- selection_data[sample(nrow(selection_data)),]
+  
+  selection_data$selection_cost <- NA
+  selection_data$selection_cost[selection_data$ImageSet == 'control'] <- 
+    (selection_data$hue_mean[selection_data$ImageSet == 'control'] - control_target_hue)^2 + 
+    (selection_data$saturation_mean[selection_data$ImageSet == 'control'] - control_target_saturation)^2 +
+    (selection_data$value_mean[selection_data$ImageSet == 'control'] - control_target_value)^2
+  
+  
+  selection_data$selection_cost[selection_data$ImageSet == 'opioid'] <- 
+    (selection_data$hue_mean[selection_data$ImageSet == 'opioid'] - opioid_target_hue)^2 + 
+    (selection_data$saturation_mean[selection_data$ImageSet == 'opioid'] - opioid_target_saturation)^2 +
+    (selection_data$value_mean[selection_data$ImageSet == 'opioid'] - opioid_target_value)^2
+  
+  
+  (selection_data$hue_mean - 0.3)^2 + (selection_data$saturation_mean - 0.3)^2 + (selection_data$value_mean - 0.3)^2
+  #this line to select based on high/low craving rating
+  #sorted_data <- selection_data[order(selection_data$allsubjects_craving_mean),]
+  #this line to select based on HSV cost
+  sorted_data <- selection_data[order(selection_data$selection_cost),]
+
+
+  
+  #label categories 1:6, to make indexing into number_selected easier
+  
+  sorted_data$category_number <- NA
+  
+  sorted_data$category_number[sorted_data$Category == 'control_objects'] <- 1
+  sorted_data$category_number[sorted_data$Category == 'control_objects_hand'] <- 2
+  sorted_data$category_number[sorted_data$Category == 'control_tool'] <- 3
+  sorted_data$category_number[sorted_data$Category == 'control_tool_hand_simple'] <- 4
+  sorted_data$category_number[sorted_data$Category == 'control_tool_hand_complex'] <- 5
+  sorted_data$category_number[sorted_data$Category == 'control_tool_face'] <- 6
+  
+  
+  sorted_data$category_number[sorted_data$Category == 'opioid'] <- 1
+  sorted_data$category_number[sorted_data$Category == 'opioid_hand'] <- 2
+  sorted_data$category_number[sorted_data$Category == 'opioid_injection_instrument'] <- 3
+  sorted_data$category_number[sorted_data$Category == 'opioid_instrument_hand'] <- 4
+  sorted_data$category_number[sorted_data$Category == 'opioid_injection_hand'] <- 5
+  sorted_data$category_number[sorted_data$Category == 'opioid_face_activities'] <- 6
+  
+  #number in each group that have been selected 
+  number_selected <- c(0, 0, 0, 0, 0, 0)
+  
+  #go forward, marking the first 12 in each category of control images for selection
+  #will set to TRUE for images selected to be used
+  sorted_data$selected <- FALSE
+  
+  
+  for (i in 1:nrow(sorted_data)){
+    #step forwards, taking the least craving-iducing neutral images
+    if (sorted_data$ImageSet[i] != 'control') {
+      next
+    }
+    this_category <- sorted_data$category_number[i]
+    if (number_selected[this_category] > 15){
+      next
+    }
+    number_selected[this_category] <- number_selected[this_category] + 1
+    sorted_data[i, 'selected'] <- TRUE
+  }
+  #some categories have < 16 items, so fill out 96 images from categories that have more
+  for (i in 1:nrow(sorted_data)){
+    #step forwards, taking the least craving-iducing neutral images
+    if (sorted_data$ImageSet[i] != 'control' | sorted_data[i, 'selected']) {
+      next
+    }
+    
+    this_category <- sorted_data$category_number[i]
+    if (number_selected[this_category] > 18){
+      next
+    }
+    number_selected[this_category] <- number_selected[this_category] + 1
+    sorted_data[i, 'selected'] <- TRUE
+    if (sum(number_selected) == 96){
+      break
+    }
+  } 
+  
+  
+  #number in each group that have been selected 
+  number_selected_opioid <- c(0, 0, 0, 0, 0, 0)
+  #step through backwards, selecting most craving-inducing meth/opioid images
+  #for (i in nrow(sorted_data):1){
+  for (i in 1:nrow(sorted_data)){  
+    
+    this_category <- sorted_data$category_number[i]
+    this_group <- sorted_data$ImageSet[i]
+    if (this_group == 'opioid'){
+      if (number_selected_opioid[this_category] > 15){
+        next
+      }
+      number_selected_opioid[this_category] <- number_selected_opioid[this_category] + 1
+      sorted_data[i, 'selected'] <- TRUE
+    }
+  }
+  #some categories have < 16 items, so fill out 96 images from categories that have more
+  for (i in 1:nrow(sorted_data)){
+    #step forwards, taking the least craving-iducing neutral images
+    if (sorted_data$ImageSet[i] != 'opioid' | sorted_data[i, 'selected']) {
+      next
+    }
+    
+    this_category <- sorted_data$category_number[i]
+    if (number_selected_opioid[this_category] > 19){
+      next
+    }
+    number_selected_opioid[this_category] <- number_selected_opioid[this_category] + 1
+    sorted_data[i, 'selected'] <- TRUE
+    if (sum(number_selected_opioid) == 96){
+      break
+    }
+  } 
+  
+  selected_data <- sorted_data[sorted_data$selected,]
+  
+  
+  selected_data$in_set <- NA
+  #will randomize these
+  in_set <- c(1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4)
+  
+  #some categories have 16 or fewer, assign those first and keep a list of image sets with fewer than expected due to < 16 in some categories
+  extras_control <- c()
+  for (i in 1:6){
+    number_inset <- length(selected_data[selected_data$category_number == i & selected_data$ImageSet == 'control', 'in_set'])
+    if (number_inset < 17){
+      random_order <- in_set[sample(16)]
+      selected_data[selected_data$category_number == i & selected_data$ImageSet == 'control', 'in_set'] <- random_order[1:number_inset]
+      if(number_inset < 16){
+        extras_control <- c(extras_control, random_order[(number_inset + 1):16])
+      }
+    }
+  }
+  #now, for those categories that had > 16 images, pass them out to the image sets in extras_control
+  for (i in 1:6){
+    number_inset <- length(selected_data[selected_data$category_number == i & selected_data$ImageSet == 'control', 'in_set'])
+    if (number_inset > 16){
+      this_inset <- c(in_set, extras_control[1:(number_inset - 16)])
+      extras_control <- extras_control[(number_inset - 15):length(extras_control)]
+      random_order <- this_inset[sample(number_inset)]
+      selected_data[selected_data$category_number == i & selected_data$ImageSet == 'control', 'in_set'] <- random_order
+    }
+  }
+  
+  #some categories have 16 or fewer, assign those first and keep a list of image sets with fewer than expected due to < 16 in some categories
+  extras_opioid <- c()
+  for (i in 1:6){
+    number_inset <- length(selected_data[selected_data$category_number == i & selected_data$ImageSet == 'opioid', 'in_set'])
+    if (number_inset < 17){
+      random_order <- in_set[sample(16)]
+      selected_data[selected_data$category_number == i & selected_data$ImageSet == 'opioid', 'in_set'] <- random_order[1:number_inset]
+      if(number_inset < 16){
+        extras_opioid <- c(extras_opioid, random_order[(number_inset + 1):16])
+      }
+    }
+  }
+  #now, for those categories that had > 16 images, pass them out to the image sets in extras_opioid
+  for (i in 1:6){
+    number_inset <- length(selected_data[selected_data$category_number == i & selected_data$ImageSet == 'opioid', 'in_set'])
+    if (number_inset > 16){
+      this_inset <- c(in_set, extras_opioid[1:(number_inset - 16)])
+      extras_opioid <- extras_opioid[(number_inset - 15):length(extras_opioid)]
+      random_order <- this_inset[sample(number_inset)]
+      selected_data[selected_data$category_number == i & selected_data$ImageSet == 'opioid', 'in_set'] <- random_order
+    }
+  }
+  
+  
+  
+  #selected_data[selected_data$category_number == i & selected_data$ImageSet == 'opioid', 'in_set'] <- in_set[sample(16)]
+  
+  library(tableone)
+  
+  allsets_tab <- CreateTableOne(vars = c('allsubjects_arousal_mean', 'allsubjects_craving_mean', 'allsubjects_typicality_mean', 'allsubjects_valence_mean', 
+                                         'hue_mean', 'saturation_mean', 'value_mean'),
+                                strata = c('ImageSet'), data = selected_data)
+  print(allsets_tab)
+  
+  
+  return(selected_data)
+}
+#instead, let's select based on hue and see if that helps balance things--get images closest to 0.2
+#try_one_criteria <- function(control_target_hue, control_target_saturation, control_target_value,
+#                             meth_target_hue, meth_target_saturation, meth_target_value,
+#                             opioid_target_hue, opioid_target_saturation, opioid_target_value){
+
+
+```
+
+## Select Opioid and Control images
+
+```{r}
+selected_data <- try_one_criteria(0.4, 1, 0.5,
+                 0.2, 0.8, 0.5)
+
+library(data.table)
+
+combined <- rbindlist(list(selected_data, selected_data_iaps), fill = TRUE, use.names = TRUE)
+combined <- as.data.frame(combined)
+#combine selected IAPS data with opioid/control data, so we can summarize all data sets
+
+#get all neutral images not selected, so we can use them to make a practice schedule
+neutral_remaining <- selection_data[selection_data$ImageSet == 'control' & !(selection_data$Group %in% combined$Group),]
+
+```
+
+## Control/Stress/Opioid overall comparison
+
+```{r}
+set_tab <- CreateTableOne(vars = c('allsubjects_arousal_mean', 'allsubjects_craving_mean', 'allsubjects_typicality_mean', 'allsubjects_valence_mean', 
+                                       'hue_mean', 'saturation_mean', 'value_mean'),
+                      strata = c('ImageSet'), data = combined)
+print(set_tab)
+
+```
+
+
+
+## Control/Stress/Opioid Set 1
+
+```{r}
+
+set1_tab <- CreateTableOne(vars = c('allsubjects_arousal_mean', 'allsubjects_craving_mean', 'allsubjects_typicality_mean', 'allsubjects_valence_mean', 
+                                       'hue_mean', 'saturation_mean', 'value_mean'),
+                      strata = c('ImageSet'), data = combined[combined$in_set == 1,])
+print(set1_tab)
+
+```
+
+## Control/Stress/Opioid Set 2
+
+```{r}
+
+set2_tab <- CreateTableOne(vars = c('allsubjects_arousal_mean', 'allsubjects_craving_mean', 'allsubjects_typicality_mean', 'allsubjects_valence_mean', 
+                                       'hue_mean', 'saturation_mean', 'value_mean'),
+                      strata = c('ImageSet'), data = combined[combined$in_set == 2,])
+print(set2_tab)
+
+```
+
+## Control/Stress/Opioid Set 3
+
+```{r}
+
+set3_tab <- CreateTableOne(vars = c('allsubjects_arousal_mean', 'allsubjects_craving_mean', 'allsubjects_typicality_mean', 'allsubjects_valence_mean', 
+                                       'hue_mean', 'saturation_mean', 'value_mean'),
+                      strata = c('ImageSet'), data = combined[combined$in_set == 3,])
+print(set3_tab)
+
+```
+## Control/Stress/Opioid Set 4
+
+```{r}
+
+set4_tab <- CreateTableOne(vars = c('allsubjects_arousal_mean', 'allsubjects_craving_mean', 'allsubjects_typicality_mean', 'allsubjects_valence_mean', 
+                                       'hue_mean', 'saturation_mean', 'value_mean'),
+                      strata = c('ImageSet'), data = combined[combined$in_set == 4,])
+print(set4_tab)
+
+```
+
+
+## Control images compared across session
+
+```{r}
+control_tab <- CreateTableOne(vars = c('allsubjects_arousal_mean', 'allsubjects_craving_mean', 'allsubjects_typicality_mean', 'allsubjects_valence_mean', 
+                                       'hue_mean', 'saturation_mean', 'value_mean'),
+                      strata = c('in_set'), data = combined[combined$ImageSet == 'control',])
+control_tab
+
+
+```
+
+## Opioid images compared across session
+
+```{r}
+opioid_tab <- CreateTableOne(vars = c('allsubjects_arousal_mean', 'allsubjects_craving_mean', 'allsubjects_typicality_mean', 'allsubjects_valence_mean', 
+                                      'hue_mean', 'saturation_mean', 'value_mean'),
+                           strata = c('in_set'), data = combined[combined$ImageSet == 'opioid',])
+opioid_tab
+
+```
+
+## Stress images compared across session
+
+```{r}
+
+stress_tab <- CreateTableOne(vars = c('allsubjects_arousal_mean', 'allsubjects_craving_mean', 'allsubjects_typicality_mean', 'allsubjects_valence_mean', 
+                                      'hue_mean', 'saturation_mean', 'value_mean'),
+                           strata = c('in_set'), data = combined[combined$ImageSet == 'stress',])
+stress_tab
+
+
+```
+
+
+
+
+
+## Write output
+
+
+```{r}
+#IAPS images have no categories (hands, tools, etc) so set category_number to 0 for them
+combined$category_number[is.na(combined$category_number)] <- 0
+write.csv(combined, 'DSR_selected_split.csv', row.names=FALSE, quote = FALSE)
+
+
+#For convenient viewing, copy images to subfolders for session and category
+for(imset in 1:4){
+  dir.create(paste0('set-', imset))
+  for (category in unique(combined$ImageSet)){
+    #opioid/control/stress
+    dir.create(paste0('set-', imset, '/', category))
+  }
+}
+
+
+
+neutral_path = '../media/MethOpioidDatabase/finalcueset/ExtractedNeutralCues120/'
+stress_path = '../media/IAPS20081_20/IAPS1_20Images/'
+opioid_path = '../media/MethOpioidDatabase/finalcueset/ExtractedOpioidCues120/'
+
+for (i in 1:nrow(combined)){
+  this_file <- combined$File[i]
+  this_category <- combined$ImageSet[i]
+  this_set <- combined$in_set[i]
+  if (this_category == 'stress'){
+    this_path <- stress_path
+  }
+  if (this_category == 'control'){
+    this_path <- neutral_path
+  }
+  if (this_category == 'opioid'){
+    this_path <- opioid_path
+  }
+  print(i)
+  print('copy from:')
+  print(paste0(this_path, this_file))
+  print('copy to:')
+  print(paste0('set-', this_set, '/', this_category))
+  file.copy(paste0(this_path, this_file), paste0('set-', this_set, '/', this_category))
+}
+
+
+  
+
+
+
+```
+
+
+
+
+## Generate schedules based on selected split
+
+```{r}
+
+neutral_path = 'media\\MethOpioidDatabase\\finalcueset\\ExtractedNeutralCues120\\'
+stress_path = 'media\\IAPS20081_20\\IAPS1_20Images\\'
+opioid_path = 'media\\MethOpioidDatabase\\finalcueset\\ExtractedOpioidCues120\\'
+
+
+#study-PASO_condition-stress_set-1
+#make a schedule based on one condition and set
+
+generate_schedules_one_condition <- function(condition, condition_numeric, category_path, condition_name){
+  #condition_name so 'control' schedules can be output with 'neutral'n in the name
+  #condition <- 'control'
+  #condition_numeric <- '1'
+  #category_path <- neutral_path
+  for (image_set in 1:4){
+    #image_set <- 1
+  
+    #extract the 24 images for this condition/set
+    these_images <- combined[combined$ImageSet == condition & combined$in_set == image_set,]
+    #will have 6 ITI fixations total, average of 10s
+    fixations <- sample(c(8,8,10,12,12))
+    #idx of next fixation to use
+    fix_idx = 1
+    #sort by category
+    these_images <- these_images[order(these_images$category_number),]
+    #now assign blocks
+    these_images$block <- rep(1:4, 6)
+    output_text <- 'TrialTypes,Stimuli,Durations,ExtraArgs \n'
+    output_text <- paste0(output_text, '000,media\\fixation.png,31,\n')
+    output_text <- paste0(output_text, '100,media\\valence.png,5,\n')
+    output_text <- paste0(output_text, '200,media\\arousal.png,5,\n')
+    output_text <- paste0(output_text, '300,media\\stress.png,5,\n')
+    output_text <- paste0(output_text, '400,media\\craving.png,5,\n')
+   
+    
+    output_text <- paste0(output_text, '000,media\\fixation.png,31,\n')
+    output_text <- paste0(output_text, '100,media\\valence.png,5,\n')
+    output_text <- paste0(output_text, '200,media\\arousal.png,5,\n')
+    output_text <- paste0(output_text, '300,media\\stress.png,5,\n')
+    output_text <- paste0(output_text, '400,media\\craving.png,5,\n')
+    
+    #fixation after ratings, since we don't want to jump straight into images
+    output_text <- paste0(output_text, '000,media\\fixation.png,', fixations[fix_idx], ',\n')
+    fix_idx = fix_idx + 1
+      
+    for (block in 1:4){
+      #grab images for this block
+      this_block <- these_images[these_images$block == block,]
+      #shuffle the images in this block
+      this_block <- this_block[sample(6),]
+      #which image will have a box around it
+      this_box <- sample(6, 1)
+      for(i in 1:6){
+        this_category <- this_block$category_number[i]
+        this_image_path <- paste0(category_path, this_block$File[i])
+        if (i == this_box){
+          this_trial_type <- paste0('8', condition_numeric, this_category)
+        } else{
+          this_trial_type <- paste0('0', condition_numeric, this_category)
+        }
+        output_text <- paste0(output_text, this_trial_type, ',', this_image_path, ',5,\n')
+      }
+      #ratings
+      output_text <- paste0(output_text, '1', condition_numeric, '0,media\\valence.png,5,\n')
+      output_text <- paste0(output_text, '2', condition_numeric, '0,media\\arousal.png,5,\n')
+      output_text <- paste0(output_text, '3', condition_numeric, '0,media\\stress.png,5,\n')
+      output_text <- paste0(output_text, '4', condition_numeric, '0,media\\craving.png,5,\n')
+      if (block < 4){
+        #no fixation after the last block, because the next trial is a long fixation--so the cross doesn't flash in the middle
+        output_text <- paste0(output_text, '000,media\\fixation.png,', fixations[fix_idx], ',\n')
+        fix_idx = fix_idx + 1
+      }
+    }
+    
+    output_text <- paste0(output_text, '000,media\\fixation.png,31,\n')
+    output_text <- paste0(output_text, '100,media\\valence.png,5,\n')
+    output_text <- paste0(output_text, '200,media\\arousal.png,5,\n')
+    output_text <- paste0(output_text, '300,media\\stress.png,5,\n')
+    output_text <- paste0(output_text, '400,media\\craving.png,5,\n')
+    output_text <- paste0(output_text, '000,media\\fixation.png,', fixations[fix_idx], ',\n')
+    fix_idx = fix_idx + 1
+    #here, there will still be a 200ms blip, right as the audio starts--so that's probably OK
+    output_text <- paste0(output_text, '999,media\\fixation.png,360,\n')
+  
+  
+    cat(output_text, file = paste0('study-PASO_task-DSR_condition-', condition_name, '_set-', image_set, '.schedule'))
+  }
+}
+
+generate_schedules_one_condition('control', '1', neutral_path, 'neutral')
+generate_schedules_one_condition('opioid', '2', opioid_path, 'opioid')
+generate_schedules_one_condition('stress', '3', stress_path, 'stress')
+
+```
+
+##Write practice schedule
+
+```{r}
+
+#one block of fixation, ratings, one block of images, ratings, then relaxation audio
+
+#right now (a la table(neutral_remaining$Catgory)) we have:
+#16 control_tool
+#1 control_tool_face
+#1 control_tool_hand_simple
+#so we don't have all tools, use the control_tool_face, control_tool_hand_simple images, and 3 control_tool images
+#
+
+#set category_number, for practice trial types
+neutral_remaining$category_number <- NA
+  
+neutral_remaining$category_number[neutral_remaining$Category == 'control_objects'] <- 1
+neutral_remaining$category_number[neutral_remaining$Category == 'control_objects_hand'] <- 2
+neutral_remaining$category_number[neutral_remaining$Category == 'control_tool'] <- 3
+neutral_remaining$category_number[neutral_remaining$Category == 'control_tool_hand_simple'] <- 4
+neutral_remaining$category_number[neutral_remaining$Category == 'control_tool_hand_complex'] <- 5
+neutral_remaining$category_number[neutral_remaining$Category == 'control_tool_face'] <- 6
+
+control_tool_idx <- (1:nrow(neutral_remaining))[neutral_remaining$Category == 'control_tool']
+control_tool_idx_selected <- sample(control_tool_idx,4)
+these_images <- neutral_remaining[control_tool_idx_selected,]
+
+#add in hte one control_tool_face image
+these_images <- rbind(these_images, neutral_remaining[neutral_remaining$Category == 'control_tool_face',])
+these_images <- rbind(these_images, neutral_remaining[neutral_remaining$Category == 'control_tool_hand_simple',])
+
+#now assign blocks
+output_text <- 'TrialTypes,Stimuli,Durations,ExtraArgs \n'
+output_text <- paste0(output_text, '000,media\\fixation.png,31,\n')
+output_text <- paste0(output_text, '100,media\\valence.png,5,\n')
+output_text <- paste0(output_text, '200,media\\arousal.png,5,\n')
+output_text <- paste0(output_text, '300,media\\stress.png,5,\n')
+output_text <- paste0(output_text, '400,media\\craving.png,5,\n')
+   
+output_text <- paste0(output_text, '000,media\\fixation.png,8,\n')
+
+#fixation after ratings, since we don't want to jump straight into images
+
+#shuffle the images in this block
+these_images <- these_images[sample(6),]
+#which image will have a box around it
+this_box <- sample(6, 1)
+condition_numeric <- '1'
+for(i in 1:6){
+  this_category <- these_images$category_number[i]
+  this_image_path <- paste0(neutral_path, these_images$File[i])
+  if (i == this_box){
+    this_trial_type <- paste0('8', condition_numeric, this_category)
+  } else{
+    this_trial_type <- paste0('0', condition_numeric, this_category)
+  }
+  output_text <- paste0(output_text, this_trial_type, ',', this_image_path, ',5,\n')
+}
+#ratings
+output_text <- paste0(output_text, '110,media\\valence.png,5,\n')
+output_text <- paste0(output_text, '210,media\\arousal.png,5,\n')
+output_text <- paste0(output_text, '310,media\\stress.png,5,\n')
+output_text <- paste0(output_text, '410,media\\craving.png,5,\n')
+output_text <- paste0(output_text, '000,media\\fixation.png,8,\n')
+
+output_text <- paste0(output_text, '999,media\\fixation.png,140,\n')
+  
+  
+cat(output_text, file = paste0('study-PASO_task-DSR_condition-neutral_set-P.schedule'))
+
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

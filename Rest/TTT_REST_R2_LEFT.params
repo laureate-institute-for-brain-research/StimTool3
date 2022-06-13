@@ -1,0 +1,6 @@
+run_id REST-R2-_BEH
+color_1 blue
+color_2 yellow
+color_change_duration_s 60
+allow_skip True
+instruction_schedule L_instruct_schedule_TTT_R2.csv

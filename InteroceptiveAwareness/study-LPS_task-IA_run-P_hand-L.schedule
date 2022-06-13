@@ -1,0 +1,10 @@
+TrialTypes (0:fix; 1:heart; 2:stomach; 11-17:target_with_intensity; 4:heart_rating; 5:stomach_rating; 6:target_rating),Stimuli,Durations,ExtraArgs
+0,,10,
+1,,10,
+4,,5,
+2,,10,
+5,,5,
+17,,10,
+6,,5,
+11,,10,
+6,,5,

@@ -1,0 +1,3 @@
+param_file Ratings_R2_PARA.txt
+instruction_schedule media/instructions/R1.csv
+run_id _RT_R2_MR1

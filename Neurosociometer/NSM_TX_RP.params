@@ -1,0 +1,12 @@
+run_id _NSM-RP-_BEH
+practice False
+instruction_schedule NSM_instruct_scheduleP.csv
+question_image 'media/response_question.PNG'
+response_image_1 'media/response_1.PNG'
+response_image_2 'media/response_2.PNG'
+response_image_3 'media/response_3.PNG'
+response_image_4 'media/response_4.PNG'
+select_1 'right'
+select_2 'left'
+select_3 'up'
+select_4 'down'

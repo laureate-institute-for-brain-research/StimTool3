@@ -1,0 +1,12 @@
+stdout made
+13204
+<multiprocessing.queues.Queue object at 0x000002A0A1F366A0>
+<multiprocessing.queues.Queue object at 0x000002A0A2257E80>
+from video
+6.2845374611081315
+from audio
+test
+Re-encoding
+C:\StimTool3Env\ffmpeg-20200831-4a11a6f-win64-static\bin\ffmpeg -y -r 6.2845374611081315 -itsscale 4.773621000058483 -i test.avi -pix_fmt yuv420p -codec copy test-recoded.avi
+Muxing
+C:\StimTool3Env\ffmpeg-20200831-4a11a6f-win64-static\bin\ffmpeg -y -ac 2 -channel_layout stereo -i test.wav -i test-recoded.avi -pix_fmt yuv420p -codec copy test-combined.avi

@@ -1,0 +1,5 @@
+run_id __AT-RP-_BEH
+param_file __AT-RX-PARA.txt
+instruction_schedule TTT_instruct_scheduleP_1.csv
+practice True
+transprob .8

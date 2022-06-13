@@ -1,0 +1,27 @@
+Question_Type, Question, Sub Text, Audio, Number of Choices, Ticks Position
+stai_state, 1. I felt calm during the task.,,stai_audio/aiff/calm_task.mp3.aiff,4,Not at all,Somewhat,Moderately so,Very much so
+stai_state, 2. I felt secure during the task.,,stai_audio/aiff/secure_task.mp3.aiff,4,Not at all,Somewhat,Moderately so,Very much so
+stai_state, 3. I felt tense during the task.,,stai_audio/aiff/tense_task.mp3.aiff,4,Not at all,Somewhat,Moderately so,Very much so
+stai_state, 4. I felt strained during the task.,,stai_audio/aiff/strained_task.mp3.aiff,4,Not at all,Somewhat,Moderately so,Very much so
+stai_state, 5. I felt at ease during the task.,,stai_audio/aiff/at_ease_task.mp3.aiff,4,Not at all,Somewhat,Moderately so,Very much so
+stai_state, 6. I felt upset during the task.,,stai_audio/aiff/upset_task.mp3.aiff,4,Not at all,Somewhat,Moderately so,Very much so
+stai_state, 7. I was worrying over possible misfortunes during the task.,,stai_audio/aiff/misfortunes_task.mp3.aiff,4,Not at all,Somewhat,Moderately so,Very much so
+stai_state, 8. I felt satisfied during the task.,,stai_audio/aiff/satisfied_task.mp3.aiff,4,Not at all,Somewhat,Moderately so,Very much so
+stai_state, 9. I felt frightened during the task.,,stai_audio/aiff/frightened_task.mp3.aiff,4,Not at all,Somewhat,Moderately so,Very much so
+stai_state, 10. I felt comfortable during the task.,,stai_audio/aiff/comfortable_task.mp3.aiff,4,Not at all,Somewhat,Moderately so,Very much so
+stai_state, 11. I felt self-confident during the task.,,stai_audio/aiff/self-confident_task.mp3.aiff,4,Not at all,Somewhat,Moderately so,Very much so
+stai_state, 12. I felt nervous during the task.,,stai_audio/aiff/nervous_task.mp3.aiff,4,Not at all,Somewhat,Moderately so,Very much so
+stai_state, 13. I felt  jittery during the task.,,stai_audio/aiff/jittery_task.mp3.aiff,4,Not at all,Somewhat,Moderately so,Very much so
+stai_state, 14. I felt indecisive during the task.,,stai_audio/aiff/indecisive_task.mp3.aiff,4,Not at all,Somewhat,Moderately so,Very much so
+stai_state, 15. I felt relaxed during the task.,,stai_audio/aiff/relaxed_task.mp3.aiff,4,Not at all,Somewhat,Moderately so,Very much so
+stai_state, 16. I felt content during the task.,,stai_audio/aiff/content_task.mp3.aiff,4,Not at all,Somewhat,Moderately so,Very much so
+stai_state, 17. I felt worried during the task.,,stai_audio/aiff/worried_task.mp3.aiff,4,Not at all,Somewhat,Moderately so,Very much so
+stai_state, 18. I felt confused during the task.,,stai_audio/aiff/confused_task.mp3.aiff,4,Not at all,Somewhat,Moderately so,Very much so
+stai_state, 19. I felt steady during the task.,,stai_audio/aiff/steady_task.mp3.aiff,4,Not at all,Somewhat,Moderately so,Very much so
+stai_state, 20. I felt pleasant during the task.,,stai_audio/aiff/pleasant_task.mp3.aiff,4,Not at all,Somewhat,Moderately so,Very much so
+fear,How much fear did you feel while breathing?,0 means that you felt no fear \n 10 is the maximal fear that you could tolerate,instructions/Slide20.mp3.aiff,11,0,1,2,3,4,5,6,7,8,9,10
+difficult,How difficult did it feel to breath?,0 means that your breathing was not difficult at all \n 10 is the maximal breathing difficulty that you could tolerate,instructions/Slide21.mp3.aiff,11,0,1,2,3,4,5,6,7,8,9,10
+unpleasant,How unpleasant did it feel to breathe?,0 means that your breathing difficulty was not unpleasant at all \n 10 is the maximal unpleasantness you could tolerate,instructions/Slide22.mp3.aiff,11,0,1,2,3,4,5,6,7,8,9,10
+happy,How happy or unhappy did you feel during loaded breathing?,,instructions/Slide23.mp3.aiff,5,1,2,3,4,5
+calm,How calm or excited did you feel during loaded breathing?,,instructions/Slide24.mp3.aiff,5,1,2,3,4,5
+anxiety,Please indicate how much anxiety you felt while breathing.,0 = no anxiety \n 10 = maximum possible anxiety,instructions/Slide25.mp3.aiff,11,0,1,2,3,4,5,6,7,8,9,10

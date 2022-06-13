@@ -1,0 +1,4 @@
+run_id _MID-R2-_BEH
+param_file _MID-RX-PARA.txt
+instruction_schedule study-COVIDVac_task-MID_run-2_instructschedule.csv
+max_reward 60

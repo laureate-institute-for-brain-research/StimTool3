@@ -1,0 +1,12 @@
+stdout made
+4144
+<multiprocessing.queues.Queue object at 0x0000019F8E864D30>
+<multiprocessing.queues.Queue object at 0x0000019F8F8CC7F0>
+test
+stop
+fileA
+stop
+fileB
+stop
+quit
+62.5150 	WARNING 	We strongly recommend you activate the PTB sound engine in PsychoPy prefs as the preferred audio engine. Its timing is vastly superior. Your prefs are currently set to use ['sounddevice', 'PTB', 'pyo', 'pygame'] (in that order).

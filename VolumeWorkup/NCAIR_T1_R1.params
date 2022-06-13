@@ -1,0 +1,6 @@
+param_file NCAIR_RX_PARA.txt
+run_id _VW_T1_R1
+practice False
+response_type dial
+instruction_schedule NCAIR_instruct_schedule_1.csv
+stereo True

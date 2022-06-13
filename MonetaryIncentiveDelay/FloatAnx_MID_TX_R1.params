@@ -1,0 +1,3 @@
+run_id _MID-R1-_BEH
+param_file _MID-RX-PARA.txt
+instruction_schedule MID_instruct_scheduleS_FloatAnx.csv

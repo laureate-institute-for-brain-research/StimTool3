@@ -1,0 +1,7 @@
+run P
+volume_test False
+practice False
+instruction_schedule FC_instruct_scheduleP.csv
+practice_image media/fractal3.jpg
+image_1 media/fractal1.jpg
+image_2 media/fractal2.jpg

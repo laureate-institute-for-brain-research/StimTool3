@@ -1,0 +1,11 @@
+run_id _MCR-R2-_BEH
+question_image media\meth\urge_question.PNG
+response_image_1 media\meth\urge_response_1.PNG
+response_image_2 media\meth\urge_response_2.PNG
+response_image_3 media\meth\urge_response_3.PNG
+response_image_4 media\meth\urge_response_4.PNG
+select_1 'right'
+select_2 'left'
+select_3 'up'
+select_4 'down'
+instruction_schedule MCR_instruct_scheduleS_R.csv

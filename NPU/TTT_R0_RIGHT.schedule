@@ -1,0 +1,2 @@
+TrialTypes X_X_X_X X[0]->NPU X[1]->CUE(1=Show CUE|0=Dont Show) X[2]-> STARTLE(1=STARTLE|0=Dont Startle) X[3]->SHOCK(1=Shock|0=Dont Shock),,cue_onset,startle_onset,shock_onset
+N_0_1_0,,6152,9148_0

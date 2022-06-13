@@ -1,0 +1,13 @@
+TrialTypes (*_*) [0] = 1 -> Self Eval | 2 -> Other Eval | 3 -> Word Evalu; [1] = 1 -> Positive Word | 0 -> Negative Word,,Words, Durations
+3_1,,2333,skeptical
+1_0,,791,nonchalant
+2_0,,1122,lazy
+2_0,,1082,indifferent
+3_0,,1723,lazy
+3_0,,1723,nonchalant
+1_0,,1192,skeptical
+3_0,,1082,indifferent
+1_0,,791,lazy
+2_1,,1001,nonchalant
+2_0,,1192,skeptical
+1_0,,1082,indifferent

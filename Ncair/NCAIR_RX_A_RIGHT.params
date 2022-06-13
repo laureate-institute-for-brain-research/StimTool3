@@ -1,0 +1,4 @@
+run_id __NC-R1-_BEH
+param_file NCAIR_RX_PARA.txt
+instruction_schedule NC_instruct_scheduleR1_R.csv
+media_type audio

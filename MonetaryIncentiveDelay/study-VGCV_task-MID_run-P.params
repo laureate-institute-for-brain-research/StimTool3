@@ -1,0 +1,4 @@
+run_id _MID-RP-_BEH
+param_file _MID-RX-PARA.txt
+practice True
+instruction_schedule MID_instruct_scheduleP.csv

@@ -1,0 +1,12 @@
+Original File Name:,T:\BehavioralTasks\StimTool\FearConditioning\data/FC-3-Admin_RA-run_V-2014_Sep_17_1612.csv,Time:,2014_Sep_17_1612,Parameter File:,T:\BehavioralTasks\StimTool\FearConditioning\T1000_FC_ScheduleV.csv,Event Codes:,[('INSTRUCT_ONSET', 1), ('TASK_ONSET', 2), ('ARROW_ONSET', 3), ('RESPONSE', 4), ('IMAGE_ONSET', 5), ('US', 6), ('SOUND', 7), ('RATING', 8), ('TASK_END', 99)],Trial Types are coded as follows: 0->left arrow; 1->right arrow; 2->CS-; 3->CS+; 4->CS+&US, volume=NA
+trial_number,trial_type,event_code,absolute_time,response_time,response,result
+NA,NA,1,3.26463663561,NA,NA,NA
+NA,NA,2,6.66803328227,3.40339664667,NA,NA
+0,-1,7,7.4045438132,0.628933834611,NA,0.1
+0,-1,7,8.15451093385,0.708035486925,NA,0.1
+0,-1,8,9.57096809754,1.35686342331,3,0.1
+1,-1,7,10.0880554806,0.461602232012,NA,0.2
+1,-1,8,11.2213693017,1.09130502539,2,0.2
+2,-1,7,12.554595698,1.28544147668,NA,0.3
+2,-1,8,15.2380168996,2.64049520495,9,0.3
+NA,NA,99,15.2820607945,NA,NA,NA

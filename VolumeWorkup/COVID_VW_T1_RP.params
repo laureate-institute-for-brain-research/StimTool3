@@ -1,0 +1,6 @@
+param_file COVID_AAC_RX_PARA.txt
+run_id _VW_T1_RP
+practice True
+response_type joystick
+instruction_schedule COVID_instruct_schedule_P.csv
+stereo True

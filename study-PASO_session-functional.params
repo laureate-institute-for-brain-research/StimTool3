@@ -1,0 +1,14 @@
+left 'y'
+right 'b'
+select 'g'
+scan False
+record_video False
+signal_parallel False
+auto_advance True
+screen_x 1024
+screen_y 768
+output_dir 'C:/PASO_Temporary_Storage/functional_session/'
+allow_instructions_back False
+instruction_volume 0.5
+redirect_output True
+session_id V1

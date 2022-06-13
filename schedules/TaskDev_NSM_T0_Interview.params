@@ -1,0 +1,15 @@
+left 'left'
+right 'right'
+up 'up'
+down 'down'
+scan False
+record_video True
+signal_parallel False
+auto_advance True
+screen_x 1024
+screen_y 768
+output_dir 'C:/TaskDev_NSM_Temporary_Storage/interview_session/'
+allow_instructions_back False
+instruction_volume 0.5
+redirect_output True
+session_id T0

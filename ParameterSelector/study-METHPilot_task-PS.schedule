@@ -1,0 +1,103 @@
+{
+"Session":{"T0":{"session_id":"T0"}},
+ "Hand-Set":{
+         "LEFT":{ "left":"3",
+                        "right":"4",
+                        "up":"2",
+                        "down":"1",
+                        "hand": "left",
+                        "mock_scan": "False",
+                      "order":[
+                         "Parameter Selector:run='study-METHPilot_task-PS.schedule'",
+                         "Slider:run='METH_Pilot_MOCK_LOAD_Practice_LEFT.schedule'",
+                         "Slider:run='METH_Pilot_MOCK_LOAD10_LEFT.schedule'",
+                         "Slider:run='METH_Pilot_MOCK_LOAD20_LEFT.schedule'",
+                         "Slider:run='METH_Pilot_MOCK_LOAD40_LEFT.schedule'",
+                         "Slider:run='METH_Pilot_MOCK_LOAD60_LEFT.schedule'",
+                         "Slider:run='METH_Pilot_MOCK_LOAD80_LEFT.schedule'"
+                          ]},
+         "RIGHT":{ "left":"1",
+                        "right":"2",
+                        "up":"3",
+                        "down":"4",
+                        "hand": "right",
+                      "order":[
+                         "Parameter Selector:run='study-METHPilot_task-PS.schedule'",
+                         "Slider:run='BK_Pilot_MOCK_LOAD_Practice.schedule'",
+                         "Slider:run='BK_Pilot_MOCK_LOAD10.schedule'",
+                         "Slider:run='BK_Pilot_MOCK_LOAD20.schedule'",
+                         "Slider:run='BK_Pilot_MOCK_LOAD40.schedule'",
+                         "Slider:run='BK_Pilot_MOCK_LOAD60.schedule'",
+                         "Slider:run='BK_Pilot_MOCK_LOAD80.schedule'"
+                          ]},
+          "RIGHT-MockPlanning":{ "left":"1",
+                        "right":"2",
+                        "up":"3",
+                        "down":"4",
+                        "hand": "right",
+                      "order":[
+                         "Parameter Selector:run='study-METHPilot_task-PS.schedule'",
+                         "Slider:run='METH_Pilot_R1_preRUN_RIGHT.schedule'",
+                         "Planning Task:run='METH_Pilot_PlanningTask_R1_RIGHT.schedule'",
+                         "Slider:run='METH_Pilot_R1_postRUN_RIGHT.schedule'",
+                         "Slider:run='METH_Pilot_R2_preRUN_RIGHT.schedule'",
+                         "Planning Task:run='METH_Pilot_PlanningTask_R2_RIGHT.schedule'",
+                         "Slider:run='METH_Pilot_R2_postRUN_RIGHT.schedule'"
+                          ]},
+          "LEFT-MockPlanning":{ "left":"3",
+                        "right":"4",
+                        "up":"2",
+                        "down":"1",
+                        "hand": "left",
+                      "order":[
+                         "Parameter Selector:run='study-METHPilot_task-PS.schedule'",
+                         "Slider:run='METH_Pilot_R1_preRUN_LEFT.schedule'",
+                         "Planning Task:run='METH_Pilot_PlanningTask_R1_LEFT.schedule'",
+                         "Slider:run='METH_Pilot_R1_postRUN_LEFT.schedule'",
+                         "Slider:run='METH_Pilot_R2_preRUN_LEFT.schedule'",
+                         "Planning Task:run='METH_Pilot_PlanningTask_R2_LEFT.schedule'",
+                         "Slider:run='METH_Pilot_R2_postRUN_LEFT.schedule'"
+                          ]},
+          "RIGHT-MockPlanning-notFlipped":{ "left":"1",
+                        "right":"2",
+                        "up":"3",
+                        "down":"4",
+                        "hand": "right",
+                        "mock_scan": "False",
+                      "order":[
+                         "Parameter Selector:run='study-METHPilot_task-PS.schedule'",
+                         "Slider:run='METH_Pilot_R1_preRUN_RIGHT.schedule'",
+                         "Planning Task:run='METH_Pilot_PlanningTask_R1_RIGHT.schedule'",
+                         "Slider:run='METH_Pilot_R1_postRUN_RIGHT.schedule'",
+                         "Slider:run='METH_Pilot_R2_preRUN_RIGHT.schedule'",
+                         "Planning Task:run='METH_Pilot_PlanningTask_R2_RIGHT.schedule'",
+                         "Slider:run='METH_Pilot_R2_postRUN_RIGHT.schedule'"
+                          ]},
+          "RIGHT-notFlipped":{ "left":"1",
+                        "right":"2",
+                        "up":"3",
+                        "down":"4",
+                        "hand": "right",
+                        "mock_scan": "False",
+                      "order":[
+                         "Parameter Selector:run='study-METHPilot_task-PS.schedule'",
+                         "Slider:run='BK_Pilot_MOCK_LOAD_Practice.schedule'",
+                         "Slider:run='BK_Pilot_MOCK_LOAD10.schedule'",
+                         "Slider:run='BK_Pilot_MOCK_LOAD20.schedule'",
+                         "Slider:run='BK_Pilot_MOCK_LOAD40.schedule'",
+                         "Slider:run='BK_Pilot_MOCK_LOAD60.schedule'",
+                         "Slider:run='BK_Pilot_MOCK_LOAD80.schedule'"
+                          ]},
+          "POSTSCAN-MockPlanning-notFlipped":{ "left":"1",
+                        "right":"2",
+                        "up":"3",
+                        "down":"4",
+                        "hand": "right",
+                        "mock_scan": "False",
+                      "order":[
+                         "Parameter Selector:run='study-METHPilot_task-PS.schedule'",
+                         "Planning Task:run='METH_Pilot_PlanningTask_POSTSCAN.schedule'",
+                         "Data Mover:run='METH_Pilot_MOCK_TX.schedule'"
+                          ]}}
+          
+         }

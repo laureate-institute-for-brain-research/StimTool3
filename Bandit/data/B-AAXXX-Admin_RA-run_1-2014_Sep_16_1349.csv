@@ -1,0 +1,5 @@
+Original File Name:,\\isilon1\homefolders\rkuplicki\Documents\StimTool\Bandit\data/B-AAXXX-Admin_RA-run_1-2014_Sep_16_1349.csv,Time:,2014_Sep_16_1349,Parameter File:,\\isilon1\homefolders\rkuplicki\Documents\StimTool\Bandit\T1000_B_Schedule1.csv,Event Codes:,[('INSTRUCT_ONSET', 1), ('TASK_ONSET', 2), ('BLOCK_ONSET', 3), ('TRIAL_ONSET', 4), ('SELECTION', 5), ('BLOCK_RESULT_ONSET', 6), ('BLOCK_RESULT_OFFSET', 7), ('FINAL_RESULT_ONSET', 8), ('FINAL_RESULT_OFFSET', 9), ('TASK_END', 99)]
+trial_number,trial_type,event_code,absolute_time,response_time,response,result
+0,0.7886-0.6485-0.7971,3,0.0268586104503,NA,NA,NA
+0,0.7886-0.6485-0.7971,4,0.0436730117071,NA,NA,NA
+NA,NA,99,2.19739861169,NA,NA,NA

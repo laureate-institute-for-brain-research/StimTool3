@@ -1,0 +1,5 @@
+run_id __FC-RP-_BEH
+param_file __FC-RX-PARA.txt
+practice True
+instruction_schedule FC_instruct_scheduleP_R-ITI.csv
+final_instructions FC_instruct_scheduleF_R.csv

@@ -1,0 +1,5 @@
+run_id __FC-R3-_BEH
+param_file __FC-RX-PARA.txt
+instruction_schedule FC_instruct_scheduleSR2-ITI.csv
+image_1 media/alternate_images/Spiral_Fractal_Art_Colorful_Geometry_Fractal_1832620.png
+image_2 media/alternate_images/Fractal_Abstract_Art_Feathers_Blue_Purple_1770510.png

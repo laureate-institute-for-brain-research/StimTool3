@@ -1,0 +1,6 @@
+run S
+practice False
+param_file __AT-RX-PARA.txt
+instruction_schedule AT_instruct_scheduleS_R1_R.csv
+left 'left'
+right 'right'

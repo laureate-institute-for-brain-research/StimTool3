@@ -1,0 +1,15 @@
+Target,Left_Word,Right_Word,Correct
+Suicide,Life,Death,2
+Die,Life,Death,2
+Funeral,Life,Death,2
+Lifeless,Life,Death,2
+Deceased,Life,Death,2
+Dying,Life,Death,2
+Dead,Life,Death,2
+Alive,Life,Death,1
+Live,Life,Death,1
+Thrive,Life,Death,1
+Survive,Life,Death,1
+Breathing,Life,Death,1
+Being,Life,Death,1
+Living,Life,Death,1

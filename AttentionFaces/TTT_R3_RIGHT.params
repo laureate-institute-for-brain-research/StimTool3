@@ -1,0 +1,4 @@
+run_id __AF-R3-_BEH
+param_file __AF-RX-PARA.txt
+instruction_schedule AF_instruct_scheduleS_R3_R.csv
+practice False

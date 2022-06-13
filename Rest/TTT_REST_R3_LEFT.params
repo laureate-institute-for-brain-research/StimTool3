@@ -1,0 +1,9 @@
+run_id REST-R3-_BEH
+color_1 blue
+color_2 yellow
+color_change_duration_s 60
+allow_skip True
+last_slide 'media\instructions\TTT_R3_POST.png'
+last_slide_audio None
+last_slide_advance_key 'b'
+instruction_schedule L_instruct_schedule_TTT_R3.csv

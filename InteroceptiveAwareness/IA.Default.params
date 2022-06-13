@@ -1,0 +1,4 @@
+run P
+practice False
+random_run False
+instruction_schedule IA_instruct_scheduleS_R.csv

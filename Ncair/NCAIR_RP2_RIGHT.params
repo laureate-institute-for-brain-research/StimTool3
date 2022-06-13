@@ -1,0 +1,5 @@
+run_id __NC-RP2-_BEH
+param_file NCAIR_RP_PARA.txt
+instruction_schedule NC_instruct_schedulePR2_R.csv
+media_type video
+practice True

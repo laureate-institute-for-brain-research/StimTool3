@@ -1,0 +1,15 @@
+Target,Left_Word,Right_Word,Correct
+Myself,Me,Not Me,1
+My,Me,Not Me,1
+Mine,Me,Not Me,1
+I,Me,Not Me,1
+Self,Me,Not Me,1
+We,Me,Not Me,1
+Us,Me,Not Me,1
+Them,Me,Not Me,2
+They,Me,Not Me,2
+Theirs,Me,Not Me,2
+Their,Me,Not Me,2
+Other,Me,Not Me,2
+Themselves,Me,Not Me,2
+Others,Me,Not Me,2

@@ -1,0 +1,6 @@
+run_id __PT-RP2-_BEH
+instruction_schedule media/instructions/PlanningTask_instruct_RP2_R.csv
+param_file __PT_RP2_PARA.txt
+practice True
+select_1 'left'
+select_2 'right'

@@ -1,0 +1,8 @@
+run_id __PT-R2-_BEH
+instruction_schedule media/instructions/BK_Pilot_PlanningTask_instruct_R2_L.csv
+param_file __PT_R2_PARA.txt
+practice True
+select_1 'left'
+select_2 'right'
+show_example False
+ask_load_question True

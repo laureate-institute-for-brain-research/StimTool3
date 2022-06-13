@@ -1,0 +1,8 @@
+run_id __DR-RP2-_BEH
+stick_move_threshold .09
+instruction_schedule study-TaskDev_task-DR_run-P2_instructschedule.csv
+max_run_time 2000
+A 0
+fast_tolerence 1.5
+fast_speed 5
+show_feedback True

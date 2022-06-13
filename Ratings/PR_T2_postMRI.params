@@ -1,0 +1,4 @@
+param_file PR_postMRI_PARA.txt
+run_id _PR_T2_postMRI
+AAC_run_id _AAC_T2_RX_
+stage postMRI

@@ -1,0 +1,7 @@
+param_file Ratings_RT_MOCK_LOAD60_PARA.txt
+instruction_schedule media/instructions/LOAD60.csv
+run_id _RT_MOCK_LOAD60
+breathing_duration 60
+left '1'
+right '2'
+select '3'

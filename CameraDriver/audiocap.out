@@ -1,0 +1,18 @@
+stdout made
+8044
+<multiprocessing.queues.Queue object at 0x000002204D474D30>
+<multiprocessing.queues.Queue object at 0x000002204E4DC7F0>
+starting stream
+started stream
+test
+stop
+sending: test
+fileA
+stop
+sending: fileA
+fileB
+stop
+sending: fileB
+quit
+sending: quit
+62.4067 	WARNING 	We strongly recommend you activate the PTB sound engine in PsychoPy prefs as the preferred audio engine. Its timing is vastly superior. Your prefs are currently set to use ['sounddevice', 'PTB', 'pyo', 'pygame'] (in that order).

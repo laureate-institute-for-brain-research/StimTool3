@@ -1,0 +1,6 @@
+TrialTypes X_X X[0] -> Cultural|Comparator|Rating_Dial|Rating_Button (0|1|2|3); 1 -> Cultural X[1]:Stimuli Type 0-> Audio;1-> Video; 2-> Picture; 3->Rating_Identity; 4-> Rating_Valence; 5-> Rating_Arousal,Durations,stim_path
+0_2,,1.530912,"media\resized_practice_stimuli\practice_shutterstock_198592784.jpg"
+1_2,,1.832881,"media\resized_practice_stimuli\practice_shutterstock_440502994.jpg"
+3_3,,5,None
+3_4,,5,None
+3_5,,5,None

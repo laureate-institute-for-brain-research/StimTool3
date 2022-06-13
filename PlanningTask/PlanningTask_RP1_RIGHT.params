@@ -1,0 +1,7 @@
+run_id __PT-RP1-_BEH
+instruction_schedule media/instructions/PlanningTask_instruct_RP1_R.csv
+param_file __PT_RP1_PARA.txt
+practice True
+select_1 'left'
+select_2 'right'
+free_duration 60

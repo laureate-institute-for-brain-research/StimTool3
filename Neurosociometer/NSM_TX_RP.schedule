@@ -1,0 +1,1 @@
+TrialTypes (0->fixation; 1->faces instruct; 2->shapes instruct; 3->faces match; 4->shapes match),Stimuli (0->top; 1->left; 2->right), Durations, Video

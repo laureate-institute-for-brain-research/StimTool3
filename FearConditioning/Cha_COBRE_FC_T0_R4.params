@@ -1,0 +1,5 @@
+run_id __FC-R4-_BEH
+param_file __FC-RX-PARA.txt
+instruction_schedule FC_instruct_scheduleSpreR_cha.csv
+image_1 media/alternate_images/fractal_2397771_960_720.png
+image_2 media/alternate_images/Glitter_Fractal_Design_Spheres_Geometric_1992877.png

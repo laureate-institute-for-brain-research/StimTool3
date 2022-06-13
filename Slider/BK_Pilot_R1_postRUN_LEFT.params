@@ -1,0 +1,6 @@
+param_file Ratings_postRun_PARA.txt
+instruction_schedule media/instructions/BK_Pilot_SCAN_postRUN_LEFT.csv
+run_id _R1_postRun
+left '2'
+right '1'
+select '3'

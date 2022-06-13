@@ -1,0 +1,4 @@
+run_id __AT-R1-_BEH
+param_file __AT-RX-PARA.txt
+instruction_schedule AT_instruct_scheduleS_R1_L.csv
+practice False

@@ -1,0 +1,3 @@
+run_id _NPU-R0-_BEH
+param_file TTT_RX_PARA.txt
+instruction_schedule TTT_instruct_scheduleR0_R.csv

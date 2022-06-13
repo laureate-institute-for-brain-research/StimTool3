@@ -1,0 +1,3 @@
+run_id __FC-R1-_BEH
+param_file __FC-RX-PARA.txt
+instruction_schedule FC_instruct_scheduleS_R.csv

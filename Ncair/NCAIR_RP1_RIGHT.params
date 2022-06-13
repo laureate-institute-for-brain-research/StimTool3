@@ -1,0 +1,5 @@
+run_id __NC-RP1-_BEH
+param_file NCAIR_RP_PARA.txt
+instruction_schedule NC_instruct_schedulePR1_R.csv
+media_type audio
+practice True

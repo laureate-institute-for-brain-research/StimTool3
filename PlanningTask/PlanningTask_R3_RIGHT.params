@@ -1,0 +1,6 @@
+run_id __PT-R3-_BEH
+instruction_schedule media/instructions/PlanningTask_instruct_R3_R.csv
+param_file __PT_R3_PARA.txt
+select_1 'left'
+select_2 'right'
+show_example False

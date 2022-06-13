@@ -1,0 +1,6 @@
+param_file Ratings_postRun_PARA.txt
+instruction_schedule media/instructions/METH_Pilot_SCAN_postRUN_LEFT.csv
+run_id _R1_postRun
+left '3'
+right '4'
+select '2'

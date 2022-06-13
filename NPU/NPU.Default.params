@@ -1,0 +1,5 @@
+run P
+practice False
+param_file __AF-RX-PARA.txt
+instruction_schedule AF_isntruct_scheduleP_R.csv
+practice True

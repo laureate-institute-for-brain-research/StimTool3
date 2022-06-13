@@ -1,0 +1,10 @@
+run_id __PT-POSTSCAN-_BEH
+instruction_schedule media/instructions/PlanningTask_instruct_POSTSCAN.csv
+param_file __PT_POSTSCAN_PARA.txt
+practice True
+select_1 'left'
+select_2 'right'
+select_3 'up'
+select_4 'down'
+free_duration 120
+hand 'RIGHT'

@@ -1,0 +1,6 @@
+param_file Ratings_preRun_PARA.txt
+instruction_schedule media/instructions/BK_Pilot_SCAN_preRUN_LEFT.csv
+run_id _R1_preRun
+left '2'
+right '1'
+select '3'

@@ -1,0 +1,12 @@
+Trial Types (block type 0:speed_stop_instruct; 1:speed_stop; 2:move_go_instruct; 3:move_go; 4:break), Stimuli, Durations (number_of_trials), ExtraArgs
+3_1,,5,
+31,,5,
+5,,8,
+3_2,,5,
+32,,5,
+5,,12,
+3_1,,5,
+31,,5,
+5,,10,
+3_2,,5,
+32,,5,

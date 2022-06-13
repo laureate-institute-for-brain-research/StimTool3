@@ -1,0 +1,5 @@
+run_id __NC-R5-_BEH
+param_file NCAIR_RX_PARA.txt
+instruction_schedule NC_instruct_scheduleR5_R.csv
+response_type button_box
+media_type image

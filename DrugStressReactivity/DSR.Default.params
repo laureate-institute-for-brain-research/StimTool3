@@ -1,0 +1,8 @@
+image_x 1024
+image_y 768
+run P
+practice False
+instruction_schedule MCR_instruct_scheduleP_R.csv
+schedules_neutral ['study-PASO_condition-neutral_set-1.schedule','study-PASO_condition-neutral_set-2.schedule','study-PASO_condition-neutral_set-3.schedule','study-PASO_condition-neutral_set-4.schedule']
+schedules_stress ['study-PASO_condition-stress_set-1.schedule','study-PASO_condition-stress_set-2.schedule','study-PASO_condition-stress_set-3.schedule','study-PASO_condition-stress_set-4.schedule']
+schedules_opioid ['study-PASO_condition-opioid_set-1.schedule','study-PASO_condition-opioid_set-2.schedule','study-PASO_condition-opioid_set-3.schedule','study-PASO_condition-opioid_set-4.schedule']

@@ -1,0 +1,13 @@
+stdout made
+11072
+<multiprocessing.queues.Queue object at 0x00000206C9C24D30>
+<multiprocessing.queues.Queue object at 0x00000206CAC8C7F0>
+from video
+9.493637839477007
+from audio
+test
+Re-encoding
+C:\StimTool3Env\ffmpeg-20200831-4a11a6f-win64-static\bin\ffmpeg -y -r 9.493637839477007 -itsscale 3.1600109997089025 -i test.avi -pix_fmt yuv420p -codec copy test-recoded.avi
+Muxing
+C:\StimTool3Env\ffmpeg-20200831-4a11a6f-win64-static\bin\ffmpeg -y -ac 2 -channel_layout stereo -i test.wav -i test-recoded.avi -pix_fmt yuv420p -codec copy test-combined.avi
+62.5632 	WARNING 	We strongly recommend you activate the PTB sound engine in PsychoPy prefs as the preferred audio engine. Its timing is vastly superior. Your prefs are currently set to use ['sounddevice', 'PTB', 'pyo', 'pygame'] (in that order).

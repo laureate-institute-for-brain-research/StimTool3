@@ -1,0 +1,2 @@
+run_id TX-STAT-R1-MOVE
+check_not_running ['AcqKnowledge.exe','acqknowledge.exe']

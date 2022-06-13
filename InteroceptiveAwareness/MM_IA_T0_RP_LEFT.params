@@ -1,0 +1,4 @@
+run_id __IA-RP-_BEH
+param_file __IA-RX-PARA.txt
+practice True
+instruction_schedule IA_instruct_scheduleP_L_MM.csv

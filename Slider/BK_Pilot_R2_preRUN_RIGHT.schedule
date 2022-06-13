@@ -1,0 +1,27 @@
+Question_Type, Question, Sub Text, Audio, Number of Choices, Ticks Position
+stai_state, 1. I feel calm.,,stai_audio/aiff/calm.mp3.aiff,4,Not at all,Somewhat,Moderately so,Very much so
+stai_state, 2. I feel secure.,,stai_audio/aiff/secure.mp3.aiff,4,Not at all,Somewhat,Moderately so,Very much so
+stai_state, 3. I am tense.,,stai_audio/aiff/tense.mp3.aiff,4,Not at all,Somewhat,Moderately so,Very much so
+stai_state, 4. I feel strained.,,stai_audio/aiff/strained.mp3.aiff,4,Not at all,Somewhat,Moderately so,Very much so
+stai_state, 5. I feel at ease.,,stai_audio/aiff/at_ease.mp3.aiff,4,Not at all,Somewhat,Moderately so,Very much so
+stai_state, 6. I feel upset.,,stai_audio/aiff/upset.mp3.aiff,4,Not at all,Somewhat,Moderately so,Very much so
+stai_state, 7. I am presently worrying over possible misfortunes,,stai_audio/aiff/misfortunes.mp3.aiff,4,Not at all,Somewhat,Moderately so,Very much so
+stai_state, 8. I feel satisfied.,,stai_audio/aiff/satisfied.mp3.aiff,4,Not at all,Somewhat,Moderately so,Very much so
+stai_state, 9. I feel frightened.,,stai_audio/aiff/frightened.mp3.aiff,4,Not at all,Somewhat,Moderately so,Very much so
+stai_state, 10. I feel comfortable.,,stai_audio/aiff/comfortable.mp3.aiff,4,Not at all,Somewhat,Moderately so,Very much so
+stai_state, 11. I feel self-confident.,,stai_audio/aiff/self-confident.mp3.aiff,4,Not at all,Somewhat,Moderately so,Very much so
+stai_state, 12. I feel nervous.,,stai_audio/aiff/nervous.mp3.aiff,4,Not at all,Somewhat,Moderately so,Very much so
+stai_state, 13. I am jittery.,,stai_audio/aiff/jittery.mp3.aiff,4,Not at all,Somewhat,Moderately so,Very much so
+stai_state, 14. I feel indecisive.,,stai_audio/aiff/indecisive.mp3.aiff,4,Not at all,Somewhat,Moderately so,Very much so
+stai_state, 15. I am relaxed.,,stai_audio/aiff/relaxed.mp3.aiff,4,Not at all,Somewhat,Moderately so,Very much so
+stai_state, 16. I feel content.,,stai_audio/aiff/content.mp3.aiff,4,Not at all,Somewhat,Moderately so,Very much so
+stai_state, 17. I am worried.,,stai_audio/aiff/worried.mp3.aiff,4,Not at all,Somewhat,Moderately so,Very much so
+stai_state, 18. I feel confused.,,stai_audio/aiff/confused.mp3.aiff,4,Not at all,Somewhat,Moderately so,Very much so
+stai_state, 19. I feel steady.,,stai_audio/aiff/steady.mp3.aiff,4,Not at all,Somewhat,Moderately so,Very much so
+stai_state, 20. I feel pleasant.,,stai_audio/aiff/pleasant.mp3.aiff,4,Not at all,Somewhat,Moderately so,Very much so
+fear,How much fear do you feel right now?,0 means that you felt no fear \n 10 is the maximal fear that you could tolerate,None,11,0,1,2,3,4,5,6,7,8,9,10
+difficult,How difficult does it feel to breath right now?,0 means that your breathing was not difficult at all \n 10 is the maximal breathing difficulty that you could tolerate,None,11,0,1,2,3,4,5,6,7,8,9,10
+unpleasant,How unpleasant does it feel to breath right now?,0 means that your breathing difficulty was not unpleasant at all \n 10 is the maximal unpleasantness you could tolerate,None,11,0,1,2,3,4,5,6,7,8,9,10
+happy,How happy or unhappy do you feel?,,None,5,1,2,3,4,5
+calm,How calm or excited do you feel?,,None,5,1,2,3,4,5
+anxiety,Please indicate your current anxiety level.,0 = no anxiety \n 10 = maximum possible anxiety,None,11,0,1,2,3,4,5,6,7,8,9,10

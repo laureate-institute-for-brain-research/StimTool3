@@ -1,0 +1,6 @@
+param_file Ratings_RT_MOCK_LOADPractice_PARA.txt
+instruction_schedule media/instructions/Practice_LEFT.csv
+run_id _RT_MOCK_LOAD_Practice
+left '3'
+right '4'
+select '2'
