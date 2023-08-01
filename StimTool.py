@@ -1,6 +1,6 @@
 from psychopy import prefs
-#prefs.hardware['audioLib'] = [u'pyo', u'pygame']
-prefs.hardware['audioLib'] = ['PTB']
+prefs.hardware['audioLib'] = [u'pyo', u'pygame']
+#prefs.hardware['audioLib'] = ['PTB']
 
 prefs.hardware['audioDriver'] = ['ASIO4ALL', 'ASIO', 'Audigy']
 from pygame import pypm #need to load this before loading psychopy.sound when using pyo 

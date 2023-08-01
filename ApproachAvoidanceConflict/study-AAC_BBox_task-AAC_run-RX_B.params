@@ -1,0 +1,3 @@
+run_id _AAC-R2
+param_file AAC_BBox_AAC_RX_PARA.txt
+instruction_schedule study-AAC_BBox_task-AAC_run-2_instructschedule.csv

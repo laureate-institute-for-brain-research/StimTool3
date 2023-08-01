@@ -18,8 +18,8 @@ instruction_volume 0.2
 allow_instructions_back True
 output_dir 'C:/T1000_Temporary_Storage/default/'
 network_output_dir 'T:/data/original_data/calibration_parameters/'
-last_subject 'FT123'
-last_admin 'JT'
+last_subject 'artest'
+last_admin 'ar'
 redirect_output False
 session_id SESSION_ID
 screen_number 1

@@ -5,7 +5,7 @@ prefs.general['audioLib'] = [u'pyo', u'pygame']
 from psychopy import sound, core, visual
 sys.path.append(os.path.join(os.path.dirname(__file__), '..')) #add directory up one level to search path
 #import StimToolLib
-lib_dll = ctypes.windll.LoadLibrary(os.path.join(os.path.dirname(__file__), '..', 'inpout32.dll'))
+#lib_dll = ctypes.windll.LoadLibrary(os.path.join(os.path.dirname(__file__), '..', 'inpout32.dll'))
 
 settings_file = os.path.join(os.path.dirname(__file__), '..', 'Default.params')
 #parallel_address = StimToolLib.get_var_from_file(settings_file, 'parallel_port_address')
@@ -13,7 +13,7 @@ settings_file = os.path.join(os.path.dirname(__file__), '..', 'Default.params')
 
 prefs.general[u'audioDriver'] = [u'ASIO4ALL', u'ASIO', u'Audigy']
 
-s = sound.Sound(value='SS_50ms.wav', volume=0.1)
+s = sound.Sound(value='media/sounds/Freesound/ferrari.aiff', volume=1)
 #s = sound.Sound(value='media/sounds/reward/lastScreen.wav')
 
 win = visual.Window(fullscr=False, screen=1,color=(-1,-1,-1), waitBlanking=True, colorSpace='rgb',winType='pyglet', allowGUI=False)
@@ -26,11 +26,14 @@ for i in range(20):
     
     #core.wait(0.4)
     win.flip()
-    s.play()
+    try:
+        s.play()
+    except:
+        pass
     #lib_dll.Out32(parallel_address, 1)
     #core.wait(0.05)
     #lib_dll.Out32(parallel_address, 0)
-    core.wait(1)
+    core.wait(10)
 
 win.close()
 core.quit()

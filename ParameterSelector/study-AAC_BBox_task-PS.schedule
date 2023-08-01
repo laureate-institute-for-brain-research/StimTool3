@@ -1,0 +1,18 @@
+{
+"Session":{"T0":{"session_id":"T0",
+            "order":[
+                         "Parameter Selector:run='study-FUS_task-PS.schedule'",
+                         "Parameter Selector:run='study-AAC_BBox_task-PS_ses-T0T2.schedule'"
+                          ]},
+            "T1":{"session_id":"T1",
+            "order":[
+                         "Parameter Selector:run='study-FUS_task-PS.schedule'",
+                         "Parameter Selector:run='study-AAC_BBox_task-PS_ses-T1.schedule'"
+                          ]},
+            "T2":{"session_id":"T2",
+            "order":[
+                         "Parameter Selector:run='study-FUS_task-PS.schedule'",
+                         "Parameter Selector:run='study-AAC_BBox_task-PS_ses-T0T2.schedule'"
+                          ]}
+         }
+}

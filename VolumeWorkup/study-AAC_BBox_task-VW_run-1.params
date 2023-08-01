@@ -1,0 +1,6 @@
+param_file AAC_BBox_AAC_RX_PARA.txt
+run_id __VW-T1-R1
+practice False
+response_type buttons
+instruction_schedule study-KetoSwiss_task-VW_run-1_instructschedule.csv
+stereo True

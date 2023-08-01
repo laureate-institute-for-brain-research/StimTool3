@@ -1,0 +1,7 @@
+run_id _AAC-RP
+param_file AAC_BBox_AAC_RP_PARA.txt
+practice True
+randomize_schedules False
+final_run False
+volume_workup True
+instruction_schedule study-AAC_BBox_task-AAC_run-P_instructschedule.csv

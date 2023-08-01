@@ -1,9 +1,15 @@
 
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 from psychopy import prefs
-
 import StimToolLib, os, random, operator
-from psychopy import visual, core, event, data, gui, sound
+from psychopy import visual, event, core, data, gui, sound
 from psychopy.hardware import joystick
+
+
+import time
+from psychopy.visual.secondorder import EnvelopeGrating
+
 
 class GlobalVars:
     #This class will contain all module specific global variables
@@ -16,7 +22,7 @@ class GlobalVars:
         self.output = None #The output file
         self.msg = None
         self.ideal_trial_start = None #ideal time the current trial started
-        self.this_trial_output = '' #will contain the text output to print for the current trial
+        self.this_trial_output = '' #will contain the text output to #print for the current trial
         self.left_av_runway = None #runway images with aversive stimuli on the left or right
         self.right_av_runway = None
         #self.resk = None
@@ -40,8 +46,7 @@ class GlobalVars:
         self.trial_type = None #the trial type string to be printed out
         self.title = 'Approach Avoidance Conflict'
         self.total_trials = 30
-        self.joystick = None
-  
+        self.run_order = False # Intialize the the run_order variable
 
 
 
@@ -58,6 +63,8 @@ event_types = {'INSTRUCT_ONSET':1,
     'TOTAL_POINTS':11,
     'VAS_RATING':12, 
     'POST_RATING':13,
+    'RIGHT_MAX':14,
+    'LEFT_MAX':15,
     'TASK_END':StimToolLib.TASK_END}
 
 
@@ -67,15 +74,20 @@ def draw_bars(bars_to_draw):
         
         
 def joystick_select(trial_type, left_reward, right_reward, start_location, iti, current_location, response_recorded, selected, this_runway, bars_to_draw, decision_onset,init_button_value):
-  
+    #now = g.clock.getTime()
+    #print(now)
+    event.clearEvents()
     if not selected:
-        sensitivity = 0.15 #the higher this value the more sensitive the joystick will be to hand movement
+        sensitivity = .02 #the higher this value the more sensitive the joystick will be to hand movement
         response_recorded = True
         this_runway.draw()
         draw_bars(bars_to_draw)
         now=g.clock.getTime()
         joystick_pos = g.joystick.getX()
+        #print(joystick_pos)
         j_mark=joystick_pos
+
+        # print(g.joystick.getAllAxes()) 
         
         #non-pivot method
         if abs(joystick_pos) < 0.220: #tolerance to remove joystick spring offset in 0 position (without this figure will appear to move on its own)
@@ -109,11 +121,12 @@ def joystick_select(trial_type, left_reward, right_reward, start_location, iti, 
 
 
 def key_select(trial_type, left_reward, right_reward, start_location, iti, current_location, response_recorded, selected, this_runway, bars_to_draw, decision_onset):
-    key = event.getKeys([g.session_params['left'], g.session_params['right'], g.session_params['down']]) #get any response keys pressed (just left, right, select)
+    key = event.getKeys([g.session_params['left'], g.session_params['right'], g.session_params['select']]) #get any response keys pressed (just left, right, select)
     if key and not selected:
         if len(key) > 1:
-            print('MULTIPLE KEYS.  SHOULD NOT HAPPEN')
-            print(key)
+            #print 'MULTIPLE KEYS.  SHOULD NOT HAPPEN'
+            #print key
+            pass
         if not response_recorded: #record time of first button press
             pass
         response_recorded = True
@@ -130,7 +143,8 @@ def key_select(trial_type, left_reward, right_reward, start_location, iti, curre
             StimToolLib.mark_event(g.output, g.trial, g.trial_type, event_types['SELECTOR_MOVEMENT'], now, now - decision_onset, 1, current_location, g.session_params['signal_parallel'], g.session_params['parallel_port_address'])
             g.fig.pos = [g.fig_center[0] + g.move_distance * current_location, g.fig_center[1]]
             g.fig.draw()
-        elif key[0] == g.session_params['down']: #lock in response_recorded
+        elif key[0] == g.session_params['select']: #lock in response_recorded
+            print('HERE')
             StimToolLib.mark_event(g.output, g.trial, g.trial_type, event_types['FINAL_LOCATION'], now, now - decision_onset, 'not locked', current_location, g.session_params['signal_parallel'], g.session_params['parallel_port_address'])
             g.fig_select.pos = [g.fig_select_center[0] + g.move_distance * current_location, g.fig_select_center[1]]
             selected = True
@@ -167,7 +181,9 @@ def selection_period(trial_type, left_reward, right_reward, start_location, iti)
     if right_reward == 6:
         bars_to_draw.append(g.bars_high[1])
         
-    
+    # Clear Any Joystick Events
+    event.clearEvents()
+
     response_recorded = False
     selected = False #set to true when the subject locks in a response
     current_location = start_location #can be any integer from -4 to 4
@@ -176,7 +192,8 @@ def selection_period(trial_type, left_reward, right_reward, start_location, iti)
     draw_bars(bars_to_draw)
     g.fig.draw()
     g.win.flip()
-    init_button_value=g.joystick.getButton(g.session_params['joy_forward'])
+    if g.session_params['joystick']:
+        init_button_value=g.joystick.getButton(g.session_params['joy_forward'])
     decision_onset = g.clock.getTime()
     StimToolLib.mark_event(g.output, g.trial, g.trial_type, event_types['DECISION_ONSET'], decision_onset, 'NA', 'NA', 'NA', g.session_params['signal_parallel'], g.session_params['parallel_port_address'])
     event.getKeys([g.session_params['left'], g.session_params['right'], g.session_params['down']]) #clear response keys that may have been pressed already
@@ -188,22 +205,18 @@ def selection_period(trial_type, left_reward, right_reward, start_location, iti)
             current_location, selected = joystick_select(trial_type, left_reward, right_reward, start_location, iti, current_location, response_recorded, selected, this_runway, bars_to_draw, decision_onset, init_button_value)
         else:
             current_location, selected=key_select(trial_type, left_reward, right_reward, start_location, iti, current_location, response_recorded, selected, this_runway, bars_to_draw, decision_onset)
+            
     if not selected:
         StimToolLib.mark_event(g.output, g.trial, g.trial_type, event_types['FINAL_LOCATION'], g.clock.getTime(), 'NA', 'NA', current_location, False, g.session_params['parallel_port_address'])    
     return current_location
     
 def select_result_display_image(final_location, left_sound, right_sound, left_image, right_image, trial_type):
-    ## After Changing Output Resolution
-    left_image.units = 'pix'
-    right_image.units = 'pix'
-
-    left_image.size = [g.session_params['screen_x'], g.session_params['screen_y']]
-    right_image.size = [g.session_params['screen_x'], g.session_params['screen_y']]
     #based on the final location, pick which image to display
     #return 0 for left, 1 for right
     probability_right = (final_location + 5) / float(10)
     if random.random() < probability_right: #show the image on the right
-        #g.this_trial_output = g.this_trial_output + ',R' 
+        #g.this_trial_output = g.this_trial_output + ',R' screen_x 1920
+        right_image.size = [g.session_params['screen_x'], g.session_params['screen_y']]
         right_image.draw()
         g.win.flip()
         right_sound.play()
@@ -219,6 +232,7 @@ def select_result_display_image(final_location, left_sound, right_sound, left_im
             #g.this_trial_output = g.this_trial_output + ',1'
     else: #show the image on the left
         #g.this_trial_output = g.this_trial_output + ',L'
+        left_image.size = [g.session_params['screen_x'], g.session_params['screen_y']]
         left_image.draw()
         g.win.flip()
         left_sound.play()
@@ -242,6 +256,8 @@ def show_reward(left_reward, right_reward, result, left_image, right_image):
         right_image.draw()
     g.reward_text_1.setText('YOU MADE ' + str(int(reward_amount)) + ' CENTS')
     
+    #print('g.total_reward:', str(g.total_reward))
+    #print('reward_amount:',str(reward_amount))
     g.total_reward = g.total_reward + reward_amount
     g.total_reward_shown = g.total_reward_shown + reward_amount
     StimToolLib.write_var_to_file(g.subj_param_file, 'total_reward', g.total_reward)
@@ -268,10 +284,16 @@ def do_one_trial(trial_type, iti, left_reward, right_reward, start_location, lef
     now = g.clock.getTime()
     StimToolLib.mark_event(g.output, g.trial, g.trial_type, event_types['FIXATION_ONSET'], now, 'NA', 'NA', 'NA', g.session_params['signal_parallel'], g.session_params['parallel_port_address'])
     g.x.draw()
-   
+
+    # Why is code below here?
+    
+    # if g.joystick.getButton(g.session_params['joy_forward']):
+    #     g.joystick = joystick.Joystick(0) 
+        #print str(g.clock.getTime()-now)
+        #print '-----------------'
     g.win.flip()
     StimToolLib.just_wait(g.clock, g.ideal_trial_start + iti)
-    g.offset=g.joystick.getX()*-1
+    #g.offset=g.joystick.getX()*-1
     #show runway
     final_location = selection_period(trial_type, left_reward, right_reward, start_location, iti)
     #show image
@@ -283,7 +305,7 @@ def do_one_trial(trial_type, iti, left_reward, right_reward, start_location, lef
     left_sound.stop()
     right_sound.stop()
     g.ideal_trial_start = g.ideal_trial_start + iti + g.select_length + g.image_length + g.result_length #update current time for next trial
-    # print outcome
+    ##print outcome
     g.this_trial_output = g.this_trial_output + '\n'
  
 
@@ -298,25 +320,55 @@ def load_sounds(sound_files):
     
 def final_screen():
     #g.final_sound.play()
-    if g.total_reward==g.total_reward_shown:
-        g.msg.setText('Congratulations, you\'ve won $' + "{0:.2f}".format(g.total_reward/100) + '!')
-    else:
-        g.msg.setText('Congratulations, you\'ve won $' + "{0:.2f}".format(g.total_reward/100) +'!\n(This includes your winnings from the trials you repeated.')
-    g.msg.draw()
-    g.msg.setText('\n\n\n\n\n\nPress the trigger button to continue.')
-    g.msg.draw()
+    # if g.total_reward==g.total_reward_shown:
+    #     g.msg.setText('Congratulations, you\'ve won $' + "{0:.2f}".format(g.total_reward/100) + '!')
+    # else:
+    #     g.msg.setText('Congratulations, you\'ve won $' + "{0:.2f}".format(g.total_reward/100) +'!\n(This includes your winnings from the trials you repeated.')
+    # g.msg.draw()
+    # g.msg.setText('\n\n\n\n\n\nPress the trigger button to continue.')
+    # g.msg.draw()
+    g.msgtop = visual.TextStim(g.win, text = '', units = 'norm', pos=(0,0), color = 'black', alignHoriz='center', font = 'helvetica')
+    g.msgmid = visual.TextStim(g.win, text = '', units = 'norm', pos=(0,-.2), color = 'black', alignHoriz='center', font = 'helvetica')
+    g.msgbottom = visual.TextStim(g.win, text = '', units = 'norm', pos=(0,-0.9), color = 'black', alignHoriz='center', font = 'helvetica')
+    
     g.win.flip()
-    while not g.joystick.getButton(g.session_params['joy_forward']):
+    if g.session_params['joystick']:
+        while not g.joystick.getButton(g.session_params['joy_forward']):
+            if g.total_reward==g.total_reward_shown:
+                g.msgtop.setText('Congratulations, you\'ve won $' + "{0:.2f}".format(g.total_reward/100) + '!')
+            else:
+                g.msgtop.setText('Congratulations, you\'ve won $' + "{0:.2f}".format(g.total_reward/100) +'!')
+                g.msgmid.setText('(This includes your winnings from the trials you repeated.)')
+                #g.msgmid.pos = StimToolLib.getMSGPosition(g.msgmid, xonly = True)
+                g.msgmid.draw()
+        
+            #g.msgtop.pos = StimToolLib.getMSGPosition(g.msgtop, xonly = True)
+            g.msgtop.draw()
+            g.msgbottom.setText('Press the trigger button to continue.')
+            #g.msgbottom.pos = StimToolLib.getMSGPosition(g.msgbottom, xonly = True)
+            g.msgbottom.draw()
+            event.clearEvents('joystick')
+            g.win.flip()
+        g.msg.setPos([0,0])
+    else:
+        
         if g.total_reward==g.total_reward_shown:
-            g.msg.setText('Congratulations, you\'ve won $' + "{0:.2f}".format(g.total_reward/100) + '!')
+            g.msgtop.setText('Congratulations, you\'ve won $' + "{0:.2f}".format(g.total_reward/100) + '!')
         else:
-            g.msg.setText('Congratulations, you\'ve won $' + "{0:.2f}".format(g.total_reward/100) +'!\n(This includes your winnings from the trials you repeated.')
-        g.msg.draw()
-        g.msg.setText('\n\n\n\n\n\nPress the trigger button to continue.')
-        g.msg.draw()
-        event.clearEvents('joystick')
+            g.msgtop.setText('Congratulations, you\'ve won $' + "{0:.2f}".format(g.total_reward/100) +'!')
+            g.msgmid.setText('(This includes your winnings from the trials you repeated.)')
+            #g.msgmid.pos = StimToolLib.getMSGPosition(g.msgmid, xonly = True)
+            g.msgmid.draw()
+                 #g.msgtop.pos = StimToolLib.getMSGPosition(g.msgtop, xonly = True)
+        g.msgtop.draw()
+        g.msgbottom.setText('Press the ENTER to continue.')
+        #g.msgbottom.pos = StimToolLib.getMSGPosition(g.msgbottom, xonly = True)
+        g.msgbottom.draw()
         g.win.flip()
-    g.msg.setPos([0,0])
+        k = event.waitKeys(keyList = ['return', 'escape'])
+        if k[0] == 'escape':
+            raise QuitException()
+        
     #g.final_sound.stop() #stop the sound if it's still playing
     #StimToolLib.just_wait(g.clock, g.ideal_trial_start + 30)
 
@@ -380,32 +432,15 @@ The following are questions about the task you just completed related to gaining
     #r = StimToolLib.get_one_rating("When a NEGATIVE picture and sound were displayed, I tried to think about something unrelateed to the picture to distract myself:", response_labels, g.win)
     
 def track_run():
-    try:
-        g.final_run=False
-        f=open(g.session_params['task_list'])
-        tl=f.read().splitlines()
-        aac_runs=[s for s in tl if 'Approach Avoidance Conflict' in str(s)]
-        track_version = 1
-        count=1
-        for i in aac_runs:
-            run_version = i.split(':')[1]
-            if g.run_params['practice']:
-                track_version=0
-                break
-            elif run_version[4:len(run_version)]=='VolumeWorkup.schedule' or run_version[4:len(run_version)]=='Randomizer.schedule' :
-                track_version=0
-            elif StimToolLib.get_var_from_file(os.path.join(os.path.dirname(__file__), run_version[4:-9]+'.params'), 'practice'):
-                track_version=0       
-            elif run_version[4:len(run_version)] == g.run_params['run'] and run_version[4:len(run_version)]!='VolumeWorkup.schedule':
-                break
-            track_version=track_version+1
-            count=count+1
-        if count==len(aac_runs):
-            g.final_run=True
-    except KeyError: #this exception occurs if running task in free mode - set track_version to 1
-        track_version = 1
+    g.final_run=False
+    if g.run_params['practice']: return 0
+    if 'RX_A' in g.run_params['run']: return 1
+    if 'RX_B' in g.run_params['run']: return 2
+    if 'RX_C' in g.run_params['run']:
         g.final_run=True
-    return track_version
+        return 3
+    return 0 # default
+
     
 def run(session_params, run_params):
     global g
@@ -418,20 +453,57 @@ def run(session_params, run_params):
         g.status = 0
     except StimToolLib.QuitException as q:
         g.status = -1
-    
-
-    try:
-        g.joystick._device.close()
-    except:
-        pass
-   
     StimToolLib.task_end(g)
     return g.status
 
+def get_schedule_file():
+    # Get Schedule File
+    # Return schedule path
+    try:
+        run_order = StimToolLib.get_var_from_file(os.path.join(os.path.dirname(__file__), g.subj_param_file), 'run_order')
+        g.run_order = run_order.split(',')
+    except:
+        print("error getting run_order. this is probably practice")
+        pass
+    
+    # Find RX_ letter in the run
+    if 'RX_A' in g.run_params['run']:
+        # Return the first run in the order
+        try:
+            new_schedule_file = g.run_params['run'].replace('RX_A', 'RX_'+g.run_order[0])
+        except:
+            print("ERROR!! Not using the order form params file")
+            return os.path.join(os.path.dirname(__file__), g.run_params['run'])
+
+        return os.path.join(os.path.dirname(__file__), new_schedule_file)
+    
+    if 'RX_B' in g.run_params['run']:
+        # Return the second run in the order
+        try:
+            new_schedule_file = g.run_params['run'].replace('RX_B', 'RX_'+g.run_order[1])
+        except:
+            print("ERROR!! Not using the order form params file")
+            return os.path.join(os.path.dirname(__file__), g.run_params['run'])
+        return os.path.join(os.path.dirname(__file__), new_schedule_file)
+
+    if 'RX_C' in g.run_params['run']:
+        # Return the third run in the order
+        try:
+            new_schedule_file = g.run_params['run'].replace('RX_C', 'RX_'+g.run_order[2])
+        except:
+            print("ERROR!! Not using the order form params file")
+            return os.path.join(os.path.dirname(__file__), g.run_params['run'])
+        return os.path.join(os.path.dirname(__file__), new_schedule_file)
+
+    # if we get to here just return the correct corresponding run
+    return os.path.join(os.path.dirname(__file__), g.run_params['run'])
+    
+
 def run_try():  
-    joystick.backend = 'pyglet'
-    prefs.general['audioLib'] = ['pyo', 'pygame']
-    #prefs.general[u'audioDriver'] = [u'ASIO4ALL', u'ASIO', u'Audigy']
+    #joystick.backend='pygame'
+    #prefs.hardware['audioLib'] = ['pyo', 'pygame']
+    # don't have the 'u' before the elements, that seems to break joystick functionality. I don't know why??
+    #prefs.hardware['audioDriver'] = ['ASIO4ALL', 'ASIO','Audigy']
     schedules = [f for f in os.listdir(os.path.dirname(__file__)) if f.endswith('.schedule')]
     if not g.session_params['auto_advance']:
         myDlg = gui.Dlg(title="AAC")
@@ -440,71 +512,71 @@ def run_try():
         if myDlg.OK:  # then the user pressed OK
             thisInfo = myDlg.data
         else:
-            # print 'QUIT!'
+            #print 'QUIT!'
             return -1#the user hit cancel so exit 
         g.run_params['run'] = thisInfo[0]
     
-
-    schedule_file = os.path.join(os.path.dirname(__file__), g.run_params['run'])
+    
     param_file = g.run_params['run'][0:-9] + '.params' #every .schedule file can (probably should) have a .params file associated with it to specify running parameters
     StimToolLib.get_var_dict_from_file(os.path.join(os.path.dirname(__file__), param_file), g.run_params)
+
+    g.prefix = StimToolLib.generate_prefix(g)
+    g.subj_param_file = os.path.join(os.path.dirname(g.prefix), g.session_params['SID'] + '_' + g.run_params['param_file'])
     
     
     #Randomize order of AAC runs in task list (optional, ie if randomizer.schedule is not included in task list AAC runs will run normally in the order they are listed)
     #Randomizer.schedule must be run seperately (ie in a practice or setup task list) before the actual task list for changes to take effect
+    # New Method of randomizing
+    # Still uses the same random function, but writes the order of the runs to the params file as run_order
     if 'Randomizer' in g.run_params['run']:
-        f=open(os.path.dirname(os.path.dirname(__file__))+'\\'+g.session_params['study_sf']+g.run_params['scan_tl'])
-        #f=open(g.run_params['scan_tl'])
-        versions = g.run_params['versions'].split(',')
+        
+        versions = ['A','B','C'] # run versions
         random.shuffle(versions)
-        lines=f.read().splitlines()
-        vidx=0
-        lidx=0
-        for i in lines:
-            if g.run_params['run_id'] in str(i):
-                lines[lidx]=i[:-10]+versions[vidx]+'.schedule'
-                vidx+=1
-            lidx+=1
-        f.close()
-        f=open(os.path.dirname(os.path.dirname(__file__))+'\\'+g.session_params['study_sf']+g.run_params['scan_tl'],'w') #reopen task list file and overwrite with modified task list
-        # print (os.path.dirname(os.path.dirname(__file__))+'\\'+g.session_params['study_sf']+g.run_params['scan_tl']+'8888888888888888888888888888888888')
-        #f=open(g.run_params['scan_tl'],'w') #reopen task list file and overwrite with modified task list
-        for i in lines:
-            f.write(i+'\n')
-        f.close()
+        StimToolLib.write_var_to_file(os.path.join(os.path.dirname(__file__), g.subj_param_file), 'run_order', ','.join(versions))
         return
     
-    g.prefix = StimToolLib.generate_prefix(g)
-    g.subj_param_file = os.path.join(os.path.dirname(g.prefix), g.session_params['SID'] + '_' + g.run_params['param_file'])
+    # If not randomizer, than use the versions from the run_order params.
+    # If there isn't a run_order params, than use the own already on the task list
+    schedule_file = get_schedule_file()
+    
+
     
     #Volume workup
     #VolumeWorkup.schedule must be run first in order to set g.volume
     g.volume = StimToolLib.get_var_from_file(os.path.join(os.path.dirname(__file__), g.subj_param_file), 'volume') #should have been set by volume workup run first
     if g.volume == None:
-        StimToolLib.error_popup('Could not read volume parameter from ' + g.subj_param_file + '. Did you run the volume workup first?')
-   
-    StimToolLib.general_setup(g)
-    
+        ##TMP
+        g.volume = 1
+        #StimToolLib.error_popup('Could not read volume parameter from ' + g.subj_param_file + '. Did you run the volume workup first?')
+    print("VOLUME IS:")
+    print(g.volume)
+    if g.session_params['joystick']:
+        StimToolLib.general_setup(g, winType='pygame')
+    else:
+        StimToolLib.general_setup(g)
+    # g.win.winType = 'pygame'
+    # g.win.flip()
+    joystick.backend = g.win.winType
     #Initialize joystick
     if g.session_params['joystick']:
-        nJoysticks=joystick.getNumJoysticks()
-        if nJoysticks>0:
+        #pygame.init()
+        #pygame.joystick.init()
+        #pygame.joystick.init()
+        nJoys = joystick.getNumJoysticks()
+        if nJoys == 1:
             g.joystick = joystick.Joystick(0) 
+            #g.joystick.init()
+            #print(g.joystick)
+            print("Name of Joystick %s" % g.joystick.getName())
         else:
             StimToolLib.error_popup("You don't have a joystick connected?")
-        
+    
+    # g.win._eventDispatchers = []
+    # print(g.win._eventDispatchers)
     #PReload stimuli
     trial_types,images,durations,sound_files = StimToolLib.read_trial_structure(schedule_file, g.win, g.msg)
     
-    print('TRIALTYPES')
-    print(trial_types)
-    print('IMAGES')
-    print(images)
-    print('DURATIONS')
-    print(durations)
-    print('SOUND FILES')
-    print(sound_files)
-    g.x = visual.TextStim(g.win, text="X", units='pix', height=50, color=[-1,-1,-1], pos=[0,0], bold=True)
+    g.x = visual.TextStim(g.win, text="X", units='pix', height=50, color=[-1,-1,-1], pos=[0,0], bold=True, alignHoriz = 'center')
     g.left_images = images[0]
     g.right_images = images[1]
     itis = durations[0]
@@ -512,15 +584,21 @@ def run_try():
     right_rewards = durations[2]
     start_locations = durations[3]
     g.left_sounds, g.right_sounds = load_sounds(sound_files)
-    g.runway_0_0 = visual.ImageStim(g.win, os.path.join(os.path.dirname(__file__),'media/Runway_0_0.bmp'), interpolate=True, units='norm', size=(1.85,0.38))
-    g.runway_0_1 = visual.ImageStim(g.win, os.path.join(os.path.dirname(__file__),'media/Runway_0_1.bmp'), interpolate=True, units='norm', size=(1.85,0.38))
-    g.runway_1_0 = visual.ImageStim(g.win, os.path.join(os.path.dirname(__file__),'media/Runway_1_0.bmp'), interpolate=True, units='norm', size=(1.85,0.38))
-    g.runway_1_1 = visual.ImageStim(g.win, os.path.join(os.path.dirname(__file__),'media/Runway_1_1.bmp'), interpolate=True, units='norm', size=(1.85,0.38))
+    g.runway_0_0 = visual.ImageStim(g.win, os.path.join(os.path.dirname(__file__),'media/Runway_0_0.png'), units='norm', size=(1.85,0.38))
+    g.runway_0_0.borderColor = 'white'
+    g.runway_0_1 = visual.ImageStim(g.win, os.path.join(os.path.dirname(__file__),'media/Runway_0_1.png'), units='norm', size=(1.85,0.38))
+    #g.runway_0_1.setBorderColor('white')
+    g.runway_1_0 = visual.ImageStim(g.win, os.path.join(os.path.dirname(__file__),'media/Runway_1_0.png'), units='norm', size=(1.85,0.38))
+    #g.runway_1_0.setBorderColor('white')
+    g.runway_1_1 = visual.ImageStim(g.win, os.path.join(os.path.dirname(__file__),'media/Runway_1_1.png'), units='norm', size=(1.85,0.38))
+    #g.runway_1_1.setBorderColor('white')
     g.fig = visual.ImageStim(g.win, os.path.join(os.path.dirname(__file__),'media/figure.png'), pos=[0,0.05], units='norm', size=(0.13,0.35))
     g.fig_select = visual.ImageStim(g.win, os.path.join(os.path.dirname(__file__),'media/figure_select.png'), pos=[0,0.05], units='norm', size=(0.13,0.37) )
-    g.reward_text_1 = visual.TextStim(g.win, text="", units='pix', height=46, color='white', pos=[0,-238], bold=True, wrapWidth=1000)
-    g.reward_text_2 = visual.TextStim(g.win, text="", units='pix', height=46, color='white', pos=[0,-291], bold=True, wrapWidth=1000)
-    g.reward_rect=visual.Rect(g.win, units='pix', fillColor='black', opacity=0.5, height=138, width=512, pos=[0,-269])
+    g.reward_text_1 = visual.TextStim(g.win, text="", units='norm', color='white', pos=[0,-0.48], bold=True, alignHoriz= 'center')
+    #g.reward_text_1.pos = StimToolLib.getMSGPosition(g.reward_text_1)
+    g.reward_text_2 = visual.TextStim(g.win, text="", units='norm', color='white', pos=[0,-0.6], bold=True, alignHoriz='center')
+    #g.reward_text_2.pos = StimToolLib.getMSGPosition(g.reward_text_2)
+    g.reward_rect=visual.Rect(g.win, units='norm', fillColor='black', opacity=0.5, height=.35, width=.75, pos=[0,-.5])
     left_bar_loc = [-0.855,0.02]
     right_bar_loc = [0.855, 0.02]
     g.bars_low.append(visual.ImageStim(g.win, os.path.join(os.path.dirname(__file__),'media/bar_low.png'), pos=left_bar_loc, units='norm', size=(0.13,0.32)))
@@ -532,15 +610,21 @@ def run_try():
     g.congrats = visual.TextStim(g.win,text="Congratulations!",units='pix',pos=[0,405],color=[-1,-1,-1],height=100,wrapWidth=int(1600), bold=True)
     
     track_version = track_run() #track version is an integer value that corresponds to the run's place in this task's run order (in free mode track_version=1)
-    
+    print('TRACK VERSION:  ' + str(track_version))
     #Maintain a running total of the reward across runs that will be paid
-    reset_total=StimToolLib.get_var_from_file('run_flags.txt', 'AAC_reset_total')
+    reset_total=StimToolLib.get_var_from_file(os.path.join(os.path.dirname(g.subj_param_file),'run_flags.txt'), 'AAC_reset_total')
     if reset_total:
         g.total_reward=0
-        StimToolLib.write_var_to_file('run_flags.txt', 'AAC_reset_total', False)
+        StimToolLib.write_var_to_file(os.path.join(os.path.dirname(g.subj_param_file),'run_flags.txt'), 'AAC_reset_total', False)
         StimToolLib.write_var_to_file(g.subj_param_file, 'total_reward', g.total_reward)
     else:
         g.total_reward=StimToolLib.get_var_from_file(os.path.join(os.path.dirname(__file__), g.subj_param_file), 'total_reward')
+
+    # Get total_reward
+    g.total_reward = StimToolLib.get_var_from_file(os.path.join(os.path.dirname(__file__), g.subj_param_file), 'total_reward')
+    if g.total_reward is None:
+        g.total_reward = 0
+    
 
     #Maintain a running total of the reward across runs that is displayed
     recorded_trial_num=StimToolLib.get_var_from_file(os.path.join(os.path.dirname(__file__), g.subj_param_file), 'trial_num')
@@ -555,37 +639,147 @@ def run_try():
     g.total_reward_shown=initial_reward
     
     start_time = data.getDateStr()
-    fileName = os.path.join(g.prefix + '_R' + str(track_version) +'.csv')
+    #the commented out fileName was used before--but could lead to conflicts
+    #fileName = os.path.join(g.prefix + '_R' + str(track_version) +'.csv')
+    fileName = os.path.join(g.prefix + '.csv')
     g.output = open(fileName, 'w')
     StimToolLib.write_var_to_file(g.subj_param_file, 'output_run'+str(track_version), fileName)
-    #sorted_events = sorted(event_types.iteritems(), key=operator.itemgetter(1))
     sorted_events = sorted(event_types.items(), key=lambda item: item[1])
-    g.output.write('Administrator:,' + g.session_params['admin_id'] + ',Original File Name:,' + fileName + ',Time:,' + start_time + ',Schedule File:,' +  schedule_file + ',Post-question file:,T1000_AAC_PostQuestions.csv,Event Codes:,' + str(sorted_events) + ', For ratings the trial number is negative and used to identify the question being rated.  VAS ratings are in the order pleasant-unpleasant-intense and are from 0 (not at all) to 100 (very much) \n')
+    g.output.write('Administrator:,' + g.session_params['admin_id'] + ',Original File Name:,' + fileName + ',Time:,' + start_time + ',Schedule File:,' +  schedule_file + '\n')
     g.output.write('trial_number,trial_type,event_code,absolute_time,response_time,response,result\n')
 
-    g.win.setColor([1,1,1]) #change background to white
-    g.win.flip()
-    g.win.flip() #flip twice to change to white
-    g.msg.setColor([-1,-1,-1])
+    
+    if g.session_params['joystick']:
+        #do joystick test at the beginning--make this a function
+        g.win.setColor('white')
+        #g.msg.setColor([-1,-1,-1])
+        g.win.flip()
+    
+    
+        g.msg = visual.TextStim(g.win, text = '', units = 'norm', pos=(0,0), color = 'black', alignHoriz='center', font = 'helvetica')
+        #g.msg.setText('1bcdefghijklmnopqrstuvwxyz12345678902bcdefghijklmnopqrstuvwxyz12345678903bcdefghijklmnopqrstuvwxyz12345678904bcdefghijklmnopqrstuvwxyz1234567890')
+        g.msg.setText('press Enter')
+        # For pygame, setting the text in the middle can't be done by anchoring text
+        # So we need to se the positive manually. This is done by finding the length of the text and setting the position based of screen size
+        #g.msg.pos = StimToolLib.getMSGPosition(g.msg)
+        g.msg.draw()
+        g.win.flip()
+
+        event.clearEvents()
+        while True:
+            event.clearEvents()
+            time.sleep(.5)
+            key = event.getKeys(['return'])
+            if key: break
+        #event.waitKeys(keyList=['return'], clearEvents=True)
+        circ = visual.Circle(g.win,units='pix',pos=(0,-100),radius=30,fillColor='red')
+        circ.draw()
+        g.win.flip()
+            
+        pressed=False
+
+        # ######## Custom pygame backend for joystick ############
+        # print('#####USING PYGAME as Joystick BACKEND')
+        # pygame.display.init()
+        # pygame.joystick.init()
+
+        # g.joystick = pygame.joystick.Joystick(0)
+        # g.joystick.init()
+        #########################################################
+
+
+        
+        # print(g.joystick.get_name())
+        # print('First X position %s' % g.joystick.get_axis(0))
+        # g.joystick = joystick.Joystick(0) 
+        g.msg.setColor('red')
+        g.msg.setText('Move the the joystick all the way RIGHT and press the trigger button.')
+        #g.msg.pos = StimToolLib.getMSGPosition(g.msg)
+        
+        #g.msg.color = 'red'
+        event.clearEvents()
+
+        # env1 = EnvelopeGrating(g.win, ori=0, units='norm', carrier='sin', envelope='sin', mask='gauss', sf=4, envsf=8, size=1, contrast=1.0, moddepth=0.0, envori=0, pos=[0, .5], interpolate=0)
+        while not pressed:
+            # env1.ori += 0.1
+            # env1.draw()
+            g.msg.draw()
+            #pygame.event.pump()
+            x = g.joystick.getX()
+            # print(x)
+            # print(g.joystick.get_axis(0))
+            x_pix = x * g.session_params['screen_x']/2
+            circ.pos=(x_pix,-100)
+            circ.draw()
+        
+            #k = event.getKeys(keyList=['return'])
+            if g.joystick.getButton(g.session_params['joy_forward']):
+                pressed=True
+                #StimToolLib.mark_event(g.output, 'NA', 'NA', event_types['RIGHT_MAX'], sel_time, sel_time-instruct_end, x, 'NA', g.session_params['signal_parallel'], g.session_params['parallel_port_address'])
+                # while g.joystick.getButton(g.session_params['joy_forward']):
+                #     wait_for_release=True
+                #     g.win.flip()
+                #     event.clearEvents()
+            g.win.flip()
+            event.clearEvents()
+        
+
+        g.msg.setColor('black')
+        g.msg.setText('Press enter to continue.')
+        #g.msg.pos = StimToolLib.getMSGPosition(g.msg)
+        g.msg.draw()
+        g.win.flip()
+        # evt.clear()
+        # evt.get()
+        
+        event.clearEvents()
+        while True:
+            event.clearEvents()
+            time.sleep(.5)
+            key = event.getKeys(['return'])
+            if key: break
+        
+        pressed=False
+        #g.joystick = joystick.Joystick(0) 
+        g.msg.setColor('blue')
+        g.msg.setText('Move the the joystick all the way LEFT and press the trigger button.')
+        #g.msg.pos = StimToolLib.getMSGPosition(g.msg)
+        #g.msg.setColor('blue')
+        circ.fillColor='blue'
+        event.clearEvents()   
+        while not pressed:
+            g.msg.draw()
+            # pygame.event.pump()
+            x=g.joystick.getX()
+            x_pix=x*g.session_params['screen_x']/2
+            circ.pos=(x_pix,-100)
+            circ.draw()
+            if g.joystick.getButton(g.session_params['joy_forward']):
+                pressed=True
+                #StimToolLib.mark_event(g.output, 'NA', 'NA', event_types['LEFT_MAX'], sel_time, sel_time-instruct_end, x, 'NA', g.session_params['signal_parallel'], g.session_params['parallel_port_address'])
+            g.win.flip()
+            event.clearEvents()   
+        g.win.setColor('white')
+        g.msg.setColor('black')
+        g.win.flip() 
+    
 
     StimToolLib.task_start(StimToolLib.AAC_CODE, g)
     instruct_start_time = g.clock.getTime()
     StimToolLib.mark_event(g.output, 'NA', 'NA', event_types['INSTRUCT_ONSET'], instruct_start_time, 'NA', 'NA', 'NA', g.session_params['signal_parallel'], g.session_params['parallel_port_address'])
     
-       #JorgeCode
-    if g.session_params['study_sf'] == 'PA':
-            if g.run_params['practice'] == True:
-                StimToolLib.run_instructions(os.path.join(os.path.dirname(__file__), 'media', 'instructions', 'instructions_P','AAC_instruct_schedule_PPA.csv'), g)
-            else:
-                StimToolLib.run_instructions(os.path.join(os.path.dirname(__file__), 'media', 'instructions', 'instructions_T','AAC_instruct_schedule_' + str(track_version) + 'PA' + '.csv'), g)    
-    
-    else:
-        if g.run_params['practice']:
-            StimToolLib.run_instructions(os.path.join(os.path.dirname(__file__), 'media', 'instructions', 'instructions_P','AAC_instruct_schedule_P.csv'), g)
-        else:
-    #/JorgeCode
-            StimToolLib.run_instructions(os.path.join(os.path.dirname(__file__), 'media', 'instructions', 'instructions_T','AAC_instruct_schedule_' + str(track_version) + '.csv'), g)
+    ## OLD CODE
+    # if g.run_params['practice']:
+    #     StimToolLib.run_instructions_joystick(os.path.join(os.path.dirname(__file__), 'media', 'instructions', 'instructions_P','AAC_instruct_schedule_P.csv'), g)
+    # else:
+    #     #/JorgeCode
+    #     StimToolLib.run_instructions_joystick(os.path.join(os.path.dirname(__file__), 'media', 'instructions', 'instructions_T','AAC_instruct_schedule_' + str(track_version) + '.csv'), g)
 
+    ## New CODE checks for instruction_schedule in ruan params
+    if g.session_params['joystick']:
+        StimToolLib.run_instructions_joystick(os.path.join(os.path.dirname(__file__), 'media', 'instructions', g.run_params['instruction_schedule']), g)
+    else:
+        StimToolLib.run_instructions(os.path.join(os.path.dirname(__file__), 'media', 'instructions', g.run_params['instruction_schedule']), g)
 
     #Scan code
     if g.session_params['scan']:
@@ -593,6 +787,16 @@ def run_try():
     else:
         StimToolLib.wait_start(g.win)
     g.win.flip()
+
+    # Set the Background Color
+    g.win.setColor('white')
+    g.win.flip()
+
+    ## TESTING FINAL SCREEN
+    #final_screen()
+    #now = g.clock.getTime()
+    #StimToolLib.just_wait(g.clock, now + 8)
+    ################
        
     instruct_end_time = g.clock.getTime()
     StimToolLib.mark_event(g.output, 'NA', 'NA', event_types['TASK_ONSET'], instruct_end_time, instruct_end_time - instruct_start_time, 'NA', 'NA', g.session_params['signal_parallel'], g.session_params['parallel_port_address'])
@@ -601,9 +805,11 @@ def run_try():
     g.win.flip()
     StimToolLib.just_wait(g.clock, g.ideal_trial_start + 8)
     g.ideal_trial_start = g.clock.getTime()
+    event.clearEvents()
     for t,iti,left_r,right_r,start_l,left_s,right_s, left_i, right_i in zip(trial_types, itis, left_rewards, right_rewards, start_locations, g.left_sounds, g.right_sounds, g.left_images, g.right_images):
         g.trial_type = t[0] + t[2] + '_'+ str(int(left_r))  + str(int(right_r)) + '_'+str(int(start_l))
         StimToolLib.write_var_to_file(g.subj_param_file, 'trial_num', g.trial)
+        event.clearEvents()
         do_one_trial(t,iti,left_r,right_r,start_l,left_s,right_s, left_i, right_i)
         g.trial = g.trial + 1
   

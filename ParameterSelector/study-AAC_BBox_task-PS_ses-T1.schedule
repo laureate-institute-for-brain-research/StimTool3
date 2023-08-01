@@ -1,0 +1,29 @@
+{
+ "Hand-Set":{"RIGHT-SCAN":{"scan": "True",
+                       "left":"b", 
+                       "right":"y", 
+                       "select":"g",
+                       "order":[
+                         "Parameter Selector:run='study-AAC_BBox_task-PS.schedule'",
+                         "Parameter Selector:run='study-AAC_BBox_task-PS_ses-T1.schedule'",
+                         "Volume Workup:run='study-AAC_BBox_task-VW_run-1.schedule'",
+                         "Approach Avoidance Conflict:run='study-AAC_BBox_task-AAC_run-RX_A.schedule'",
+                         "Approach Avoidance Conflict:run='study-AAC_BBox_task-AAC_run-RX_B.schedule'",
+                         "Approach Avoidance Conflict:run='study-AAC_BBox_task-AAC_run-RX_C.schedule'",
+                         "Data Mover:run='study-AAC_BBox_task-DM_TX.schedule'"
+                          ]},
+         "LEFT-SCAN":{"scan": "True",
+                      "left":"y", 
+                      "right":"b", 
+                      "select":"g",
+                      "order":[
+                         "Parameter Selector:run='study-AAC_BBox_task-PS.schedule'",
+                         "Parameter Selector:run='study-AAC_BBox_task-PS_ses-T1.schedule'",
+                         "Volume Workup:run='study-AAC_BBox_task-VW_run-1.schedule'",
+                         "Approach Avoidance Conflict:run='study-AAC_BBox_task-AAC_run-RX_A.schedule'",
+                         "Approach Avoidance Conflict:run='study-AAC_BBox_task-AAC_run-RX_B.schedule'",
+                         "Approach Avoidance Conflict:run='study-AAC_BBox_task-AAC_run-RX_C.schedule'",
+                         "Data Mover:run='study-AAC_BBox_task-DM_TX.schedule'"
+                         ]}
+         }
+}

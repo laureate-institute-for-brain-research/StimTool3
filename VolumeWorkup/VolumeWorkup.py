@@ -200,7 +200,65 @@ def volume_workup_joystick(sound_file, start_volume):
 
 
 
+def volume_workup_buttons(sound_file, start_volume):
+    
+    s = sound.Sound(sound_file)
+    possible_options = ['0.0', '0.1', '0.2', '0.3', '0.4', '0.5', '0.6', '0.7', '0.8', '0.9', '1']
+    index= 2 # Starting volume
+    last_volume = possible_options[index]
+    
+    g.win.setColor([-1,-1,-1])
+    g.msg.setColor([1,1,1])
+    g.win.flip()
+    
+    g.vol_knob=visual.ImageStim(g.win, image=os.path.join(os.path.dirname(__file__), 'Images', last_volume +'.png'), units='pix', pos=(23,-180))
+    g.vol_msg0 = visual.TextStim(g.win, text="SOUND CHECK", units='pix', color='Yellow', bold=True, pos=(0,190), height=46, alignHoriz='center')
+    g.vol_msg1 = visual.TextStim(g.win, text="To increase the volume, push the left button", units='pix', pos=(-435,131), color=([1,1,1]), height=43, alignHoriz='left', wrapWidth=1000)
+    g.vol_msg2 = visual.TextStim(g.win, text="To decrease the volume, push the right button", units='pix', pos=(-435,86), color=([1,1,1]), height=43, alignHoriz='left', wrapWidth=1000)
+    g.vol_msg3 = visual.TextStim(g.win, text="To select the volume, push the select button.", units='pix', pos=(-435,41), color=([1,1,1]),height=43,alignHoriz='left', wrapWidth=1000)
+    
+    while True:
+        g.vol_knob.setImage(os.path.join(os.path.dirname(__file__), 'Images', last_volume +'.png'))
+        draw_display()
+        g.win.flip()
 
+        s.setVolume(float(last_volume))
+        print(last_volume)
+        s.play()
+        now=g.clock.getTime()
+
+        StimToolLib.just_wait(g.clock, now+2)
+        s.stop()
+        draw_display()
+        g.win.flip()
+
+        resp = event.waitKeys(keyList = [g.session_params['left'],g.session_params['right'],g.session_params['select'], 'escape'])
+
+        #if not resp:
+        #    continue
+        if resp and resp[0] == 'escape': raise StimToolLib.QuitException()
+
+        now=g.clock.getTime()
+        if resp[0] == g.session_params['select']:
+            return float(last_volume)
+        elif  resp[0] == g.session_params['right']:
+            try:
+                last_volume=possible_options[index + 1]
+                index=index+1
+            except IndexError:
+                g.msg.setText('Maximum volume reached. You can not pick a volume higher than this.')
+                g.msg.draw()
+                g.win.flip()
+                StimToolLib.just_wait(g.clock, now+2.5)
+        elif  resp[0] == g.session_params['left']:
+            if index-1>=0:
+                last_volume=possible_options[index - 1]
+                index = index - 1
+            else:
+                g.msg.setText('Minimum volume reached. You can not pick a volume lower than this.')
+                g.msg.draw()
+                g.win.flip()
+                StimToolLib.just_wait(g.clock, now+2.5)
 
 
 
@@ -284,7 +342,9 @@ def run_try():
     if g.response_type == 'dial':
         StimToolLib.run_instructions_dial(os.path.join(os.path.dirname(__file__), 'Instructions', g.run_params['instruction_schedule']), g)
 
-    
+    if g.response_type == 'buttons':
+        StimToolLib.run_instructions(os.path.join(os.path.dirname(__file__), 'Instructions', g.run_params['instruction_schedule']), g)
+
     # Allow Wait Scan start to be started by 5 only
     five_only = False
     if g.response_type == 'dial': five_only = True
@@ -303,10 +363,15 @@ def run_try():
         selected_volume=volume_workup_joystick(os.path.join(os.path.dirname(__file__),'Kid_laugh.aiff'), 0.1)
     if g.response_type == 'dial':
         selected_volume=volume_workup_dial(os.path.join(os.path.dirname(__file__),'Kid_laugh.aiff'), 0.1)
+    if g.response_type == 'buttons':
+        selected_volume=volume_workup_buttons(os.path.join(os.path.dirname(__file__),'Kid_laugh.aiff'), 0.1)
+
+
     sel_time=g.clock.getTime()
     StimToolLib.write_var_to_file(subj_param_file, 'volume', selected_volume)
     StimToolLib.mark_event(g.output, 'NA', 'NA', event_types['SELECTION_MADE'], sel_time, sel_time-instruct_end, selected_volume, 'NA', g.session_params['signal_parallel'], g.session_params['parallel_port_address'])
-    
+    if g.response_type == 'buttons':
+        return
     g.win.setColor([0,0,0])
     g.msg.setColor([-1,-1,-1])
     g.win.flip()
