@@ -1,0 +1,22 @@
+{
+    "Session":{
+        "T0":{
+            "session_id":"T0"
+            }
+        },
+    "Hand-Set":{
+        "RIGHT-SCAN":{
+            "scan": "False",
+            "left":"1", 
+            "right":"2", 
+            "select":"3",
+            "handedness":"right",
+            "allow_skip":"True",
+            "order":[
+                "Parameter Selector:run='study-WHITE-2025-GNG_task-PS_session-functional.schedule'",
+                "SelfReferentialEncoding:run='study-TEST_task-SRE_run-R1_R.schedule'",
+                "GoNoGo:run='study-TEST_task-GNG_run-R1_R.schedule'"
+            ]
+        }
+    }
+}

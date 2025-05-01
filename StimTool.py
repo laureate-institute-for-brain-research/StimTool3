@@ -55,6 +55,8 @@ import Slider.Slider
 import Rest_bb.Rest
 import Cooperation.Cooperation
 import Horizon.Horizon
+import GoNoGo.GoNoGo
+import SelfReferentialEncoding.SelfReferentialEncoding
 
 
 #mod_mapping = {'Monetary Incentive Delay':MonetaryIncentiveDelay.MonetaryIncentiveDelay, 'Physiological Baseline':Baseline.Baseline, 'Emotional Reactivity':EmotionalReactivity.EmotionalReactivity, 'Breath Hold':BreathHold.BreathHold,
@@ -96,7 +98,9 @@ mod_mapping = {
     'Slider': Slider.Slider,
     'Cooperation':Cooperation.Cooperation,
     'Horizon': Horizon.Horizon,
-    'Breath Hold': BreathHold.BreathHold
+    'Breath Hold': BreathHold.BreathHold,
+    'GoNoGo': GoNoGo.GoNoGo,
+    'SelfReferentialEncoding':SelfReferentialEncoding.SelfReferentialEncoding
     }
 
 def run_task_until_success(task, session_params):
