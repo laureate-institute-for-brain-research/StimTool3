@@ -1,0 +1,10 @@
+TrialTypes (Word),Stimuli,Durations (fixation stimuli blank),ExtraArgs(1=Positive;0=Negative)
+Scared,,1.4 0.25 1.8,0
+Happy,,1.4 0.25 1.8,1
+Useless,,1.4 0.25 1.8,0
+Amused,,1.6 0.25 1.8,1
+Miserable,,1.4 0.25 1.8,0
+Ecstatic,,1.2 0.25 1.8,1
+Displeased,,1.4 0.25 1.8,0
+Relaxed,,1.6 0.25 1.8,1
+Bitter,,1.4 0.25 1.8,0

@@ -126,7 +126,7 @@ def run_try():
     
     schedules = [f for f in os.listdir(os.path.dirname(__file__)) if f.endswith('.schedule')]
     if not g.session_params['auto_advance']:
-        myDlg = gui.Dlg(title="GNG")
+        myDlg = gui.Dlg(title="SRE")
         myDlg.addField('Run Number', choices=schedules, initial=g.run_params['run'])
         myDlg.show()  # show dialog and wait for OK or Cancel
         if myDlg.OK:  # then the user pressed OK
@@ -137,6 +137,9 @@ def run_try():
         g.run_params['run'] = thisInfo[0]
 
     param_file = g.run_params['run'][0:-9] + '.params' #every .schedule file can (probably should) have a .params file associated with it to specify running parameters (including part of the output filename)
+
+    print("TESTING")
+    print(param_file)
 
     StimToolLib.get_var_dict_from_file(os.path.join(os.path.dirname(__file__), param_file), g.run_params)
     g.prefix = StimToolLib.generate_prefix(g)

@@ -14,7 +14,7 @@
             "allow_skip":"True",
             "order":[
                 "Parameter Selector:run='study-WHITE-2025-GNG_task-PS_session-functional.schedule'",
-                "SelfReferentialEncoding:run='study-R01_task-SRET_run-R1_P.schedule'",
+                "SelfReferentialEncoding:run='study-R01_task-SRE_run-RP.schedule'",
                 "GoNoGo:run='study-R01_task-GNG_run-RA_P.schedule'"
             ]
         },
@@ -27,7 +27,7 @@
             "allow_skip":"True",
             "order":[
                 "Parameter Selector:run='study-WHITE-2025-GNG_task-PS_session-functional.schedule'",
-                "SelfReferentialEncoding:run='study-R01_task-SRET_run-R1_P.schedule'",
+                "SelfReferentialEncoding:run='study-R01_task-SRE_run-RP.schedule'",
                 "GoNoGo:run='study-R01_task-GNG_run-RB_P.schedule'"
             ]
         },
@@ -40,7 +40,7 @@
             "allow_skip":"True",
             "order":[
                 "Parameter Selector:run='study-WHITE-2025-GNG_task-PS_session-functional.schedule'",
-                "SelfReferentialEncoding:run='study-R01_task-SRET_run-R1_P.schedule'",
+                "SelfReferentialEncoding:run='study-R01_task-SRE_run-RP.schedule'",
                 "GoNoGo:run='study-R01_task-GNG_run-RC_P.schedule'"
             ]
         },
@@ -53,7 +53,7 @@
             "allow_skip":"True",
             "order":[
                 "Parameter Selector:run='study-WHITE-2025-GNG_task-PS_session-functional.schedule'",
-                "SelfReferentialEncoding:run='study-R01_task-SRET_run-R1_P.schedule'",
+                "SelfReferentialEncoding:run='study-R01_task-SRE_run-RP.schedule'",
                 "GoNoGo:run='study-R01_task-GNG_run-RD_P.schedule'"
             ]
         },
