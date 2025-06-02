@@ -1,0 +1,6 @@
+run_id _SRE_R1-_BEH
+task_name SRE
+param_file _SRE-RX-PARA.txt
+practice False
+select '1'
+instruction_schedule sret_instruct_schedule.csv

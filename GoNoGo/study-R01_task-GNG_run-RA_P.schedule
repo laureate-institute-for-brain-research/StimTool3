@@ -1,0 +1,11 @@
+TrialTypes (Letter),Stimuli,Durations (fixation stimuli blank),GO or NO
+A,,0.7 0.25 0.45,N
+B,,0.7 0.25 0.45,G
+C,,1.1 0.25 0.45,G
+D,,1.1 0.25 0.45,G
+B,,0.9 0.25 0.45,G
+A,,0.9 0.25 0.45,N
+C,,1.1 0.25 0.45,G
+D,,0.9 0.25 0.45,G
+A,,0.7 0.25 0.45,N
+D,,0.9 0.25 0.45,G

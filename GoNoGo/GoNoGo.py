@@ -31,8 +31,9 @@ event_types = {
     'TRIAL_ONSET':3,
     'FIXATION':4,
     'LETTER_ONSET':5,
-    'RESPONSE':6,
-    'BLANK_ONSET':7,
+    'RESPONSE_GO':6,
+    'RESPONSE_NOGO':7,
+    'BLANK_ONSET':8,
     'TASK_END':StimToolLib.TASK_END 
     }
 
@@ -42,7 +43,7 @@ def do_one_trial(letter, fixation, stim_duration, blank_duration, gonogo_flag):
     g.fixation.draw()
     g.win.flip() # start on screen refresh
     mark_time = trial_start = g.clock.getTime()
-    StimToolLib.mark_event(g.output, g.trial, g.trial_type, event_types['FIXATION'], mark_time, 'NA', 'NA', fixation, g.session_params['signal_parallel'], g.session_params['parallel_port_address'])
+    StimToolLib.mark_event(g.output, g.trial, g.trial_type, event_types['FIXATION'], mark_time, 'NA', 'NA', fixation, g.session_params['signal_parallel'], g.session_params['parallel_port_address'], g.session_params['signal_serial'], g.session_params['serial_port_address'], g.session_params['baud_rate'])
     for x in range(int(round(fixation/g.win.monitorFramePeriod)) - 1): # stop one refresh early so that the following refresh clears the fixation and draws the letter
         g.fixation.draw()
         g.win.flip()
@@ -53,39 +54,33 @@ def do_one_trial(letter, fixation, stim_duration, blank_duration, gonogo_flag):
     letter_stim.draw()
     event.clearEvents()
     g.win.flip() # end fixation on refresh and begin letter on same refresh
+    resp_marked = False
     mark_time = g.clock.getTime()
-    StimToolLib.mark_event(g.output, g.trial, g.trial_type, event_types['LETTER_ONSET'], mark_time, 'NA', 'NA', letter, g.session_params['signal_parallel'], g.session_params['parallel_port_address'])
+    g.mouse.clickReset()
+    StimToolLib.mark_event(g.output, g.trial, g.trial_type, event_types['LETTER_ONSET'], mark_time, 'NA', 'NA', letter, g.session_params['signal_parallel'], g.session_params['parallel_port_address'], g.session_params['signal_serial'], g.session_params['serial_port_address'], g.session_params['baud_rate'])
     #___________ BETTER DISPLAY TIMING
     for x in range(int(round(stim_duration/g.win.monitorFramePeriod)) - 1): # stop one refresh early so that the following refresh clears the letter
         if event.getKeys(["escape"]):
             raise StimToolLib.QuitException()
-        resp = event.getKeys([g.session_params['select'], g.session_params['left'], g.session_params['right'], g.session_params['up'], g.session_params['down']])
-        if resp:
-            response_time = g.clock.getTime() - mark_time
-            StimToolLib.mark_event(g.output, g.trial, g.trial_type, event_types['RESPONSE'], g.clock.getTime(), response_time, 'NA', gonogo_flag, g.session_params['signal_parallel'], g.session_params['parallel_port_address'])
+        # resp = event.getKeys([g.session_params['select'], g.session_params['left'], g.session_params['right'], g.session_params['up'], g.session_params['down']], timeStamped=g.clock)
+        resp, resptimes = g.mouse.getPressed(getTime = True)
+        print(resp)
+        if 1 in resp and not resp_marked:
+            if gonogo_flag == 'G':
+                StimToolLib.mark_event(g.output, g.trial, g.trial_type, event_types['RESPONSE_GO'], g.clock.getTime(), max(resptimes), 'NA', gonogo_flag, g.session_params['signal_parallel'], g.session_params['parallel_port_address'], g.session_params['signal_serial'], g.session_params['serial_port_address'], g.session_params['baud_rate'])
+            else:
+                StimToolLib.mark_event(g.output, g.trial, g.trial_type, event_types['RESPONSE_NOGO'], g.clock.getTime(), max(resptimes), 'NA', gonogo_flag, g.session_params['signal_parallel'], g.session_params['parallel_port_address'], g.session_params['signal_serial'], g.session_params['serial_port_address'], g.session_params['baud_rate'])
             event.clearEvents()
+            resp_marked = True
         letter_stim.draw()
         g.win.flip()
     g.win.flip() # clear letter on refresh
     mark_time = g.clock.getTime()
-    # ___________ BETTER RESPONSE TIMING
-    # while g.clock.getTime() <= trial_start + fixation + stim_duration - g.win.monitorFramePeriod/g.refresh_period_denom: # stop a bit before next refresh
-    #     if event.getKeys(["escape"]):
-    #         raise StimToolLib.QuitException()
-    #     resp = event.getKeys([g.session_params['select'], g.session_params['left'], g.session_params['right'], g.session_params['up'], g.session_params['down']])
-    #     if resp:
-    #         response_time = g.clock.getTime() - mark_time
-    #         StimToolLib.mark_event(g.output, g.trial, g.trial_type, event_types['RESPONSE'], g.clock.getTime(), response_time, 'NA', gonogo_flag, g.session_params['signal_parallel'], g.session_params['parallel_port_address'])
-    #         event.clearEvents()
-    #     StimToolLib.short_wait()
-    # g.win.flip() # clear letter on refresh
-    # mark_time = g.clock.getTime()
 
     # BLANK SCREEN
-    StimToolLib.mark_event(g.output, g.trial, g.trial_type, event_types['BLANK_ONSET'], mark_time, 'NA', 'NA', blank_duration, g.session_params['signal_parallel'], g.session_params['parallel_port_address'])
-    # StimToolLib.just_wait(g.clock, trial_start + stim_duration + fixation + blank_duration - g.win.monitorFramePeriod/g.refresh_period_denom)
+    StimToolLib.mark_event(g.output, g.trial, g.trial_type, event_types['BLANK_ONSET'], mark_time, 'NA', 'NA', blank_duration, g.session_params['signal_parallel'], g.session_params['parallel_port_address'], g.session_params['signal_serial'], g.session_params['serial_port_address'], g.session_params['baud_rate'])
     for x in range(int(round(blank_duration/g.win.monitorFramePeriod)) - 1): # stop one refresh early so that the following refresh shows the next fixation
-        g.fixation.draw()
+        # g.fixation.draw()
         g.win.flip()
 
 def run(session_params, run_params):
@@ -137,6 +132,7 @@ def run_try():
     #set up stimuli
     g.win_ratio = g.win.size[0]/g.win.size[1]
     g.test_stim = visual.TextStim(g.win, text='TESTING SCREEN REFRESH RATE...', height=0.25, pos=[0,0], units='norm', color='white')
+    g.break_stim = visual.TextStim(g.win, text='REST', height=0.25, pos=[0,0], units='norm', color='white')
     g.fixation = visual.ImageStim(g.win, image=os.path.join(os.path.dirname(__file__),  'media/fixation.png'), pos=[0,0], size = [0.5,g.win_ratio*0.5], units='norm')
     g.letter_stims = {}
     for letr in set(letters):
@@ -156,9 +152,9 @@ def run_try():
     g.output.write('trial_number,trial_type,event_code,absolute_time,response_time,response,result\n')
     StimToolLib.task_start(StimToolLib.GONOGO_CODE, g)
     instruct_start_time = g.clock.getTime()
-    StimToolLib.mark_event(g.output, 'NA', 'NA', event_types['INSTRUCT_ONSET'], instruct_start_time, 'NA', 'NA', 'NA', g.session_params['signal_parallel'], g.session_params['parallel_port_address'])
+    StimToolLib.mark_event(g.output, 'NA', 'NA', event_types['INSTRUCT_ONSET'], instruct_start_time, 'NA', 'NA', 'NA', g.session_params['signal_parallel'], g.session_params['parallel_port_address'], g.session_params['signal_serial'], g.session_params['serial_port_address'], g.session_params['baud_rate'])
 
-    StimToolLib.run_instructions_keyselect(os.path.join(os.path.dirname(__file__), 'media', 'instructions', g.run_params['instruction_schedule']), g)
+    StimToolLib.run_instructions_mouse(os.path.join(os.path.dirname(__file__), 'media', 'instructions', g.run_params['instruction_schedule']), g)
 
     g.trial = 0
     if g.session_params['scan'] == 'True':
@@ -168,7 +164,7 @@ def run_try():
     instruct_end_time = g.clock.getTime()
     g.win.flip()
     test_time = g.clock.getTime()
-    StimToolLib.mark_event(g.output, 'NA', 'NA', event_types['TASK_ONSET'], instruct_end_time, instruct_end_time - instruct_start_time, 'NA', 'NA', g.session_params['signal_parallel'], g.session_params['parallel_port_address'])
+    StimToolLib.mark_event(g.output, 'NA', 'NA', event_types['TASK_ONSET'], instruct_end_time, instruct_end_time - instruct_start_time, 'NA', 'NA', g.session_params['signal_parallel'], g.session_params['parallel_port_address'], g.session_params['signal_serial'], g.session_params['serial_port_address'], g.session_params['baud_rate'])
     g.ideal_trial_start = instruct_end_time
 
     g.mouse = event.Mouse(visible=False)
@@ -182,6 +178,7 @@ def run_try():
 
         g.trial = g.trial + 1
 
+    g.break_stim.draw()
     g.win.flip()
-    StimToolLib.just_wait(g.clock, g.ideal_trial_start + 10)
+    StimToolLib.just_wait(g.clock, g.clock.getTime() + 30)
     g.msg.setColor([-1,-1,-1])

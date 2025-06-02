@@ -5,7 +5,7 @@
             }
         },
     "Hand-Set":{
-        "RIGHT-SCAN":{
+        "PRACTICE_A":{
             "scan": "False",
             "left":"1", 
             "right":"2", 
@@ -14,8 +14,107 @@
             "allow_skip":"True",
             "order":[
                 "Parameter Selector:run='study-WHITE-2025-GNG_task-PS_session-functional.schedule'",
-                "SelfReferentialEncoding:run='study-TEST_task-SRE_run-R1_R.schedule'",
-                "GoNoGo:run='study-TEST_task-GNG_run-R1_R.schedule'"
+                "SelfReferentialEncoding:run='study-R01_task-SRET_run-R1_P.schedule'",
+                "GoNoGo:run='study-R01_task-GNG_run-RA_P.schedule'"
+            ]
+        },
+        "PRACTICE_B":{
+            "scan": "False",
+            "left":"1", 
+            "right":"2", 
+            "select":"3",
+            "handedness":"right",
+            "allow_skip":"True",
+            "order":[
+                "Parameter Selector:run='study-WHITE-2025-GNG_task-PS_session-functional.schedule'",
+                "SelfReferentialEncoding:run='study-R01_task-SRET_run-R1_P.schedule'",
+                "GoNoGo:run='study-R01_task-GNG_run-RB_P.schedule'"
+            ]
+        },
+        "PRACTICE_C":{
+            "scan": "False",
+            "left":"1", 
+            "right":"2", 
+            "select":"3",
+            "handedness":"right",
+            "allow_skip":"True",
+            "order":[
+                "Parameter Selector:run='study-WHITE-2025-GNG_task-PS_session-functional.schedule'",
+                "SelfReferentialEncoding:run='study-R01_task-SRET_run-R1_P.schedule'",
+                "GoNoGo:run='study-R01_task-GNG_run-RC_P.schedule'"
+            ]
+        },
+        "PRACTICE_D":{
+            "scan": "False",
+            "left":"1", 
+            "right":"2", 
+            "select":"3",
+            "handedness":"right",
+            "allow_skip":"True",
+            "order":[
+                "Parameter Selector:run='study-WHITE-2025-GNG_task-PS_session-functional.schedule'",
+                "SelfReferentialEncoding:run='study-R01_task-SRET_run-R1_P.schedule'",
+                "GoNoGo:run='study-R01_task-GNG_run-RD_P.schedule'"
+            ]
+        },
+        "RUN_A":{
+            "scan": "False",
+            "left":"1", 
+            "right":"2", 
+            "select":"3",
+            "handedness":"right",
+            "allow_skip":"True",
+            "order":[
+                "Parameter Selector:run='study-WHITE-2025-GNG_task-PS_session-functional.schedule'",
+                "SelfReferentialEncoding:run='study-R01_task-SRE_run-R1_R.schedule'",
+                "SelfReferentialEncoding:run='study-R01_task-SRE_run-R2_R.schedule'",
+                "GoNoGo:run='study-R01_task-GNG_run-RA_1.schedule'",
+                "GoNoGo:run='study-R01_task-GNG_run-RA_2.schedule'"
+            ]
+        },
+        "RUN_B":{
+            "scan": "False",
+            "left":"1", 
+            "right":"2", 
+            "select":"3",
+            "handedness":"right",
+            "allow_skip":"True",
+            "order":[
+                "Parameter Selector:run='study-WHITE-2025-GNG_task-PS_session-functional.schedule'",
+                "SelfReferentialEncoding:run='study-R01_task-SRE_run-R1_R.schedule'",
+                "SelfReferentialEncoding:run='study-R01_task-SRE_run-R2_R.schedule'",
+                "GoNoGo:run='study-R01_task-GNG_run-RB_1.schedule'",
+                "GoNoGo:run='study-R01_task-GNG_run-RB_2.schedule'"
+            ]
+        },
+        "RUN_C":{
+            "scan": "False",
+            "left":"1",
+            "right":"2",
+            "select":"3",
+            "handedness":"right",
+            "allow_skip":"True",
+            "order":[
+                "Parameter Selector:run='study-WHITE-2025-GNG_task-PS_session-functional.schedule'",
+                "SelfReferentialEncoding:run='study-R01_task-SRE_run-R1_R.schedule'",
+                "SelfReferentialEncoding:run='study-R01_task-SRE_run-R2_R.schedule'",
+                "GoNoGo:run='study-R01_task-GNG_run-RC_1.schedule'",
+                "GoNoGo:run='study-R01_task-GNG_run-RC_2.schedule'"
+            ]
+        },
+        "RUN_D":{
+            "scan": "False",
+            "left":"1", 
+            "right":"2", 
+            "select":"3",
+            "handedness":"right",
+            "allow_skip":"True",
+            "order":[
+                "Parameter Selector:run='study-WHITE-2025-GNG_task-PS_session-functional.schedule'",
+                "SelfReferentialEncoding:run='study-R01_task-SRE_run-R1_R.schedule'",
+                "SelfReferentialEncoding:run='study-R01_task-SRE_run-R2_R.schedule'",
+                "GoNoGo:run='study-R01_task-GNG_run-RD_1.schedule'",
+                "GoNoGo:run='study-R01_task-GNG_run-RD_2.schedule'"
             ]
         }
     }

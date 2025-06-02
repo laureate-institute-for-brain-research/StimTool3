@@ -1,0 +1,6 @@
+run_id _GNG_R2-_BEH
+task_name GNG
+param_file _GNG-RX-PARA.txt
+practice False
+select '1'
+instruction_schedule gng_C_instruct_schedule.csv

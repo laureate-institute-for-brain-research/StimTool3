@@ -3,5 +3,4 @@ practice False
 practice_video False
 random_run False
 frame_time 0.08335
-instruction_schedule nb_instruct_schedule.csv
-instruction_schedule_pre_video nb_instruct_schedule_pre_video_right.csv
+instruction_schedule gng_A_instruct_schedule.csv.csv
