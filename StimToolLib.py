@@ -50,10 +50,31 @@ ALIENS_CODE = 36
 ADJECTIVE_CODE = 37
 PLANNING_CODE = 38
 SLIDER_CODE = 39
+LABJACKTEST_CODE = 40
+FLIGHT_INIT_DIST_CODE = 41
+EMOTIONAL_FACES_CODE = 42
+SHOCK_WORKUP_CODE = 43
 COOPERATION_CODE = 44
+SOCIAL_MEDIA_CODE = 45
+TAP_TO_SAFETY_CODE = 46
+BLIND_DATING_CODE = 47
+CHECKERBOARD_CODE = 48
+ACTIVE_TRUST_CODE = 49
+CEI_CODE = 50
+BACKWARDS_DIGIT_SPAN_CODE = 51
+BANDIT_SCAN_CODE = 52
+SOMATOMAP_CODE = 53
+SLIDES_PRESENTATION_CODE = 54
+SOCIAL_INCENTIVE_DELAY_CODE = 55
+EFFORT_EXPENDITURE_CODE = 56
+EFT_CODE = 57
+READING_MIND_EYES_CODE = 58
+N_BACK_CODE = 59
 HORIZON_CODE = 60
+LIFU_CODE = 61
 GONOGO_CODE = 62
 SELF_REFERENTIAL_ENCODING_CODE = 63
+SOCIAL_EVALUATION_TASK = 64
 TRIGGERBOX_PRE = 90
 TRIGGERBOX_POST = 91
 TASK_END = 99
@@ -118,10 +139,12 @@ def verify_parallel(session_params):
 def verify_serial(session_params):
     address = session_params['serial_port_address']
     ser = serial.Serial(address, session_params['baud_rate'], timeout=1, write_timeout=1)
-    while True:
+    keep_trying = True
+    while keep_trying:
         if check_one_serial_address(ser):
             # close the connection after successful test
             ser.close()
+            keep_trying = False
             break #seems to work
         else:
             myDlg = gui.Dlg(title="Serial Port Address")
@@ -134,6 +157,8 @@ def verify_serial(session_params):
             address = thisInfo[0]
             session_params['serial_port_address'] = address
             if "SKIP" in thisInfo:
+                keep_trying = False
+                session_params['signal_serial'] = False
                 break
                 
     
@@ -615,11 +640,6 @@ def run_instructions_mouse(instruct_schedule_file, g):
     i = 0
     g.mouse_toggle = False
     while i < len(slides):
-        # resp = g.mouse.getPressed()
-        # if resp[0] == 0 and resp[2] == 0 and mouse_toggle:
-        #     mouse_toggle = False
-        print('going into function')
-        print('     mouse toggle: ' + str(g.mouse_toggle))
         i = max(i + do_one_slide_mouse(slides[i], directory, g), 0) #do_one_slide may increment or decrement i, depending on whether session_params['right'] or session_params['left'] is pressed--don't let them go back on the first slide
 
 def do_one_slide_mouse(slide, directory, g):
@@ -676,7 +696,6 @@ def do_one_slide_mouse(slide, directory, g):
         k = event.getKeys(keyList = kl)
         resp = g.mouse.getPressed()
         if resp[0] == 0 and resp[2] == 0 and g.mouse_toggle:
-            print('setting to False')
             g.mouse_toggle = False
         # resp = g.mouse.getPressed()
         # if resp[0] == 0 and resp[2] == 0 and mouse_toggle:
@@ -696,19 +715,13 @@ def do_one_slide_mouse(slide, directory, g):
             if k[0] == 'escape':
                 done_with_slide = True
                 raise QuitException()
-        # print(resp)
-        # print(mouse_toggle)
         if resp != [0,0,0]:
-            print(resp)
-            print(g.mouse_toggle)
             if resp[0] == 1 and not g.mouse_toggle:
                 done_with_slide = True
-                print('setting to True')
                 g.mouse_toggle = True
                 retval = -1
             if resp[2] == 1 and not g.mouse_toggle:
                 done_with_slide = True
-                print('setting to True')
                 g.mouse_toggle = True
                 retval = 1
         short_wait()
