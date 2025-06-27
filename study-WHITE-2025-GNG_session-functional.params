@@ -6,7 +6,7 @@ record_video False
 signal_parallel False
 signal_serial True
 serial_port_address COM4
-baud_rate 9600
+baud_rate 2000000
 auto_advance True
 screen_x 1920
 screen_y 1080
