@@ -66,8 +66,10 @@
             "allow_skip":"True",
             "order":[
                 "Parameter Selector:run='study-WHITE-2025-GNG_task-PS_session-functional.schedule'",
+                "SelfReferentialEncoding:run='study-R01_task-SRE_run-RP.schedule'",
                 "SelfReferentialEncoding:run='study-R01_task-SRE_run-R1_R.schedule'",
                 "SelfReferentialEncoding:run='study-R01_task-SRE_run-R2_R.schedule'",
+                "GoNoGo:run='study-R01_task-GNG_run-RA_P.schedule'",
                 "GoNoGo:run='study-R01_task-GNG_run-RA_1.schedule'",
                 "GoNoGo:run='study-R01_task-GNG_run-RA_2.schedule'"
             ]
@@ -81,8 +83,10 @@
             "allow_skip":"True",
             "order":[
                 "Parameter Selector:run='study-WHITE-2025-GNG_task-PS_session-functional.schedule'",
+                "SelfReferentialEncoding:run='study-R01_task-SRE_run-RP.schedule'",
                 "SelfReferentialEncoding:run='study-R01_task-SRE_run-R1_R.schedule'",
                 "SelfReferentialEncoding:run='study-R01_task-SRE_run-R2_R.schedule'",
+                "GoNoGo:run='study-R01_task-GNG_run-RB_P.schedule'",
                 "GoNoGo:run='study-R01_task-GNG_run-RB_1.schedule'",
                 "GoNoGo:run='study-R01_task-GNG_run-RB_2.schedule'"
             ]
@@ -96,8 +100,10 @@
             "allow_skip":"True",
             "order":[
                 "Parameter Selector:run='study-WHITE-2025-GNG_task-PS_session-functional.schedule'",
+                "SelfReferentialEncoding:run='study-R01_task-SRE_run-RP.schedule'",
                 "SelfReferentialEncoding:run='study-R01_task-SRE_run-R1_R.schedule'",
                 "SelfReferentialEncoding:run='study-R01_task-SRE_run-R2_R.schedule'",
+                "GoNoGo:run='study-R01_task-GNG_run-RC_P.schedule'",
                 "GoNoGo:run='study-R01_task-GNG_run-RC_1.schedule'",
                 "GoNoGo:run='study-R01_task-GNG_run-RC_2.schedule'"
             ]
@@ -111,8 +117,10 @@
             "allow_skip":"True",
             "order":[
                 "Parameter Selector:run='study-WHITE-2025-GNG_task-PS_session-functional.schedule'",
+                "SelfReferentialEncoding:run='study-R01_task-SRE_run-RP.schedule'",
                 "SelfReferentialEncoding:run='study-R01_task-SRE_run-R1_R.schedule'",
                 "SelfReferentialEncoding:run='study-R01_task-SRE_run-R2_R.schedule'",
+                "GoNoGo:run='study-R01_task-GNG_run-RD_P.schedule'",
                 "GoNoGo:run='study-R01_task-GNG_run-RD_1.schedule'",
                 "GoNoGo:run='study-R01_task-GNG_run-RD_2.schedule'"
             ]

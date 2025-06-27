@@ -30,10 +30,11 @@ event_types = {
     'TASK_ONSET':2,
     'TRIAL_ONSET':3,
     'FIXATION':4,
-    'LETTER_ONSET':5,
-    'RESPONSE_GO':6,
-    'RESPONSE_NOGO':7,
-    'BLANK_ONSET':8,
+    'GO_LETTER_ONSET':5,
+    'NOGO_LETTER_ONSET':6,
+    'RESPONSE_GO':7,
+    'RESPONSE_NOGO':8,
+    'BLANK_ONSET':9,
     'TASK_END':StimToolLib.TASK_END 
     }
 
@@ -57,7 +58,10 @@ def do_one_trial(letter, fixation, stim_duration, blank_duration, gonogo_flag):
     resp_marked = False
     mark_time = g.clock.getTime()
     g.mouse.clickReset()
-    StimToolLib.mark_event(g.output, g.trial, g.trial_type, event_types['LETTER_ONSET'], mark_time, 'NA', 'NA', letter, g.session_params['signal_parallel'], g.session_params['parallel_port_address'], g.session_params['signal_serial'], g.session_params['serial_port_address'], g.session_params['baud_rate'])
+    if gonogo_flag == 'G':
+        StimToolLib.mark_event(g.output, g.trial, g.trial_type, event_types['GO_LETTER_ONSET'], mark_time, 'NA', 'NA', letter, g.session_params['signal_parallel'], g.session_params['parallel_port_address'], g.session_params['signal_serial'], g.session_params['serial_port_address'], g.session_params['baud_rate'])
+    else:
+        StimToolLib.mark_event(g.output, g.trial, g.trial_type, event_types['NOGO_LETTER_ONSET'], mark_time, 'NA', 'NA', letter, g.session_params['signal_parallel'], g.session_params['parallel_port_address'], g.session_params['signal_serial'], g.session_params['serial_port_address'], g.session_params['baud_rate'])
     #___________ BETTER DISPLAY TIMING
     for x in range(int(round(stim_duration/g.win.monitorFramePeriod)) - 1): # stop one refresh early so that the following refresh clears the letter
         if event.getKeys(["escape"]):
@@ -178,7 +182,9 @@ def run_try():
 
         g.trial = g.trial + 1
 
-    g.break_stim.draw()
+    if not g.run_params['practice']:
+        g.break_stim.draw()
+        g.win.flip()
+        StimToolLib.just_wait(g.clock, g.clock.getTime() + 30)
     g.win.flip()
-    StimToolLib.just_wait(g.clock, g.clock.getTime() + 30)
     g.msg.setColor([-1,-1,-1])
