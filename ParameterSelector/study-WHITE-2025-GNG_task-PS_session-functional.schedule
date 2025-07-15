@@ -5,58 +5,6 @@
             }
         },
     "Hand-Set":{
-        "PRACTICE_A":{
-            "scan": "False",
-            "left":"1", 
-            "right":"2", 
-            "select":"3",
-            "handedness":"right",
-            "allow_skip":"True",
-            "order":[
-                "Parameter Selector:run='study-WHITE-2025-GNG_task-PS_session-functional.schedule'",
-                "SelfReferentialEncoding:run='study-R01_task-SRE_run-RP.schedule'",
-                "GoNoGo:run='study-R01_task-GNG_run-RA_P.schedule'"
-            ]
-        },
-        "PRACTICE_B":{
-            "scan": "False",
-            "left":"1", 
-            "right":"2", 
-            "select":"3",
-            "handedness":"right",
-            "allow_skip":"True",
-            "order":[
-                "Parameter Selector:run='study-WHITE-2025-GNG_task-PS_session-functional.schedule'",
-                "SelfReferentialEncoding:run='study-R01_task-SRE_run-RP.schedule'",
-                "GoNoGo:run='study-R01_task-GNG_run-RB_P.schedule'"
-            ]
-        },
-        "PRACTICE_C":{
-            "scan": "False",
-            "left":"1", 
-            "right":"2", 
-            "select":"3",
-            "handedness":"right",
-            "allow_skip":"True",
-            "order":[
-                "Parameter Selector:run='study-WHITE-2025-GNG_task-PS_session-functional.schedule'",
-                "SelfReferentialEncoding:run='study-R01_task-SRE_run-RP.schedule'",
-                "GoNoGo:run='study-R01_task-GNG_run-RC_P.schedule'"
-            ]
-        },
-        "PRACTICE_D":{
-            "scan": "False",
-            "left":"1", 
-            "right":"2", 
-            "select":"3",
-            "handedness":"right",
-            "allow_skip":"True",
-            "order":[
-                "Parameter Selector:run='study-WHITE-2025-GNG_task-PS_session-functional.schedule'",
-                "SelfReferentialEncoding:run='study-R01_task-SRE_run-RP.schedule'",
-                "GoNoGo:run='study-R01_task-GNG_run-RD_P.schedule'"
-            ]
-        },
         "RUN_A":{
             "scan": "False",
             "left":"1", 
