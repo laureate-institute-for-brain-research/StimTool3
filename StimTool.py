@@ -166,6 +166,10 @@ def run_task_until_success(task, session_params):
 
 
 if __name__ == '__main__':
+    # Customize qtGUI font
+    gui.qtapp = gui.QtWidgets.QApplication(gui.sys.argv)
+    gui.qtapp.setStyleSheet("QWidget { font-size: 12pt; }")
+    
     #CD.start_camera()
     print(os.getpid())
     #StimToolLib.open_and_close_vmeter() #this hack seems to fix a problem with the vMeter not responding the first time it's used after logging in...
