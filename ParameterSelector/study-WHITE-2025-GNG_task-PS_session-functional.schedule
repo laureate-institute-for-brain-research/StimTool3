@@ -1,7 +1,13 @@
 {
     "Session":{
-        "T0":{
-            "session_id":"T0"
+        BL":{
+            "session_id":"BL"
+            },
+        "1MP":{
+            "session_id":"1MP"
+            },
+        "6MP":{
+            "session_id":"6MP"
             }
         },
     "Hand-Set":{
