@@ -1,4 +1,4 @@
-run_id _SRE_R1-_BEH
+run_id _SRE_R2-_BEH
 task_name SRE
 param_file _SRE-RX-PARA.txt
 practice False
