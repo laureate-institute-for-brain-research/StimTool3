@@ -1,0 +1,4 @@
+TrialTypes,Stimuli,Durations (StimOnset PostRatingPause ITI),ExtraArgs (<ANX|RISK|NONE>_<VIRTUAL-SHOCK|SHOCK|NO-SHOCK>_<NEUT|NO-NEUT> = (<2|1|0>_<2|1|0>_<1|0>))
+GEN-NAnx,media\GS6.JPG,2 2 3,2_0_1
+GEN-NRisk,media\CSsmall.JPG,2 0 3,0_0_1
+GEN-PNAnx,media\GS4.JPG,1 2 3,2_0_0

@@ -1,0 +1,590 @@
+pavCS,media\vCS.jpg,0 3,2_0_0
+pavCS,media\CSsmall.jpg,0 3,1_0_0
+pavCS,media\CSlarge.jpg,2 7,2_1_0
+pavCS,media\vCS.jpg,0 3,1_0_0
+pavCS,media\CSsmall.jpg,2 5,2_0_0
+pavCS,media\CSlarge.jpg,2 5,1_1_0
+pavCS,media\CSsmall.jpg,2 3,2_0_0
+pavCS,media\CSsmall.jpg,2 9,1_0_0
+pavCS,media\CSlarge.jpg,2 5,2_2_0
+pavCS,media\CSlarge.jpg,0 5,1_1_0
+pavCS,media\vCS.jpg,2 3,2_0_0
+pavCS,media\vCS.jpg,0 3,1_0_0
+pavCS,media\CSsmall.jpg,0 3,2_0_0
+pavCS,media\vCS.jpg,0 3,1_0_0
+pavCS,media\vCS.jpg,2 5,2_0_0
+pavCS,media\CSlarge.jpg,0 3,2_1_0
+pavCS,media\CSsmall.jpg,2 7,1_0_0
+pavCS,media\CSlarge.jpg,0 9,1_2_0
+pavCS,media\vCS.jpg,0 3,2_0_0
+pavCS,media\CSlarge.jpg,2 5,1_1_0
+pavCS,media\CSsmall.jpg,2 3,2_0_0
+pavCS,media\CSsmall.jpg,0 7,1_0_0
+pavCS,media\vCS.jpg,2 3,1_0_0
+pavCS,media\CSlarge.jpg,0 3,2_1_0
+
+
+['1,CS+,Risk,0,Shock,7000,1',
+'2,vCS-,Anx,2000,None,5000,0',
+'3,oCS-,Anx,0,None,3000,1',
+'4,vCS-,Risk,0,None,5000,1',
+'5,oCS-,Risk,0,None,3000,1',
+'6,CS+,Anx,2000,Shock,3000,1',
+'7,vCS-,Risk,0,None,5000,0',
+'8,CS+,Risk,2000,Shock,3000,1',
+'9,CS+,Anx,0,Shock,9000,1',
+'10,vCS-,Anx,0,None,5000,0',
+'11,oCS-,Anx,2000,None,3000,1',
+'12,oCS-,Risk,2000,None,3000,0',
+'13,CS+,Risk,2000,Virtual,7000,1',
+'14,oCS-,Anx,2000,None,3000,1',
+'15,vCS-,Risk,2000,None,5000,1',
+'16,oCS-,Anx,0,None,9000,1',
+'17,CS+,Risk,0,Virtual,3000,1',
+'18,vCS-,Anx,2000,None,3000,1',
+'19,CS+,Anx,0,Shock,3000,0',
+'20,vCS-,Risk,0,None,3000,0',
+'21,oCS-,Anx,0,None,7000,1',
+'22,vCS-,Risk,2000,None,3000,1',
+'23,CS+,Risk,2000,Shock,3000,0',
+'24,oCS-,Anx,2000,None,5000,0']
+
+neutCS,media\CSlarge.jpg,0 7,1_1_1
+neutCS,media\vCS.jpg,2 5,2_0_0
+neutCS,media\CSsmall.jpg,0 3,2_0_1
+neutCS,media\vCS.jpg,0 5,1_0_1
+neutCS,media\CSsmall.jpg,0 3,1_0_1
+neutCS,media\CSlarge.jpg,2 3,2_1_1
+neutCS,media\vCS.jpg,0 5,1_0_0
+neutCS,media\CSlarge.jpg,2 3,1_1_1
+neutCS,media\CSlarge.jpg,0 9,2_1_1
+neutCS,media\vCS.jpg,0 5,2_0_0
+neutCS,media\CSsmall.jpg,2 3,2_0_1
+neutCS,media\CSsmall.jpg,2 3,1_0_0
+neutCS,media\CSlarge.jpg,2 7,1_2_1
+neutCS,media\CSsmall.jpg,2 3,2_0_1
+neutCS,media\vCS.jpg,2 5,1_0_1
+neutCS,media\CSsmall.jpg,0 9,2_0_1
+neutCS,media\CSlarge.jpg,0 3,1_2_1
+neutCS,media\vCS.jpg,2 3,2_0_1
+neutCS,media\CSlarge.jpg,0 3,2_1_0
+neutCS,media\vCS.jpg,0 3,1_0_0
+neutCS,media\CSsmall.jpg,0 7,2_0_1
+neutCS,media\vCS.jpg,2 3,1_0_1
+neutCS,media\CSlarge.jpg,2 3,1_1_0
+neutCS,media\CSsmall.jpg,2 5,2_0_0
+
+['1,vCS-,Anx,2000,3000,1',
+'2,CS+,Anx,0,5000,1',
+'3,vCS-,Risk,0,5000,0',
+'4,oCS-,Risk,0,3000,0',
+'5,oCS-,Anx,2000,3000,0',
+'6,CS+,Risk,2000,7000,0',
+'7,oCS-,Risk,2000,5000,1',
+'8,CS+,Anx,0,3000,1',
+'9,CS+,Anx,0,3000,1',
+'10,vCS-,Anx,0,3000,0',
+'11,vCS-,Risk,2000,5000,0',
+'12,oCS-,Risk,2000,9000,1',
+'13,oCS-,Risk,2000,3000,1',
+'14,CS+,Risk,2000,3000,1',
+'15,oCS-,Anx,0,9000,1',
+'16,CS+,Anx,2000,3000,0',
+'17,vCS-,Risk,2000,5000,1',
+'18,vCS-,Anx,0,7000,1',
+'19,oCS-,Anx,0,3000,1',
+'20,vCS-,Anx,0,5000,1',
+'21,CS+,Risk,0,7000,1',
+'22,vCS-,Risk,2000,3000,0',
+'23,CS+,Anx,2000,3000,1',
+'24,oCS-,Risk,0,3000,1']
+
+neutCSE,media\vCS.jpg,2 3,2_0_1
+neutCSE,media\CSlarge.jpg,0 5,2_0_1
+neutCSE,media\vCS.jpg,0 5,1_0_0
+neutCSE,media\CSsmall.jpg,0 3,1_0_0
+neutCSE,media\CSsmall.jpg,2 3,2_0_0
+neutCSE,media\CSlarge.jpg,2 7,1_0_0
+neutCSE,media\CSsmall.jpg,2 5,1_0_1
+neutCSE,media\CSlarge.jpg,0 3,2_0_1
+neutCSE,media\CSlarge.jpg,0 3,2_0_1
+neutCSE,media\vCS.jpg,0 3,2_0_0
+neutCSE,media\vCS.jpg,2 5,1_0_0
+neutCSE,media\CSsmall.jpg,2 9,1_0_1
+neutCSE,media\CSsmall.jpg,2 3,1_0_1
+neutCSE,media\CSlarge.jpg,2 3,1_0_1
+neutCSE,media\CSsmall.jpg,0 9,2_0_1
+neutCSE,media\CSlarge.jpg,2 3,2_0_0
+neutCSE,media\vCS.jpg,2 5,1_0_1
+neutCSE,media\vCS.jpg,0 7,2_0_1
+neutCSE,media\CSsmall.jpg,0 3,2_0_1
+neutCSE,media\vCS.jpg,0 5,2_0_1
+neutCSE,media\CSlarge.jpg,0 7,1_0_1
+neutCSE,media\vCS.jpg,2 3,1_0_0
+neutCSE,media\CSlarge.jpg,2 3,2_0_1
+neutCSE,media\CSsmall.jpg,0 3,1_0_1
+
+['1,1,1,CS+,NoRating,,Shock,3000,0,DummyNeut',
+'2,2,1,GS1,Anx,0,None,3000,1,NeutAnx',
+'3,3,1,CS+,NoRating,2000,Shock,9000,1,NeutRisk',
+'4,4,1,oCS-,NoRating,2000,None,7000,1,NeutAnx',
+'5,5,1,GS1,Risk,2000,None,5000,1,NeutRisk',
+'6,6,1,GS3,Anx,0,None,5000,1,NeutAnx',
+'7,7,1,oCS-,NoRating,2000,None,3000,1,NeutRisk',
+'8,8,1,GS2,Risk,0,None,3000,1,NeutRisk',
+'9,9,1,vCS-,NoRating,2000,None,3000,1,NeutAnx',
+'10,10,1,vCS-,NoRating,2000,None,5000,0,PNeutRisk',
+'11,11,1,CS+,Risk,0,Shock,9000,0,PNeutRisk',
+'12,12,1,GS3,Risk,0,None,7000,1,NeutRisk',
+'13,13,1,CS+,Anx,2000,Shock,3000,1,NeutAnx',
+'14,14,1,GS2,NoRating,0,None,5000,1,NeutAnx',
+'15,15,1,oCS-,NoRating,2000,None,7000,1,NeutRisk',
+'16,16,1,GS1,Anx,2000,None,3000,1,NeutAnx',
+'17,17,1,vCS-,Risk,2000,None,3000,1,NeutRisk',
+'18,18,1,GS2,NoRating,0,None,5000,1,NeutRisk',
+'19,19,1,GS2,NoRating,2000,None,3000,1,NeutAnx',
+'20,20,1,CS+,Risk,2000,Shock,3000,1,NeutRisk',
+'21,21,1,GS1,NoRating,0,None,5000,0,PNeutRisk',
+'22,22,1,oCS-,Anx,2000,None,3000,0,PNeutAnx',
+'23,23,1,GS3,NoRating,0,None,3000,1,NeutAnx',
+'24,24,1,vCS-,Anx,2000,None,3000,1,NeutAnx',
+'25,25,1,CS+,NoRating,2000,Virtual,9000,1,NeutAnx',
+'26,26,1,GS3,Risk,0,None,3000,0,PNeutRisk',
+'27,1,2,GS2,NoRating,2000,None,3000,0,PNeutRisk',
+'28,2,2,vCS-,Anx,2000,None,3000,1,NeutAnx',
+'29,3,2,CS+,Risk,0,Shock,3000,0,PNeutRisk',
+'30,4,2,GS1,Risk,2000,None,9000,1,NeutRisk',
+'31,5,2,oCS-,NoRating,2000,None,3000,1,NeutAnx',
+'32,6,2,CS+,Anx,0,Virtual,7000,1,NeutAnx',
+'33,7,2,GS1,NoRating,2000,None,5000,1,NeutAnx',
+'34,8,2,GS3,NoRating,0,None,7000,1,NeutRisk',
+'35,9,2,CS+,Risk,2000,Shock,5000,0,PNeutRisk',
+'36,10,2,vCS-,NoRating,2000,None,3000,1,NeutRisk',
+'37,11,2,GS2,Anx,2000,None,3000,1,NeutAnx',
+'38,12,2,oCS-,Risk,0,None,5000,1,NeutRisk',
+'39,13,2,GS3,NoRating,2000,None,9000,1,NeutAnx',
+'40,14,2,oCS-,Anx,2000,None,3000,0,PNeutAnx',
+'41,15,2,GS2,NoRating,2000,None,5000,1,NeutRisk',
+'42,16,2,vCS-,NoRating,0,None,3000,1,NeutAnx',
+'43,17,2,GS3,Anx,0,None,5000,1,NeutAnx',
+'44,18,2,CS+,NoRating,,Shock,7000,0,DummyNeut',
+'45,19,2,GS2,NoRating,0,None,3000,1,NeutAnx',
+'46,20,2,oCS-,Risk,2000,None,5000,1,NeutRisk',
+'47,21,2,CS+,Anx,0,Virtual,3000,1,NeutAnx',
+'48,22,2,vCS-,NoRating,0,None,3000,1,NeutRisk',
+'49,23,2,GS1,Risk,2000,None,3000,1,NeutRisk',
+'50,24,2,GS1,NoRating,0,None,3000,0,PNeutAnx',
+'51,25,2,GS3,NoRating,2000,None,7000,0,PNeutRisk',
+'52,26,2,CS+,Risk,0,Shock,7000,1,NeutRisk',
+'53,1,3,GS3,Anx,2000,None,3000,1,NeutAnx',
+'54,2,3,oCS-,NoRating,0,None,3000,1,NeutRisk',
+'55,3,3,GS2,NoRating,2000,None,3000,0,PNeutAnx',
+'56,4,3,CS+,Anx,0,Virtual,3000,1,NeutAnx',
+'57,5,3,oCS-,NoRating,2000,None,5000,1,NeutAnx',
+'58,6,3,GS3,Risk,0,None,3000,1,NeutRisk',
+'59,7,3,GS1,NoRating,2000,None,9000,1,NeutRisk',
+'60,8,3,vCS-,Anx,0,None,7000,0,PNeutAnx',
+'61,9,3,CS+,Risk,0,Shock,5000,0,PNeutRisk',
+'62,10,3,GS2,NoRating,2000,None,3000,1,NeutRisk',
+'63,11,3,CS+,NoRating,,Shock,3000,0,DummyNeut',
+'64,12,3,vCS-,Risk,0,None,7000,1,NeutRisk',
+'65,13,3,GS1,NoRating,0,None,3000,1,NeutAnx',
+'66,14,3,CS+,Anx,0,Shock,5000,0,PNeutAnx',
+'67,15,3,vCS-,NoRating,2000,None,3000,1,NeutRisk',
+'68,16,3,CS+,Anx,0,Virtual,5000,1,NeutAnx',
+'69,17,3,GS3,Risk,0,None,5000,1,NeutRisk',
+'70,18,3,GS2,NoRating,2000,None,3000,1,NeutAnx',
+'71,19,3,oCS-,Anx,2000,None,3000,1,NeutAnx',
+'72,20,3,GS3,NoRating,0,None,5000,1,NeutRisk',
+'73,21,3,CS+,Risk,2000,Shock,7000,1,NeutRisk',
+'74,22,3,vCS-,NoRating,2000,None,3000,1,NeutAnx',
+'75,23,3,GS1,Anx,0,None,3000,1,NeutAnx',
+'76,24,3,oCS-,NoRating,0,None,9000,0,PNeutRisk',
+'77,25,3,GS2,NoRating,2000,None,5000,1,NeutAnx',
+'78,26,3,GS1,Risk,0,None,3000,0,PNeutRisk',
+'79,1,4,vCS-,Anx,0,None,3000,1,NeutAnx',
+'80,2,4,CS+,NoRating,,Shock,3000,0,DummyNeut',
+'81,3,4,GS1,NoRating,2000,None,3000,1,NeutAnx',
+'82,4,4,GS1,NoRating,0,None,3000,1,NeutRisk',
+'83,5,4,vCS-,Risk,2000,None,5000,1,NeutRisk',
+'84,6,4,GS3,Anx,0,None,3000,0,PNeutAnx',
+'85,7,4,oCS-,NoRating,2000,None,5000,1,NeutRisk',
+'86,8,4,CS+,NoRating,2000,Virtual,3000,1,NeutAnx',
+'87,9,4,GS3,Risk,2000,None,7000,1,NeutRisk',
+'88,10,4,GS2,NoRating,0,None,7000,1,NeutRisk',
+'89,11,4,CS+,Risk,0,Shock,3000,1,NeutRisk',
+'90,12,4,oCS-,Anx,0,None,5000,1,NeutAnx',
+'91,13,4,GS2,NoRating,0,None,5000,0,PNeutAnx',
+'92,14,4,CS+,Anx,0,Shock,7000,0,PNeutAnx',
+'93,15,4,vCS-,NoRating,0,None,3000,1,NeutRisk',
+'94,16,4,GS3,Risk,2000,None,9000,1,NeutRisk',
+'95,17,4,oCS-,Anx,0,None,5000,1,NeutAnx',
+'96,18,4,CS+,NoRating,2000,Shock,3000,1,NeutAnx',
+'97,19,4,vCS-,Anx,2000,None,7000,0,PNeutAnx',
+'98,20,4,GS1,NoRating,2000,None,3000,1,NeutRisk',
+'99,21,4,GS2,NoRating,0,None,3000,1,NeutAnx',
+'100,22,4,CS+,Anx,0,Shock,3000,0,PNeutAnx',
+'101,23,4,CS+,Risk,0,Virtual,5000,1,NeutRisk',
+'102,24,4,oCS-,NoRating,2000,None,9000,1,NeutRisk',
+'103,25,4,GS2,Risk,0,None,3000,1,NeutRisk',
+'104,26,4,GS1,NoRating,2000,None,5000,1,NeutAnx',
+'105,1,5,GS3,NoRating,0,None,3000,1,NeutRisk',
+'106,2,5,CS+,Anx,0,Shock,5000,0,PNeutAnx',
+'107,3,5,vCS-,NoRating,0,None,3000,1,NeutAnx',
+'108,4,5,GS2,Risk,0,None,7000,1,NeutRisk',
+'109,5,5,oCS-,Anx,0,None,3000,1,NeutAnx',
+'110,6,5,GS3,NoRating,0,None,3000,1,NeutAnx',
+'111,7,5,GS2,Anx,2000,None,7000,1,NeutAnx',
+'112,8,5,oCS-,NoRating,0,None,9000,1,NeutRisk',
+'113,9,5,CS+,Risk,0,Shock,5000,1,NeutRisk',
+'114,10,5,vCS-,NoRating,2000,None,3000,0,PNeutRisk',
+'115,11,5,GS1,NoRating,0,None,3000,1,NeutAnx',
+'116,12,5,GS1,Risk,0,None,3000,0,PNeutRisk',
+'117,13,5,GS2,NoRating,0,None,5000,1,NeutRisk',
+'118,14,5,oCS-,Anx,2000,None,5000,0,PNeutAnx',
+'119,15,5,GS1,Risk,2000,None,3000,1,NeutRisk',
+'120,16,5,vCS-,NoRating,0,None,3000,1,NeutAnx',
+'121,17,5,GS3,NoRating,2000,None,5000,1,NeutRisk',
+'122,18,5,GS3,Anx,2000,None,3000,1,NeutAnx',
+'123,19,5,CS+,NoRating,0,Shock,3000,1,NeutAnx',
+'124,20,5,GS1,Anx,0,None,9000,1,NeutAnx',
+'125,21,5,CS+,Risk,0,Shock,3000,0,PNeutRisk',
+'126,22,5,vCS-,Risk,2000,None,7000,1,NeutRisk',
+'127,23,5,CS+,NoRating,0,Virtual,5000,1,NeutRisk',
+'128,24,5,CS+,NoRating,,Shock,5000,0,DummyNeut',
+'129,25,5,oCS-,Risk,2000,None,3000,1,NeutRisk',
+'130,26,5,GS2,NoRating,2000,None,3000,0,PNeutAnx',
+'131,1,6,GS2,NoRating,2000,None,5000,1,NeutRisk',
+'132,2,6,CS+,NoRating,,Shock,5000,0,DummyNeut',
+'133,3,6,GS3,Anx,2000,None,9000,1,NeutAnx',
+'134,4,6,vCS-,NoRating,0,None,3000,1,NeutAnx',
+'135,5,6,GS3,Risk,0,None,3000,0,PNeutRisk',
+'136,6,6,CS+,NoRating,2000,Virtual,3000,1,NeutRisk',
+'137,7,6,GS1,Anx,2000,None,5000,1,NeutAnx',
+'138,8,6,oCS-,Risk,0,None,5000,1,NeutRisk',
+'139,9,6,CS+,NoRating,0,Shock,3000,1,NeutAnx',
+'140,10,6,vCS-,NoRating,2000,None,7000,1,NeutRisk',
+'141,11,6,GS2,Anx,0,None,3000,1,NeutAnx',
+'142,12,6,oCS-,NoRating,2000,None,3000,1,NeutAnx',
+'143,13,6,GS1,Risk,0,None,7000,1,NeutRisk']
+
+
+#neutgen run1
+GEN-dummyN,media\CSlarge.jpg,0 3,0_1_0
+GEN-NAnx,media\CS2.jpg,0 3,2_0_1
+GEN-NRisk,media\CSlarge.jpg,2 9,0_1_1
+GEN-NAnx,media\CSsmall.jpg,2 7,0_0_1
+GEN-NRisk,media\CS2.jpg,2 5,1_0_1
+GEN-NAnx,media\CS4.jpg,0 5,2_0_1
+GEN-NRisk,media\CSsmall.jpg,2 3,0_0_1
+GEN-NRisk,media\CS3.jpg,0 3,1_0_1
+GEN-NAnx,media\vCS.jpg,2 3,0_0_1
+GEN-PNRisk,media\vCS.jpg,2 5,0_0_0
+GEN-PNRisk,media\CSlarge.jpg,0 9,1_1_0
+GEN-NRisk,media\CS4.jpg,0 7,1_0_1
+GEN-NAnx,media\CSlarge.jpg,2 3,2_1_1
+GEN-NAnx,media\CS3.jpg,0 5,0_0_1
+GEN-NRisk,media\CSsmall.jpg,2 7,0_0_1
+GEN-NAnx,media\CS2.jpg,2 3,2_0_1
+GEN-NRisk,media\vCS.jpg,2 3,1_0_1
+GEN-NRisk,media\CS3.jpg,0 5,0_0_1
+GEN-NAnx,media\CS3.jpg,2 3,0_0_1
+GEN-NRisk,media\CSlarge.jpg,2 3,1_1_1
+GEN-PNRisk,media\CS2.jpg,0 5,0_0_0
+GEN-PNAnx,media\CSsmall.jpg,2 3,2_0_0
+GEN-NAnx,media\CS4.jpg,0 3,0_0_1
+GEN-NAnx,media\vCS.jpg,2 3,2_0_1
+GEN-NAnx,media\CSlarge.jpg,2 9,0_2_1
+GEN-PNRisk,media\CS4.jpg,0 3,1_0_0
+
+
+#neutgen run2
+GEN-PNRisk,media\CS3.jpg,2 3,0_0_0
+GEN-NAnx,media\vCS.jpg,2 3,2_0_1
+GEN-PNRisk,media\CSlarge.jpg,0 3,1_1_0
+GEN-NRisk,media\CS2.jpg,2 9,1_0_1
+GEN-NAnx,media\CSsmall.jpg,2 3,0_0_1
+GEN-NAnx,media\CSlarge.jpg,0 7,2_2_1
+GEN-NAnx,media\CS2.jpg,2 5,0_0_1
+GEN-NRisk,media\CS4.jpg,0 7,0_0_1
+GEN-PNRisk,media\CSlarge.jpg,2 5,1_1_0
+GEN-NRisk,media\vCS.jpg,2 3,0_0_1
+GEN-NAnx,media\CS3.jpg,2 3,2_0_1
+GEN-NRisk,media\CSsmall.jpg,0 5,1_0_1
+GEN-NAnx,media\CS4.jpg,2 9,0_0_1
+GEN-PNAnx,media\CSsmall.jpg,2 3,2_0_0
+GEN-NRisk,media\CS3.jpg,2 5,0_0_1
+GEN-NAnx,media\vCS.jpg,0 3,0_0_1
+GEN-NAnx,media\CS4.jpg,0 5,2_0_1
+GEN-dummyN,media\CSlarge.jpg,0 7,0_1_0
+GEN-NAnx,media\CS3.jpg,0 3,0_0_1
+GEN-NRisk,media\CSsmall.jpg,2 5,1_0_1
+GEN-NAnx,media\CSlarge.jpg,0 3,2_2_1
+GEN-NRisk,media\vCS.jpg,0 3,0_0_1
+GEN-NRisk,media\CS2.jpg,2 3,1_0_1
+GEN-PNAnx,media\CS2.jpg,0 3,0_0_0
+GEN-PNRisk,media\CS4.jpg,2 7,0_0_0
+GEN-NRisk,media\CSlarge.jpg,0 7,1_1_1
+
+
+#neutgen run3
+GEN-NAnx,media\CS4.jpg,2 3,2_0_1
+GEN-NRisk,media\CSsmall.jpg,0 3,0_0_1
+GEN-PNAnx,media\CS3.jpg,2 3,0_0_0
+GEN-NAnx,media\CSlarge.jpg,0 3,2_2_1
+GEN-NAnx,media\CSsmall.jpg,2 5,0_0_1
+GEN-NRisk,media\CS4.jpg,0 3,1_0_1
+GEN-NRisk,media\CS2.jpg,2 9,0_0_1
+GEN-PNAnx,media\vCS.jpg,0 7,2_0_0
+GEN-PNRisk,media\CSlarge.jpg,0 5,1_1_0
+GEN-NRisk,media\CS3.jpg,2 3,0_0_1
+GEN-dummyN,media\CSlarge.jpg,0 3,0_1_0
+GEN-NRisk,media\vCS.jpg,0 7,1_0_1
+GEN-NAnx,media\CS2.jpg,0 3,0_0_1
+GEN-PNAnx,media\CSlarge.jpg,0 5,2_1_0
+GEN-NRisk,media\vCS.jpg,2 3,0_0_1
+GEN-NAnx,media\CSlarge.jpg,0 5,2_2_1
+GEN-NRisk,media\CS4.jpg,0 5,1_0_1
+GEN-NAnx,media\CS3.jpg,2 3,0_0_1
+GEN-NAnx,media\CSsmall.jpg,2 3,2_0_1
+GEN-NRisk,media\CS4.jpg,0 5,0_0_1
+GEN-NRisk,media\CSlarge.jpg,2 7,1_1_1
+GEN-NAnx,media\vCS.jpg,2 3,0_0_1
+GEN-NAnx,media\CS2.jpg,0 3,2_0_1
+GEN-PNRisk,media\CSsmall.jpg,0 9,0_0_0
+GEN-NAnx,media\CS3.jpg,2 5,0_0_1
+GEN-PNRisk,media\CS2.jpg,0 3,1_0_0
+
+
+#neutgen run4
+GEN-NAnx,media\vCS.jpg,0 3,2_0_1
+GEN-dummyN,media\CSlarge.jpg,0 3,0_1_0
+GEN-NAnx,media\CS2.jpg,2 3,0_0_1
+GEN-NRisk,media\CS2.jpg,0 3,0_0_1
+GEN-NRisk,media\vCS.jpg,2 5,1_0_1
+GEN-PNAnx,media\CS4.jpg,0 3,2_0_0
+GEN-NRisk,media\CSsmall.jpg,2 5,0_0_1
+GEN-NAnx,media\CSlarge.jpg,2 3,0_2_1
+GEN-NRisk,media\CS4.jpg,2 7,1_0_1
+GEN-NRisk,media\CS3.jpg,0 7,0_0_1
+GEN-NRisk,media\CSlarge.jpg,0 3,1_1_1
+GEN-NAnx,media\CSsmall.jpg,0 5,2_0_1
+GEN-PNAnx,media\CS3.jpg,0 5,0_0_0
+GEN-PNAnx,media\CSlarge.jpg,0 7,2_1_0
+GEN-NRisk,media\vCS.jpg,0 3,0_0_1
+GEN-NRisk,media\CS4.jpg,2 9,1_0_1
+GEN-NAnx,media\CSsmall.jpg,0 5,2_0_1
+GEN-NAnx,media\CSlarge.jpg,2 3,0_1_1
+GEN-PNAnx,media\vCS.jpg,2 7,2_0_0
+GEN-NRisk,media\CS2.jpg,2 3,0_0_1
+GEN-NAnx,media\CS3.jpg,0 3,0_0_1
+GEN-PNAnx,media\CSlarge.jpg,0 3,2_1_0
+GEN-NRisk,media\CSlarge.jpg,0 5,1_2_1
+GEN-NRisk,media\CSsmall.jpg,2 9,0_0_1
+GEN-NRisk,media\CS3.jpg,0 3,1_0_1
+GEN-NAnx,media\CS2.jpg,2 5,0_0_1
+
+
+#neutgen run5
+GEN-NRisk,media\CS4.jpg,0 3,0_0_1
+GEN-PNAnx,media\CSlarge.jpg,0 5,2_1_0
+GEN-NAnx,media\vCS.jpg,0 3,0_0_1
+GEN-NRisk,media\CS3.jpg,0 7,1_0_1
+GEN-NAnx,media\CSsmall.jpg,0 3,2_0_1
+GEN-NAnx,media\CS4.jpg,0 3,0_0_1
+GEN-NAnx,media\CS3.jpg,2 7,2_0_1
+GEN-NRisk,media\CSsmall.jpg,0 9,0_0_1
+GEN-NRisk,media\CSlarge.jpg,0 5,1_1_1
+GEN-PNRisk,media\vCS.jpg,2 3,0_0_0
+GEN-NAnx,media\CS2.jpg,0 3,0_0_1
+GEN-PNRisk,media\CS2.jpg,0 3,1_0_0
+GEN-NRisk,media\CS3.jpg,0 5,0_0_1
+GEN-PNAnx,media\CSsmall.jpg,2 5,2_0_0
+GEN-NRisk,media\CS2.jpg,2 3,1_0_1
+GEN-NAnx,media\vCS.jpg,0 3,0_0_1
+GEN-NRisk,media\CS4.jpg,2 5,0_0_1
+GEN-NAnx,media\CS4.jpg,2 3,2_0_1
+GEN-NAnx,media\CSlarge.jpg,0 3,0_1_1
+GEN-NAnx,media\CS2.jpg,0 9,2_0_1
+GEN-PNRisk,media\CSlarge.jpg,0 3,1_1_0
+GEN-NRisk,media\vCS.jpg,2 7,1_0_1
+GEN-NRisk,media\CSlarge.jpg,0 5,0_2_1
+GEN-dummyN,media\CSlarge.jpg,0 5,0_1_0
+GEN-NRisk,media\CSsmall.jpg,2 3,1_0_1
+GEN-PNAnx,media\CS3.jpg,2 3,0_0_0
+
+
+#neutgen run6
+GEN-NRisk,media\CS3.jpg,2 5,0_0_1
+GEN-dummyN,media\CSlarge.jpg,0 5,0_1_0
+GEN-NAnx,media\CS4.jpg,2 9,2_0_1
+GEN-NAnx,media\vCS.jpg,0 3,0_0_1
+GEN-PNRisk,media\CS4.jpg,0 3,1_0_0
+GEN-NRisk,media\CSlarge.jpg,2 3,0_2_1
+GEN-NAnx,media\CS2.jpg,2 5,2_0_1
+GEN-NRisk,media\CSsmall.jpg,0 5,1_0_1
+GEN-NAnx,media\CSlarge.jpg,0 3,0_1_1
+GEN-NRisk,media\vCS.jpg,2 7,0_0_1
+GEN-NAnx,media\CS3.jpg,0 3,2_0_1
+GEN-NAnx,media\CSsmall.jpg,2 3,0_0_1
+GEN-NRisk,media\CS2.jpg,0 7,1_0_1
+
+
+['media\vCS.jpg',
+'media\CSsmall.jpg',
+'media\CSlarge.jpg',
+'media\vCS.jpg',
+'media\CSsmall.jpg',
+'media\CSlarge.jpg',
+'media\CSsmall.jpg',
+'media\CSsmall.jpg',
+'media\CSlarge.jpg',
+'media\CSlarge.jpg',
+'media\vCS.jpg',
+'media\vCS.jpg',
+'media\CSsmall.jpg',
+'media\vCS.jpg',
+'media\vCS.jpg',
+'media\CSlarge.jpg',
+'media\CSsmall.jpg',
+'media\CSlarge.jpg',
+'media\vCS.jpg',
+'media\CSlarge.jpg',
+'media\CSsmall.jpg',
+'media\CSsmall.jpg',
+'media\vCS.jpg',
+'media\CSlarge.jpg']
+
+
+['media\CSlarge.jpg',
+'media\vCS.jpg',
+'media\CSsmall.jpg',
+'media\vCS.jpg',
+'media\CSsmall.jpg',
+'media\CSlarge.jpg',
+'media\vCS.jpg',
+'media\CSlarge.jpg',
+'media\CSlarge.jpg',
+'media\vCS.jpg',
+'media\CSsmall.jpg',
+'media\CSsmall.jpg',
+'media\CSlarge.jpg',
+'media\CSsmall.jpg',
+'media\vCS.jpg',
+'media\CSsmall.jpg',
+'media\CSlarge.jpg',
+'media\vCS.jpg',
+'media\CSlarge.jpg',
+'media\vCS.jpg',
+'media\CSsmall.jpg',
+'media\vCS.jpg',
+'media\CSlarge.jpg',
+'media\CSsmall.jpg']
+
+
+['media\CSlarge.jpg',
+'media\CS2.jpg',
+'media\CSlarge.jpg',
+'media\CSsmall.jpg',
+'media\CS2.jpg',
+'media\CS4.jpg',
+'media\CSsmall.jpg',
+'media\CS3.jpg',
+'media\vCS.jpg',
+'media\vCS.jpg',
+'media\CSlarge.jpg',
+'media\CS4.jpg',
+'media\CSlarge.jpg',
+'media\CS3.jpg',
+'media\CSsmall.jpg',
+'media\CS2.jpg',
+'media\vCS.jpg',
+'media\CS3.jpg',
+'media\CS3.jpg',
+'media\CSlarge.jpg',
+'media\CS2.jpg',
+'media\CSsmall.jpg',
+'media\CS4.jpg',
+'media\vCS.jpg',
+'media\CSlarge.jpg',
+'media\CS4.jpg']
+
+['media\vCS.jpg',
+'media\CSlarge.jpg',
+'media\vCS.jpg',
+'media\CSsmall.jpg',
+'media\CSsmall.jpg',
+'media\CSlarge.jpg',
+'media\CSsmall.jpg',
+'media\CSlarge.jpg',
+'media\CSlarge.jpg',
+'media\vCS.jpg',
+'media\vCS.jpg',
+'media\CSsmall.jpg',
+'media\CSsmall.jpg',
+'media\CSlarge.jpg',
+'media\CSsmall.jpg',
+'media\CSlarge.jpg',
+'media\vCS.jpg',
+'media\vCS.jpg',
+'media\CSsmall.jpg',
+'media\vCS.jpg',
+'media\CSlarge.jpg',
+'media\vCS.jpg',
+'media\CSlarge.jpg',
+'media\CSsmall.jpg']
+
+['media\CS3.jpg',
+'media\vCS.jpg',
+'media\CSlarge.jpg',
+'media\CS2.jpg',
+'media\CSsmall.jpg',
+'media\CSlarge.jpg',
+'media\CS2.jpg',
+'media\CS4.jpg',
+'media\CSlarge.jpg',
+'media\vCS.jpg',
+'media\CS3.jpg',
+'media\CSsmall.jpg',
+'media\CS4.jpg',
+'media\CSsmall.jpg',
+'media\CS3.jpg',
+'media\vCS.jpg',
+'media\CS4.jpg',
+'media\CSlarge.jpg',
+'media\CS3.jpg',
+'media\CSsmall.jpg',
+'media\CSlarge.jpg',
+'media\vCS.jpg',
+'media\CS2.jpg',
+'media\CS2.jpg',
+'media\CS4.jpg',
+'media\CSlarge.jpg']
+
+
+['media\CS4.jpg',
+'media\CSsmall.jpg',
+'media\CS3.jpg',
+'media\CSlarge.jpg',
+'media\CSsmall.jpg',
+'media\CS4.jpg',
+'media\CS2.jpg',
+'media\vCS.jpg',
+'media\CSlarge.jpg',
+'media\CS3.jpg',
+'media\CSlarge.jpg',
+'media\vCS.jpg',
+'media\CS2.jpg',
+'media\CSlarge.jpg',
+'media\vCS.jpg',
+'media\CSlarge.jpg',
+'media\CS4.jpg',
+'media\CS3.jpg',
+'media\CSsmall.jpg',
+'media\CS4.jpg',
+'media\CSlarge.jpg',
+'media\vCS.jpg',
+'media\CS2.jpg',
+'media\CSsmall.jpg',
+'media\CS3.jpg',
+'media\CS2.jpg']

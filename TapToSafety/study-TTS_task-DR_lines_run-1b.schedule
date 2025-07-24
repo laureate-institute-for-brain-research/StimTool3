@@ -1,0 +1,26 @@
+TrialTypes,Stimuli,Durations (StimOnset PostRatingPause ITI),ExtraArgs (<ANX|RISK|NONE>_<VIRTUAL-SHOCK|SHOCK|NO-SHOCK>_<NEUT|NO-NEUT> = (<2|1|0>_<2|1|0>_<1|0>))
+neutCS,media\lines\CSlarge.JPG,1 0 3,0_1_0
+neutCS,media\lines\vCS.JPG,2 2 3,1_0_1
+neutCS,media\lines\CSlarge.JPG,2 2 5,1_1_1
+neutCS,media\lines\vCS.JPG,1 2 3,1_0_1
+neutCS,media\lines\CSsmall.JPG,2 2 3,2_0_1
+neutCS,media\lines\vCS.JPG,2 2 5,2_0_1
+neutCS,media\lines\CSlarge.JPG,2 0 3,2_1_0
+neutCS,media\lines\CSlarge.JPG,1 0 5,1_1_0
+neutCS,media\lines\vCS.JPG,1 0 3,2_0_1
+neutCS,media\lines\CSlarge.JPG,1 2 5,2_1_1
+neutCS,media\lines\CSsmall.JPG,1 2 7,1_0_1
+neutCS,media\lines\CSsmall.JPG,1 0 7,1_0_1
+neutCS,media\lines\vCS.JPG,2 0 3,1_0_0
+neutCS,media\lines\CSsmall.JPG,2 2 9,1_0_1
+neutCS,media\lines\vCS.JPG,1 2 3,2_0_1
+neutCS,media\lines\CSlarge.JPG,1 2 5,1_1_1
+neutCS,media\lines\CSsmall.JPG,1 2 3,2_0_1
+neutCS,media\lines\CSlarge.JPG,2 0 9,1_1_1
+neutCS,media\lines\CSlarge.JPG,2 2 7,2_1_1
+neutCS,media\lines\CSsmall.JPG,2 0 3,1_0_0
+neutCS,media\lines\vCS.JPG,1 0 3,2_0_0
+neutCS,media\lines\CSlarge.JPG,1 0 3,2_1_1
+neutCS,media\lines\CSsmall.JPG,2 0 5,2_0_1
+neutCS,media\lines\CSsmall.JPG,1 0 3,2_0_0
+neutCS,media\lines\vCS.JPG,2 0 3,1_0_1

@@ -1,0 +1,2 @@
+TrialTypes,Stimuli,Durations (PostRatingPause ITI),ExtraArgs (<ANX|RISK|NONE>_<VIRTUAL-SHOCK|SHOCK|NO-SHOCK>_<NEUT|NO-NEUT> = (<2|1|0>_<2|1|0>_<1|0>))
+neutCS,media\CSlarge.JPG,0 7 1,1_1_1

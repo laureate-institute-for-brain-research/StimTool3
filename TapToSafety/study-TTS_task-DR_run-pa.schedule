@@ -1,0 +1,3 @@
+TrialTypes,Stimuli,Durations (PostRatingPause ITI),ExtraArgs (<ANX|RISK|NONE>_<VIRTUAL-SHOCK|SHOCK|NO-SHOCK>_<NEUT|NO-NEUT> = (<2|1|0>_<2|1|0>_<1|0>))
+pavCS,media\Practice_wave.jpg,2 1 1,2_0_0
+pavCS,media\Practice_wave.jpg,2 1 1,1_0_0

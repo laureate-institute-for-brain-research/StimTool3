@@ -1,0 +1,27 @@
+TrialTypes,Stimuli,Durations (StimOnset PostRatingPause ITI),ExtraArgs (<ANX|RISK|NONE>_<VIRTUAL-SHOCK|SHOCK|NO-SHOCK>_<NEUT|NO-NEUT> = (<2|1|0>_<2|1|0>_<1|0>))
+GEN-PNRisk,media\lines\GS4.JPG,2 2 3,1_0_0
+GEN-NAnx,media\lines\vCS.JPG,2 2 3,0_0_1
+GEN-PNRisk,media\lines\CSlarge.JPG,2 0 3,0_1_0
+GEN-NRisk,media\lines\GS1.JPG,1 2 9,1_0_1
+GEN-NAnx,media\lines\CSsmall.JPG,2 2 3,2_0_1
+GEN-NAnx,media\lines\CSlarge.JPG,1 0 7,2_1_1
+GEN-NAnx,media\lines\GS2.JPG,1 2 5,0_0_1
+GEN-NRisk,media\lines\GS5.JPG,2 0 7,0_0_1
+GEN-PNRisk,media\lines\CSlarge.JPG,1 2 5,1_0_0
+GEN-NRisk,media\lines\vCS.JPG,1 2 3,0_0_1
+GEN-NAnx,media\lines\GS3.JPG,2 2 3,2_0_1
+GEN-NRisk,media\lines\CSsmall.JPG,2 0 5,1_0_1
+GEN-NAnx,media\lines\GS6.JPG,2 2 9,0_0_1
+GEN-PNAnx,media\lines\CSsmall.JPG,1 2 3,0_0_0
+GEN-NRisk,media\lines\GS3.JPG,1 2 5,1_0_1
+GEN-NAnx,media\lines\vCS.JPG,1 0 3,2_0_1
+GEN-NAnx,media\lines\GS5.JPG,1 0 5,2_0_1
+GEN-dummyN,media\lines\CSlarge.JPG,1 0 7,0_1_0
+GEN-NAnx,media\lines\GS4.JPG,1 0 3,2_0_1
+GEN-NRisk,media\lines\CSsmall.JPG,1 2 5,1_0_1
+GEN-NAnx,media\lines\CSlarge.JPG,2 0 3,2_1_1
+GEN-NRisk,media\lines\vCS.JPG,2 0 3,1_0_1
+GEN-NRisk,media\lines\GS1.JPG,2 2 3,1_0_1
+GEN-PNAnx,media\lines\GS2.JPG,1 0 3,2_0_0
+GEN-PNAnx,media\lines\GS6.JPG,1 2 7,2_0_0
+GEN-NRisk,media\lines\CSlarge.JPG,1 0 7,1_1_1

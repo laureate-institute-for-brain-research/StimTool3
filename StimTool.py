@@ -57,6 +57,7 @@ import Cooperation.Cooperation
 import Horizon.Horizon
 import GoNoGo.GoNoGo
 import SelfReferentialEncoding.SelfReferentialEncoding
+import TapToSafety.TapToSafety
 
 
 #mod_mapping = {'Monetary Incentive Delay':MonetaryIncentiveDelay.MonetaryIncentiveDelay, 'Physiological Baseline':Baseline.Baseline, 'Emotional Reactivity':EmotionalReactivity.EmotionalReactivity, 'Breath Hold':BreathHold.BreathHold,
@@ -99,6 +100,7 @@ mod_mapping = {
     'Cooperation':Cooperation.Cooperation,
     'Horizon': Horizon.Horizon,
     'Breath Hold': BreathHold.BreathHold,
+    'TapToSafety':TapToSafety.TapToSafety,
     'GoNoGo': GoNoGo.GoNoGo,
     'SelfReferentialEncoding':SelfReferentialEncoding.SelfReferentialEncoding
     }

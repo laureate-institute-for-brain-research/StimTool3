@@ -1,0 +1,13 @@
+run T
+practice False
+random_run False
+frame_time 0.08335
+instruction_schedule IA_instruct_scheduleS_R.csv
+left '1'
+right '2'
+up '3'
+down '4'
+select '3'
+shock_schedule_l [1,1,0,1,1,1,1,0,1,1,]
+shock_schedule_m [1,0,0,1,0,1,1,1,0,1,]
+shock_schedule_h [0,0,0,0,1,0,1,0,0,0,]

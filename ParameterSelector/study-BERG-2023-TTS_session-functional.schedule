@@ -1,0 +1,13 @@
+{
+"Session":{"T1":{"session_id":"T1",
+                  "order":[
+                         "Parameter Selector:run='study-BERG-2023-TTS_session-functional.schedule'",
+                         "Parameter Selector:run='study-BERG-2023-TTS_session-functional-T1.schedule'"
+                          ]}, 
+            "T2":{"session_id":"T2",
+            "order":[
+                         "Parameter Selector:run='study-BERG-2023-TTS_session-functional.schedule'",
+                         "Parameter Selector:run='study-BERG-2023-TTS_session-functional-T2.schedule'"
+                          ]}
+              }
+}
