@@ -137,6 +137,7 @@ def run_try():
     g.win_ratio = g.win.size[0]/g.win.size[1]
     g.test_stim = visual.TextStim(g.win, text='TESTING SCREEN REFRESH RATE...', height=0.25, pos=[0,0], units='norm', color='white')
     g.break_stim = visual.TextStim(g.win, text='REST', height=0.25, pos=[0,0], units='norm', color='white')
+    g.end_stim = visual.TextStim(g.win, text='Thank you for participating. Please wait.\n(ENTER to end)', height=0.15, pos=[0,0], units='norm', color='white')
     g.fixation = visual.ImageStim(g.win, image=os.path.join(os.path.dirname(__file__),  'media/fixation.png'), pos=[0,0], size = [0.5,g.win_ratio*0.5], units='norm')
     g.letter_stims = {}
     for letr in set(letters):
@@ -182,9 +183,21 @@ def run_try():
 
         g.trial = g.trial + 1
 
-    if not g.run_params['practice']:
+    if 'R2' in g.run_params['run_id']:
+        done = False
+        while not done:
+            g.end_stim.draw()
+            g.win.flip()
+            resp = event.getKeys(['return'])
+            if resp:
+                done = True
+            StimToolLib.short_wait()
+
+
+    if not g.run_params['practice'] and 'R2' not in g.run_params['run_id']:
         g.break_stim.draw()
         g.win.flip()
         StimToolLib.just_wait(g.clock, g.clock.getTime() + 30)
+
     g.win.flip()
     g.msg.setColor([-1,-1,-1])
