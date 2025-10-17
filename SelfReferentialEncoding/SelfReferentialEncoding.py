@@ -36,6 +36,8 @@ event_types = {
     'QUESTION_ONSET':17,
     'RESPONSE_YES':18,
     'RESPONSE_NO':19,
+    'SRE_START':20,
+    'SRE_END':21,
     'TASK_END':StimToolLib.TASK_END 
     }
 
@@ -199,6 +201,8 @@ def run_try():
     g.win.flip()
     test_time = g.clock.getTime()
     StimToolLib.mark_event(g.output, 'NA', 'NA', event_types['TASK_ONSET'], instruct_end_time, instruct_end_time - instruct_start_time, 'NA', 'NA', g.session_params['signal_parallel'], g.session_params['parallel_port_address'], g.session_params['signal_serial'], g.session_params['serial_port_address'], g.session_params['baud_rate'])
+    if 'run-RP' not in g.run_params['run']:
+        StimToolLib.mark_event(g.output, 'NA', 'NA', event_types['SRE_START'], instruct_end_time, instruct_end_time - instruct_start_time, 'NA', 'NA', g.session_params['signal_parallel'], g.session_params['parallel_port_address'], g.session_params['signal_serial'], g.session_params['serial_port_address'], g.session_params['baud_rate'])
     g.ideal_trial_start = instruct_end_time
 
     g.mouse = event.Mouse(visible=False)
@@ -210,7 +214,8 @@ def run_try():
         do_one_trial(w,f,sd,bd,pn)
 
         g.trial = g.trial + 1
-
+    StimToolLib.just_wait(g.clock, g.clock.getTime() + 4)
+    StimToolLib.mark_event(g.output, 'NA', 'NA', event_types['SRE_END'], instruct_end_time, 'NA', 'NA', 'NA', g.session_params['signal_parallel'], g.session_params['parallel_port_address'], g.session_params['signal_serial'], g.session_params['serial_port_address'], g.session_params['baud_rate'])
     g.break_stim.draw()
     g.win.flip()
     StimToolLib.just_wait(g.clock, g.clock.getTime() + 30)
