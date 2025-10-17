@@ -198,7 +198,7 @@ def run_try():
             StimToolLib.short_wait()
 
     StimToolLib.just_wait(g.clock, g.clock.getTime() + 4)
-    StimToolLib.mark_event(g.output, 'NA', 'NA', event_types['GNG_END'], instruct_end_time, i'NA', 'NA', 'NA', g.session_params['signal_parallel'], g.session_params['parallel_port_address'], g.session_params['signal_serial'], g.session_params['serial_port_address'], g.session_params['baud_rate'])
+    StimToolLib.mark_event(g.output, 'NA', 'NA', event_types['GNG_END'], instruct_end_time, 'NA', 'NA', 'NA', g.session_params['signal_parallel'], g.session_params['parallel_port_address'], g.session_params['signal_serial'], g.session_params['serial_port_address'], g.session_params['baud_rate'])
 
     if not g.run_params['practice'] and 'R2' not in g.run_params['run_id']:
         g.break_stim.draw()
