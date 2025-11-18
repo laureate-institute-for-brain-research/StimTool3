@@ -1,0 +1,8 @@
+run_id __HZ_R1-_BEH
+task_name HZ
+param_file _HZ-RX-PARA.txt
+practice False
+select 3
+left '1'
+right '2'
+instruction_schedule dp1_instruct_schedule.csv

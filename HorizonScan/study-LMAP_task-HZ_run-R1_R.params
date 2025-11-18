@@ -1,0 +1,8 @@
+run_id __HZ_R1-_BEH
+task_name HZ
+param_file _HZ-RX-PARA.txt
+practice False
+select 1
+left '1'
+right '2'
+instruction_schedule lmap_instruct_schedule_r.csv
