@@ -1,0 +1,11 @@
+TrialTypes (Male/Female_GroupColor_Name),Stimuli,Durations (fixation),ExtraArgs (feedback type 1=like 2=dislike 0=neutral)
+MG_Johnny B.,,2,1
+MR_Ken R.,,3,2
+MLR_Carlos G.,,4,2
+MLG_Albert M.,,5,0
+RATING,,4,1
+FLG_Wanda M.,,3,1
+FLR_Linda E.,,2,0
+FR_Sage T.,,5,2
+FG_Hana N.,,3,1
+RATING,,4,1

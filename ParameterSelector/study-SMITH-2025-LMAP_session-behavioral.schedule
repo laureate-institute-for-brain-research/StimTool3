@@ -1,0 +1,41 @@
+{
+"Session":{"T0":{"session_id":"T0"}, 
+            "T1":{"session_id":"T1"}},
+ "Hand-Set":{"RIGHT-BEHV":{
+            "scan": "False",
+            "left":"1", 
+            "right":"2", 
+            "select":"3",
+            "screen_x":1920,
+            "screen_y":1080,
+            "handedness":"right",
+            "allow_skip":"True",
+            "order":[
+                "Parameter Selector:run='study-SMITH-2025-LMAP_session-behavioral.schedule'",
+                "ProbabilitySelectionTask:run='study-SBAT_task-PST_run-P_R_TRAIN.schedule'",
+                "ProbabilitySelectionTask:run='study-SBAT_task-PST_run-R1_R_TRAIN.schedule'",
+                "ProbabilitySelectionTask:run='study-SBAT_task-PST_run-R2_R_TRAIN.schedule'",
+                "ProbabilitySelectionTask:run='study-SBAT_task-PST_run-R1_R_TEST.schedule'",
+                "Data Mover:run='LMAP_BEHV_TX.schedule'"
+            ]
+        },
+        "LEFT-BEHV":{
+            "scan": "False",
+            "left":"3", 
+            "right":"4", 
+            "select":"2",
+            "screen_x":1920,
+            "screen_y":1080,
+            "handedness":"left",
+            "allow_skip":"True",
+            "order":[
+                "Parameter Selector:run='study-SMITH-2025-LMAP_session-behavioral.schedule'",
+                "ProbabilitySelectionTask:run='study-SBAT_task-PST_run-P_L_TRAIN.schedule'",
+                "ProbabilitySelectionTask:run='study-SBAT_task-PST_run-R1_L_TRAIN.schedule'",
+                "ProbabilitySelectionTask:run='study-SBAT_task-PST_run-R2_L_TRAIN.schedule'",
+                "ProbabilitySelectionTask:run='study-SBAT_task-PST_run-R1_L_TEST.schedule'",
+                "Data Mover:run='LMAP_BEHV_TX.schedule'"
+            ]
+        }
+    }
+}

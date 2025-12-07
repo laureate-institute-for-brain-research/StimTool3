@@ -1,0 +1,77 @@
+TrialTypes (Male/Female_GroupColor_Name),Stimuli,Durations (fixation),ExtraArgs (feedback type 1=like 2=dislike 0=neutral)
+FG_Reagan H.,,2.5,1
+MLR_Kyle E.,,1,2
+FR_Quinn W.,,3,2
+RATING,,0.5,1
+MLG_Cameron H.,,1.5,1
+MR_David N.,,2.5,2
+FLG_Everly F.,,3,1
+RATING,,1.5,1
+MG_Daniel B.,,1.5,1
+FLR_Kayla J.,,1.5,2
+FG_Aurora G.,,4,0
+RATING,,1.0,1
+MLR_Elliot D.,,1,2
+FG_Kiara W.,,1,1
+FR_Yumi S.,,3,2
+RATING,,0.5,1
+MLG_Wei Z.,,2.5,1
+MR_Nathan S.,,2.5,2
+MG_Luca W.,,1,1
+RATING,,0.5,1
+FLG_Sierra M.,,1.5,1
+MLR_Jeremiah L.,,2,0
+FLR_Madison C.,,3,2
+RATING,,1.5,1
+FG_Clara N.,,1.5,1
+MLR_Reid H.,,1,2
+RATING,,1.5,1
+FR_Bella M.,,1,2
+MLG_Elias B.,,1.5,1
+FLG_Paisley R.,,2.5,1
+RATING,,1.5,1
+MR_Chase C.,,3,2
+FR_Leilani K.,,5,0
+MG_Carter B.,,1,1
+FLR_Isla B.,,3,2
+RATING,,1.0,1
+FG_Hana K.,,3,1
+MLR_Terrence G.,,1.5,2
+FR_Mei L.,,1,2
+RATING,,1.0,1
+FLG_Lila C.,,1.5,1
+MR_Nolan F.,,2.5,2
+RATING,,0.5,1
+MLG_Connor P.,,2.5,1
+MLG_Rajesh S.,,3,0
+RATING,,4,0
+MG_Asher M.,,1,1
+FLR_Ivy H.,,3,2
+RATING,,1.5,1
+FG_Imani D.,,1.5,2
+MLR_Cody S.,,2.5,1
+RATING,,1.0,1
+FR_Peyton P.,,3,1
+MLG_Andre C.,,3,2
+FLG_Nora E.,,1.5,2
+MR_Trevor R.,,4,0
+RATING,,1.5,1
+MR_Christopher C.,,1,1
+FLR_Leah S.,,1.5,1
+MG_Sean M.,,3,2
+RATING,,0.5,1
+FG_Aria P.,,2.5,1
+MLR_Evan S.,,1.5,2
+FR_Sadie M.,,2.5,2
+RATING,,0.5,1
+MLG_Jack R.,,1,1
+FLG_Lucy M.,,5,0
+MR_Spencer H.,,3,2
+RATING,,0.5,1
+FLG_Zoe P.,,1,1
+FLR_Natalie M.,,1,2
+MG_Adam P.,,3,1
+RATING,,1.5,1
+MLR_Julian C.,,1.5,2
+FG_Scarlett Y.,,1.5,1
+RATING,,4,0

@@ -58,6 +58,7 @@ import Horizon.Horizon
 import GoNoGo.GoNoGo
 import SelfReferentialEncoding.SelfReferentialEncoding
 import TapToSafety.TapToSafety
+import ProbabilitySelectionTask.ProbabilitySelectionTask
 
 
 #mod_mapping = {'Monetary Incentive Delay':MonetaryIncentiveDelay.MonetaryIncentiveDelay, 'Physiological Baseline':Baseline.Baseline, 'Emotional Reactivity':EmotionalReactivity.EmotionalReactivity, 'Breath Hold':BreathHold.BreathHold,
@@ -102,7 +103,8 @@ mod_mapping = {
     'Breath Hold': BreathHold.BreathHold,
     'TapToSafety':TapToSafety.TapToSafety,
     'GoNoGo': GoNoGo.GoNoGo,
-    'SelfReferentialEncoding':SelfReferentialEncoding.SelfReferentialEncoding
+    'SelfReferentialEncoding':SelfReferentialEncoding.SelfReferentialEncoding,
+    'ProbabilitySelectionTask': ProbabilitySelectionTask.ProbabilitySelectionTask
     }
 
 def run_task_until_success(task, session_params):

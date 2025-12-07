@@ -1,0 +1,6 @@
+run_id _SET_R1-_BEH
+task_name SET
+param_file _SET-RX-PARA.txt
+practice False
+select '1'
+instruction_schedule set_instruct_schedule_pr.csv

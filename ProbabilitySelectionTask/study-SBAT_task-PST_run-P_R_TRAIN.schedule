@@ -1,0 +1,5 @@
+TrialTypes (Male/Female_GroupColor_Name),Stimuli,Durations (fixation),ExtraArgs (feedback 1 = )
+1_6,media\80.bmp media\20.bmp,0.25 0.25,0
+2_5,media\70.bmp media\30.bmp,0.25 0.25,0
+3_4,media\60.bmp media\40.bmp,0.25 0.25,1
+HAPPY,media\60.bmp media\40.bmp,0.25 0.25,1
