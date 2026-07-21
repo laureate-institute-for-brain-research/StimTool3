@@ -1,0 +1,95 @@
+{
+"Session":{"T0":{"session_id":"T0"}, 
+            "T1":{"session_id":"T1"}},
+ "SCHEDULE":{"RUN-A-LEFT":{"scan": "True",
+                       "left":"3", 
+                       "right":"1", 
+                       "up":"4", 
+                       "down":"2",
+                       "select":"2",
+                       "joy_forward":2,
+                        "joy_backward":0,
+                        "handedness": "left",
+                       "order":[
+                         "Parameter Selector:run='study-AUPPERLE-2026-LTCC_session-functional.schedule'",
+                         "Volume Workup:run='study-AMPA_task-VW_run-1.schedule'",
+                         "Approach Avoidance Conflict:run='study-LTCC_task-AAC_run-RX_A.schedule'",
+                         "Approach Avoidance Conflict:run='study-LTCC_task-AAC_run-RX_B.schedule'",
+                         "Approach Avoidance Conflict:run='study-LTCC_task-AAC_run-RX_C.schedule'"
+                          ]},
+              "RUN-A-RIGHT":{"scan": "True",
+                       "left":"3", 
+                       "right":"1",
+                       "up":"4", 
+                       "down":"2",
+                       "select":"2",
+                       "joy_forward":2,
+                        "joy_backward":0,
+                        "handedness": "right",
+                       "order":[
+                         "Parameter Selector:run='study-AUPPERLE-2026-LTCC_session-functional.schedule'",
+                         "Volume Workup:run='study-AMPA_task-VW_run-1.schedule'",
+                         "Approach Avoidance Conflict:run='study-LTCC_task-AAC_run-RX_A.schedule'",
+                         "Approach Avoidance Conflict:run='study-LTCC_task-AAC_run-RX_B.schedule'",
+                         "Approach Avoidance Conflict:run='study-LTCC_task-AAC_run-RX_C.schedule'"
+                          ]},
+              "RUN-B-LEFT":{"scan": "True",
+                       "left":"3", 
+                       "right":"1",
+                       "up":"4", 
+                       "down":"2",
+                       "select":"2",
+                       "joy_forward":2,
+                        "joy_backward":0,
+                        "handedness": "left",
+                       "order":[
+                         "Parameter Selector:run='study-AUPPERLE-2026-LTCC_session-functional.schedule'",
+                         "Volume Workup:run='study-AMPA_task-VW_run-1.schedule'",
+                         "Approach Avoidance Conflict:run='study-LTCC_task-AAC_run-RX_A.schedule'",
+                         "Approach Avoidance Conflict:run='study-LTCC_task-AAC_run-RX_B.schedule'",
+                         "Approach Avoidance Conflict:run='study-LTCC_task-AAC_run-RX_C.schedule'"
+                          ]},
+              "RUN-B-RIGHT":{"scan": "True",
+                       "left":"3", 
+                       "right":"1",
+                       "up":"4", 
+                       "down":"2",
+                       "select":"2",
+                       "joy_forward":2,
+                        "joy_backward":0,
+                        "handedness": "right",
+                       "order":[
+                         "Parameter Selector:run='study-AUPPERLE-2026-LTCC_session-functional.schedule'",
+                         "Volume Workup:run='study-AMPA_task-VW_run-1.schedule'",
+                         "Approach Avoidance Conflict:run='study-LTCC_task-AAC_run-RX_A.schedule'",
+                         "Approach Avoidance Conflict:run='study-LTCC_task-AAC_run-RX_B.schedule'",
+                         "Approach Avoidance Conflict:run='study-LTCC_task-AAC_run-RX_C.schedule'"
+                          ]},
+              "PRACTICE-LEFT":{
+                       "left":"3", 
+                       "right":"1",
+                       "up":"4", 
+                       "down":"2",
+                       "select":"2",
+                       "joy_forward":2,
+                        "joy_backward":0,
+                        "handedness": "left",
+                       "order":[
+                         "Parameter Selector:run='study-AUPPERLE-2026-LTCC_session-functional.schedule'",
+                         "Approach Avoidance Conflict:run='study-LTCC_task-AAC_run-P.schedule'"
+                          ]},
+              "PRACTICE-RIGHT":{
+                       "left":"3", 
+                       "right":"1",
+                       "up":"4", 
+                       "down":"2",
+                       "select":"2",
+                       "joy_forward":2,
+                        "joy_backward":0,
+                        "handedness": "right",
+                       "order":[
+                         "Parameter Selector:run='study-AUPPERLE-2026-LTCC_session-functional.schedule'",
+                         "Approach Avoidance Conflict:run='study-LTCC_task-AAC_run-P.schedule'"
+                          ]}
+         }
+}
