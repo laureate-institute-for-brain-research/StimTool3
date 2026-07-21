@@ -1,0 +1,3 @@
+run_id _AAC-R1
+param_file KetoSwiss_AAC_RX_PARA.txt
+instruction_schedule study-KetoSwiss_task-AAC_run-1_instructschedule.csv

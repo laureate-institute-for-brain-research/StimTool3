@@ -9,7 +9,7 @@ Subjects are instructed to select their relative preference between the two poss
 They can control the probability of each outcome from 10% to 90%, but cannot determine one outcome with certainty.
 
 Four instruction trials occur at the beginning of the practice run.
-A script for the instruction slides can be found in XXXXX.
+The instruction slide schedules can be found in the media/instructions folder; the specific schedule used is set by the instruction_schedule run parameter.
 
 *****************************************************************TRIAL STRUCTURE******************************************************************
 
@@ -105,6 +105,7 @@ result: total points earned in the task
 
 
 VAS_RATING (12)
+NOTE: This code is not currently collected by this module. The get_vas_ratings function is defined but is never called, so this event is never emitted. The description below documents what that function would record if enabled.
 Three visual analogue scale ratings are collected using the mouse before the practice run and after the task run.
 Subjects are asked to rate how pleasant, unpleasant, and intense they feel.
 Trial numbers code which question is being asked (-1 for pleasant, -2 for unpleasant, -3 for intense).
@@ -114,8 +115,9 @@ response: numerical rating from 0 to 100
 result: not used
 
 POST_RATING (13)
+NOTE: This code is not currently collected by this module. The get_post_ratings function is defined but is never called, so this event is never emitted (and the questions file it references, T1000_AAC_PostQuestions.csv, is not present in the module). The description below documents what that function would record if enabled.
 After the task run, subjects are asked to rate a series of questions.
-These ratings are from 1 to 7, and the questions can be found in T1000_AAC_PostQuestions.csv.
+These ratings are from 1 to 7.
 The trial number recorded corresponds to the -1 times the question number in the file.
 response_time: time taken to make rating
 response: numerical rating from 1 to 7

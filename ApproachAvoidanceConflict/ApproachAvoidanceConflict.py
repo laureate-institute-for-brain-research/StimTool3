@@ -276,14 +276,51 @@ def show_reward(left_reward, right_reward, result, left_image, right_image):
     StimToolLib.mark_event(g.output, g.trial, g.trial_type, event_types['TOTAL_POINTS'], now, 'NA', 'NA', g.total_reward, False, g.session_params['parallel_port_address'])
     #g.this_trial_output = g.this_trial_output + ',' + str(int(reward_amount)) + ',' + str(int(g.total_reward))
 
+def show_reward_separated(left_reward, right_reward, result, left_image, right_image):
+    if result == 0:
+        reward_amount = left_reward
+        if left_reward > right_reward: #pick the sound to play
+            to_play = g.big_reward
+        else:
+            to_play = g.small_reward #also small when left_reward == right_reward
+    else:
+        reward_amount = right_reward
+        if left_reward < right_reward:
+            to_play = g.big_reward
+        else:
+            to_play = g.small_reward
+    g.reward_text_1.setText('YOU MADE ' + str(int(reward_amount)) + ' CENTS !!')
+    g.reward_text_2.setText('TOTAL: ' + str(int(g.total_reward_shown)))
+    
+    #print('g.total_reward:', str(g.total_reward))
+    #print('reward_amount:',str(reward_amount))
+    g.total_reward = g.total_reward + reward_amount
+    g.total_reward_shown = g.total_reward_shown + reward_amount
+    StimToolLib.write_var_to_file(g.subj_param_file, 'total_reward', g.total_reward)
+    StimToolLib.write_var_to_file(g.subj_param_file, 'total_reward_shown', g.total_reward_shown)
+    g.reward_text_2.setText('TOTAL: ' + str(int(g.total_reward_shown)))
+    
+    # g.reward_rect.draw()
+    
+    g.reward_text_1.draw()
+    g.reward_text_2.draw()
+    g.win.flip()
+    to_play.play()
+    #time_stamp()
+    now = g.clock.getTime()
+    StimToolLib.mark_event(g.output, g.trial, g.trial_type, event_types['POINTS_AWARDED'], now, 'NA', 'NA', reward_amount, g.session_params['signal_parallel'], g.session_params['parallel_port_address'])
+    StimToolLib.mark_event(g.output, g.trial, g.trial_type, event_types['TOTAL_POINTS'], now, 'NA', 'NA', g.total_reward, False, g.session_params['parallel_port_address'])
+    #g.this_trial_output = g.this_trial_output + ',' + str(int(reward_amount)) + ',' + str(int(g.total_reward))
+
     
 def do_one_trial(trial_type, iti, left_reward, right_reward, start_location, left_sound, right_sound, left_image, right_image):
+    fix = g.x_separated if g.run_params.get('separated_reward', False) else g.x
     #wait for iti
-    g.x.draw()
+    fix.draw()
     g.win.flip()
     now = g.clock.getTime()
     StimToolLib.mark_event(g.output, g.trial, g.trial_type, event_types['FIXATION_ONSET'], now, 'NA', 'NA', 'NA', g.session_params['signal_parallel'], g.session_params['parallel_port_address'])
-    g.x.draw()
+    fix.draw()
 
     # Why is code below here?
     
@@ -300,7 +337,13 @@ def do_one_trial(trial_type, iti, left_reward, right_reward, start_location, lef
     result = select_result_display_image(final_location, left_sound, right_sound, left_image, right_image, trial_type)
     StimToolLib.just_wait(g.clock, g.ideal_trial_start + iti + g.select_length + g.image_length)
     #show reward points/play sound
-    show_reward(left_reward, right_reward, result, left_image, right_image)
+    if g.run_params.get('separated_reward', False) == True:
+        print("NEW SHOW REWARD")
+        left_sound.stop()
+        right_sound.stop()
+        show_reward_separated(left_reward, right_reward, result, left_image, right_image)
+    else:
+        show_reward(left_reward, right_reward, result, left_image, right_image)
     StimToolLib.just_wait(g.clock, g.ideal_trial_start + iti + g.select_length + g.image_length + g.result_length)
     left_sound.stop()
     right_sound.stop()
@@ -356,6 +399,60 @@ def final_screen():
             g.msgtop.setText('Congratulations, you\'ve won $' + "{0:.2f}".format(g.total_reward/100) + '!')
         else:
             g.msgtop.setText('Congratulations, you\'ve won $' + "{0:.2f}".format(g.total_reward/100) +'!')
+            g.msgmid.setText('(This includes your winnings from the trials you repeated.)')
+            #g.msgmid.pos = StimToolLib.getMSGPosition(g.msgmid, xonly = True)
+            g.msgmid.draw()
+                 #g.msgtop.pos = StimToolLib.getMSGPosition(g.msgtop, xonly = True)
+        g.msgtop.draw()
+        g.msgbottom.setText('Press the ENTER to continue.')
+        #g.msgbottom.pos = StimToolLib.getMSGPosition(g.msgbottom, xonly = True)
+        g.msgbottom.draw()
+        g.win.flip()
+        k = event.waitKeys(keyList = ['return', 'escape'])
+        if k[0] == 'escape':
+            raise QuitException()
+        
+    #g.final_sound.stop() #stop the sound if it's still playing
+    #StimToolLib.just_wait(g.clock, g.ideal_trial_start + 30)
+
+def final_screen_separated():
+    #g.final_sound.play()
+    # if g.total_reward==g.total_reward_shown:
+    #     g.msg.setText('Congratulations, you\'ve won $' + "{0:.2f}".format(g.total_reward/100) + '!')
+    # else:
+    #     g.msg.setText('Congratulations, you\'ve won $' + "{0:.2f}".format(g.total_reward/100) +'!\n(This includes your winnings from the trials you repeated.')
+    # g.msg.draw()
+    # g.msg.setText('\n\n\n\n\n\nPress the trigger button to continue.')
+    # g.msg.draw()
+    g.msgtop = visual.TextStim(g.win, text = '', units = 'norm', pos=(0,0), color = 'black', alignHoriz='center', font = 'helvetica')
+    g.msgmid = visual.TextStim(g.win, text = '', units = 'norm', pos=(0,-.2), color = 'black', alignHoriz='center', font = 'helvetica')
+    g.msgbottom = visual.TextStim(g.win, text = '', units = 'norm', pos=(0,-0.9), color = 'black', alignHoriz='center', font = 'helvetica')
+    
+    g.win.flip()
+    if g.session_params['joystick']:
+        while not g.joystick.getButton(g.session_params['joy_forward']):
+            if g.total_reward==g.total_reward_shown:
+                g.msgtop.setText('Congratulations, you\'ve won ' + "{0:.2f}".format(g.total_reward/100) + ' points!')
+            else:
+                g.msgtop.setText('Congratulations, you\'ve won ' + "{0:.2f}".format(g.total_reward/100) +' points!')
+                g.msgmid.setText('(This includes your winnings from the trials you repeated.)')
+                #g.msgmid.pos = StimToolLib.getMSGPosition(g.msgmid, xonly = True)
+                g.msgmid.draw()
+        
+            #g.msgtop.pos = StimToolLib.getMSGPosition(g.msgtop, xonly = True)
+            g.msgtop.draw()
+            g.msgbottom.setText('Press the trigger button to continue.')
+            #g.msgbottom.pos = StimToolLib.getMSGPosition(g.msgbottom, xonly = True)
+            g.msgbottom.draw()
+            event.clearEvents('joystick')
+            g.win.flip()
+        g.msg.setPos([0,0])
+    else:
+        
+        if g.total_reward==g.total_reward_shown:
+            g.msgtop.setText('Congratulations, you\'ve won ' + "{0:.2f}".format(g.total_reward/100) + ' points!')
+        else:
+            g.msgtop.setText('Congratulations, you\'ve won ' + "{0:.2f}".format(g.total_reward/100) +' points!')
             g.msgmid.setText('(This includes your winnings from the trials you repeated.)')
             #g.msgmid.pos = StimToolLib.getMSGPosition(g.msgmid, xonly = True)
             g.msgmid.draw()
@@ -577,6 +674,7 @@ def run_try():
     trial_types,images,durations,sound_files = StimToolLib.read_trial_structure(schedule_file, g.win, g.msg)
     
     g.x = visual.TextStim(g.win, text="X", units='pix', height=50, color=[-1,-1,-1], pos=[0,0], bold=True, alignHoriz = 'center')
+    g.x_separated = visual.TextStim(g.win, text="+", units='pix', height=60, color=[-1,-1,-1], pos=[0,0], bold=True, alignHoriz = 'center')
     g.left_images = images[0]
     g.right_images = images[1]
     itis = durations[0]
@@ -598,6 +696,9 @@ def run_try():
     #g.reward_text_1.pos = StimToolLib.getMSGPosition(g.reward_text_1)
     g.reward_text_2 = visual.TextStim(g.win, text="", units='norm', color='white', pos=[0,-0.6], bold=True, alignHoriz='center')
     #g.reward_text_2.pos = StimToolLib.getMSGPosition(g.reward_text_2)
+    if g.run_params.get('separated_reward', False) == True:
+        g.reward_text_1 = visual.TextStim(g.win, text="", units='pix', height=50, color='blue', pos=[0,50], bold=True, font='Arial Black', wrapWidth=1600)
+        g.reward_text_2 = visual.TextStim(g.win, text="", units='pix', height=50, color='red', pos=[0,-50], bold=True, font='Arial Black', wrapWidth=1600)
     g.reward_rect=visual.Rect(g.win, units='norm', fillColor='black', opacity=0.5, height=.35, width=.75, pos=[0,-.5])
     left_bar_loc = [-0.855,0.02]
     right_bar_loc = [0.855, 0.02]
@@ -608,6 +709,9 @@ def run_try():
     g.bars_high.append(visual.ImageStim(g.win, os.path.join(os.path.dirname(__file__),'media/bar_full.png'), pos=left_bar_loc, units='norm', size=(0.13,0.32)))
     g.bars_high.append(visual.ImageStim(g.win, os.path.join(os.path.dirname(__file__),'media/bar_full.png'), pos=right_bar_loc, units='norm', size=(0.13,0.32)))
     g.congrats = visual.TextStim(g.win,text="Congratulations!",units='pix',pos=[0,405],color=[-1,-1,-1],height=100,wrapWidth=int(1600), bold=True)
+
+    g.small_reward = sound.Sound(value=os.path.join(os.path.dirname(__file__),'media/sounds/reward/smallReward.aiff'), volume=g.volume)
+    g.big_reward = sound.Sound(value=os.path.join(os.path.dirname(__file__),'media/sounds/reward/bigReward.aiff'), volume=g.volume)
     
     track_version = track_run() #track version is an integer value that corresponds to the run's place in this task's run order (in free mode track_version=1)
     print('TRACK VERSION:  ' + str(track_version))
@@ -782,7 +886,9 @@ def run_try():
         StimToolLib.run_instructions(os.path.join(os.path.dirname(__file__), 'media', 'instructions', g.run_params['instruction_schedule']), g)
 
     #Scan code
-    if g.session_params['scan']:
+    if g.session_params['scan'] == 'False':
+        StimToolLib.wait_start(g.win)
+    elif g.session_params['scan']:
         StimToolLib.wait_scan_start(g.win)
     else:
         StimToolLib.wait_start(g.win)
@@ -801,7 +907,8 @@ def run_try():
     instruct_end_time = g.clock.getTime()
     StimToolLib.mark_event(g.output, 'NA', 'NA', event_types['TASK_ONSET'], instruct_end_time, instruct_end_time - instruct_start_time, 'NA', 'NA', g.session_params['signal_parallel'], g.session_params['parallel_port_address'])
     g.ideal_trial_start = g.clock.getTime()  #since we aren't syncing with a scanner pulse, don't reset the clock at the beginning of the real task--times will be reletive to the task start as reported to BIOPAC
-    g.x.draw()
+    fix = g.x_separated if g.run_params.get('separated_reward', False) else g.x
+    fix.draw()
     g.win.flip()
     StimToolLib.just_wait(g.clock, g.ideal_trial_start + 8)
     g.ideal_trial_start = g.clock.getTime()
@@ -815,7 +922,10 @@ def run_try():
   
 
     if g.final_run:
-        final_screen()
+        if g.run_params.get('separated_reward', False) == True:
+            final_screen_separated()
+        else:
+            final_screen()
     
 
 

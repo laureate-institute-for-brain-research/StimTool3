@@ -1,0 +1,3 @@
+run_id _AAC_T1_RX_C
+param_file COVID_AAC_RX_PARA.txt
+instruction_schedule instructions_T/study-COVIDVac_task-AAC_run-3_instructschedule.csv

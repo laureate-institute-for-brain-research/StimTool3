@@ -1,0 +1,4 @@
+run_id _AAC-R1
+param_file LTCC_AAC_RP_PARA.txt
+instruction_schedule study-LTCC_task-AAC_run-1_instructschedule.csv
+separated_reward True

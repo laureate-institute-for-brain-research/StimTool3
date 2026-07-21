@@ -1,0 +1,4 @@
+run_id _AAC-R3
+param_file BIPOLAR_AAC_RX_PARA.txt
+instruction_schedule study-LTCC_task-AAC_run-3_instructschedule.csv
+separated_reward True

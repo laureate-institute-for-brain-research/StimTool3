@@ -1,0 +1,3 @@
+run_id _AAC_T1_RX_A
+param_file TTT_AAC_RX_PARA.txt
+instruction_schedule instructions_T/AAC_instruct_schedule_1_stereo.csv

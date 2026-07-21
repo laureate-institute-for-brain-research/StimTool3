@@ -1,0 +1,7 @@
+run_id _AAC_T1_RX_P
+param_file TTT_AAC_RX_PARA.txt
+practice True
+randomize_schedules False
+final_run False
+volume_workup True
+instruction_schedule instructions_P/AAC_instruct_schedule_P_stereo.csv

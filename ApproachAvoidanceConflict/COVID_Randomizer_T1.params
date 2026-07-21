@@ -1,0 +1,3 @@
+run_id AAC_T1_RX_
+versions A,B,C
+param_file COVID_AAC_RX_PARA.txt

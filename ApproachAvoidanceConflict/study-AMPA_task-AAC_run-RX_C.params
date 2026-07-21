@@ -1,0 +1,3 @@
+run_id _AAC-R3
+param_file AMPA_AAC_RX_PARA.txt
+instruction_schedule study-AMPA_task-AAC_run-3_instructschedule.csv

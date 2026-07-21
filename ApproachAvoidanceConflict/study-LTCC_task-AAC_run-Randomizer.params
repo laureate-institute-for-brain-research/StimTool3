@@ -1,0 +1,4 @@
+run_id _AAC-RX
+versions A,B,C
+param_file LTCC_AAC_RP_PARA.txt
+separated_reward True

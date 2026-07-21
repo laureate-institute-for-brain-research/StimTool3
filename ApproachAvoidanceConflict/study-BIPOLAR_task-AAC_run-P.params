@@ -1,0 +1,8 @@
+run_id _AAC-RP
+param_file BIPOLAR_AAC_RX_PARA.txt
+practice True
+randomize_schedules False
+final_run False
+volume_workup True
+instruction_schedule study-LTCC_task-AAC_run-P_instructschedule.csv
+separated_reward True
