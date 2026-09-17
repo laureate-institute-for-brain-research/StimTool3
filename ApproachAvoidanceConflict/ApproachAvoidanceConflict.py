@@ -617,6 +617,12 @@ def run_try():
     param_file = g.run_params['run'][0:-9] + '.params' #every .schedule file can (probably should) have a .params file associated with it to specify running parameters
     StimToolLib.get_var_dict_from_file(os.path.join(os.path.dirname(__file__), param_file), g.run_params)
 
+    #separated-reward runs hold the outcome image for 6s instead of the standard 4s; the reward
+    #text phase stays at 2s. This makes the fixed trial iti + 4 + 6 + 2 = iti + 12 (vs iti + 10)
+    if g.run_params.get('separated_reward', False) == True:
+        g.image_length = 6
+        g.result_length = 2
+
     g.prefix = StimToolLib.generate_prefix(g)
     g.subj_param_file = os.path.join(os.path.dirname(g.prefix), g.session_params['SID'] + '_' + g.run_params['param_file'])
     

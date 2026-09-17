@@ -4,5 +4,5 @@ practice True
 randomize_schedules False
 final_run False
 volume_workup True
-instruction_schedule study-LTCC_task-AAC_run-P_instructschedule.csv
+instruction_schedule study-BIPOLAR_task-AAC_run-P_instructschedule.csv
 separated_reward True

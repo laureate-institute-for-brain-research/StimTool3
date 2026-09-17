@@ -5,3 +5,4 @@ randomize_schedules False
 final_run False
 volume_workup True
 instruction_schedule study-AAC_BBox_task-AAC_run-P_instructschedule.csv
+separated_reward True
